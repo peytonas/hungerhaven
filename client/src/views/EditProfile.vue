@@ -5,7 +5,7 @@
     <p>{{user.address}}</p>
     <p>{{user.allergies}}</p>
     <p>{{user.phoneNumber}}</p>
-    <form class="col-10 offset-1">
+    <form class="col-10 offset-1" @submit.prevent="edit">
       <input
         class="form-control mb-2"
         type="text"
@@ -49,17 +49,22 @@
 export default {
   name: "editProfile",
   data() {
-    return {
-      user: this.$store.state.user
-    };
+    return {};
   },
   mounted() {
     this.$store.dispatch("authenticate");
   },
-  computed: {},
+  computed: {
+    user() {
+      return this.$store.state.user;
+    }
+  },
   methods: {
     goHome() {
       this.$router.push("/home");
+    },
+    edit() {
+      this.$store.dispatch("editProfile", this.user);
     }
   },
   components: {}
