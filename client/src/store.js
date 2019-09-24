@@ -45,6 +45,14 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error)
       }
+    },
+    async authenticate({ commit, dispatch }) {
+      try {
+        let user = await AuthService.Authenticate()
+        commit('setUser', user)
+      } catch (error) {
+        console.error(error)
+      }
     }
   }
 })
