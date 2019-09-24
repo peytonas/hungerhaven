@@ -14,7 +14,7 @@
         <div class="input-group">
           <input type="string" class="form-control" id="PIN" placeholder="12345" />
           <div class="input-group-append">
-            <p type="submit" class="btn btn-light">🍕</p>
+            <span type="submit" class="btn btn-danger">🍕</span>
           </div>
         </div>
       </form>
