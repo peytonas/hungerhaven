@@ -53,6 +53,15 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error)
       }
+    },
+    async register({ commit, dispatch }, payload) {
+      try {
+        let user = await AuthService.Register(payload)
+        commit('setUser', user)
+        router.push('/home')
+      } catch (error) {
+        console.error(error)
+      }
     }
   }
 })
