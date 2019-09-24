@@ -42,10 +42,14 @@ server.use('/account', new AuthController().router)
 //NOTE next we want to register all our routes(doorways that can be accessed in our app)
 
 //NOTE we have to import access to our controllers
-import ValuesController from './controllers/ValuesController'
+import UserController from './controllers/UserController'
+import GuestController from './controllers/GuestController'
+import HostController from './controllers/HostController'
 
 //NOTE remember the forward slash at the start of your path!
-server.use('/api/values', new ValuesController().router)
+server.use('/api/user', new UserController().router)
+server.use('/api/guests', new GuestController().router)
+server.use('/api/host', new HostController().router)
 
 
 
