@@ -45,11 +45,13 @@ server.use('/account', new AuthController().router)
 import UserController from './controllers/UserController'
 import GuestController from './controllers/GuestController'
 import HostController from './controllers/HostController'
+import EventController from './controllers/EventController'
 
 //NOTE remember the forward slash at the start of your path!
 server.use('/api/user', new UserController().router)
 server.use('/api/guests', new GuestController().router)
 server.use('/api/host', new HostController().router)
+server.use('/api/events', new EventController().router)
 
 
 
