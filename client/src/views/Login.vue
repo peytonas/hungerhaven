@@ -1,6 +1,6 @@
 <template>
   <div class="login row">
-    <img class="col-12" alt="Hunger Haven Logo" src="../assets/HHLogo(transparent).png" />
+    <img class="col-12" alt="Hunger Haven Logo" src="../assets/HH-Logo-Transparent-Color-Wings.png" />
     <h2>Welcome to Hunger Haven, please log in</h2>
     <form v-if="loginForm" class="col-10 offset-1" @submit.prevent="login(creds)">
       <input
