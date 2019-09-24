@@ -1,7 +1,7 @@
 <template>
   <div class="home row">
     <img class="col-12" alt="Hunger Haven Logo" src="../assets/HungerHavenLogo.png" />
-    <h1>Welcome to your worst nightmare, {{user.name}}</h1>
+    <h1>Welcome {{user.name.split('').splice(0,1).join('').toUpperCase()}}{{user.name.split('').splice(1).join().replace(',','')}}</h1>
     <button class="btn btn-danger" @click="logout">Logout</button>
   </div>
 </template>
