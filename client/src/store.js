@@ -62,6 +62,13 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error)
       }
-    }
+    },
+    // async editProfile({ commit, dispatch }, payload) {
+    //   try {
+    //     let newInfo = await 
+    //   } catch (error) {
+    //     console.error(error)
+    //   }
+    // }
   }
 })
