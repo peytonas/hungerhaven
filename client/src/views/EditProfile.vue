@@ -58,7 +58,7 @@
         </div>
         <div class="form-check">
           <input class="form-check-input" type="checkbox" value id="defaultCheck1" />
-          <label class="form-check-label" for="defaultCheck1">Glutin</label>
+          <label class="form-check-label" for="defaultCheck1">Gluten</label>
         </div>
         <input type="text" placeholder="other" />
       </div>
