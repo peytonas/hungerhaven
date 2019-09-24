@@ -10,11 +10,11 @@
     </div>
     <div class="row justify-content-center">
       <form>
-        <label for="pin">Enter a PIN</label>
+        <label for="pin">Enter Event PIN:</label>
         <div class="input-group">
-          <input type="string" class="form-control" id="PIN" placeholder="12345" />
+          <input type="string" class="form-control" id="PIN" placeholder="ex:12345" />
           <div class="input-group-append">
-            <button type="submit" class="btn btn-outline-info">🍕</button>
+            <button type="submit">🍕</button>
           </div>
         </div>
       </form>
