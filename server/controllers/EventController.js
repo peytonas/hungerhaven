@@ -1,24 +1,25 @@
 import express from 'express'
-import GuestService from '../services/GuestService';
+import EventService from '../services/EventService';
 import { Authorize } from '../middleware/authorize.js'
 
-let _guestService = new GuestService().repository
+let _eventService = new EventService().repository
 
-export default class ValueController {
+export default class EventController {
   constructor() {
     this.router = express.Router()
       //NOTE all routes after the authenticate method will require the user to be logged in to access
       .use(Authorize.authenticated)
       .get('', this.getAll)
-      .get('/:id', this.getById)
-      .post('', this.create)
+      .get('/:id/events', this.getById)
+      .post('/:pin', this.create)
+      .get('/:pin', this.getById)
       .put('/:id', this.edit)
       .delete('/:id', this.delete)
   }
 
   async getAll(req, res, next) {
     try {
-      let data = await _guestService.find({})
+      let data = await _eventService.find({})
       return res.send(data)
     } catch (error) { next(error) }
 
@@ -26,7 +27,7 @@ export default class ValueController {
 
   async getById(req, res, next) {
     try {
-      let data = await _guestService.findById(req.params.id)
+      let data = await _eventService.findById(req.params.id)
       if (!data) {
         throw new Error("Invalid Id")
       }
@@ -36,16 +37,16 @@ export default class ValueController {
 
   async create(req, res, next) {
     try {
-      //NOTE the guest id is accessable through req.body.uid, never trust the client to provide you this information
+      //NOTE the event id is accessable through req.body.uid, never trust the client to provide you this information
       req.body.authorId = req.session.uid
-      let data = await _guestService.create(req.body)
+      let data = await _eventService.create(req.body)
       res.send(data)
     } catch (error) { next(error) }
   }
 
   async edit(req, res, next) {
     try {
-      let data = await _guestService.findOneAndUpdate({ _id: req.params.id, }, req.body, { new: true })
+      let data = await _eventService.findOneAndUpdate({ _id: req.params.id, }, req.body, { new: true })
       if (data) {
         return res.send(data)
       }
@@ -57,7 +58,7 @@ export default class ValueController {
 
   async delete(req, res, next) {
     try {
-      await _guestService.findOneAndRemove({ _id: req.params.id })
+      await _eventService.findOneAndRemove({ _id: req.params.id })
       res.send("deleted value")
     } catch (error) { next(error) }
 

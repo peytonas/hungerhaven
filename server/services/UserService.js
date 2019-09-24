@@ -1,5 +1,6 @@
 import mongoose from "mongoose"
 import bcrypt from 'bcryptjs'
+import { stringify } from "querystring"
 let Schema = mongoose.Schema
 let ObjectId = Schema.Types.ObjectId
 
@@ -11,7 +12,12 @@ let _schema = new Schema({
     name: { type: String, required: true },
     //every email must be unique on the database
     email: { type: String, required: true, unique: true },
-    hash: { type: String, required: true }
+    hash: { type: String, required: true },
+    allergies: { type: Array, required: true, default: [] },
+    address: { type: String, required: true, default: "" },
+    phoneNumber: { type: String, required: true, default: "" },
+
+
 }, { timestamps: true })
 
 //schema.methods are used to add a method to a Model instance
