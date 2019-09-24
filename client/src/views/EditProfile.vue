@@ -39,7 +39,7 @@
         v-model="user.allergies"
       />-->
       <div class="text-left">
-        <h1>Allergies:</h1>
+        <h5>Allergies:</h5>
         <div class="form-check">
           <input class="form-check-input" type="checkbox" value id="defaultCheck1" />
           <label class="form-check-label" for="defaultCheck1">Lactose</label>
