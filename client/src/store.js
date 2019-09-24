@@ -21,6 +21,9 @@ export default new Vuex.Store({
   mutations: {
     setUser(state, payload) {
       state.user = payload
+    },
+    resetState(state) {
+      state.user = {}
     }
   },
   actions: {
@@ -29,6 +32,16 @@ export default new Vuex.Store({
         let user = await AuthService.Login(payload)
         commit('setUser', user)
         router.push('/home')
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async logout({ commit, dispatch }) {
+      try {
+        let success = await AuthService.Logout()
+        if (!success) { }
+        commit('resetState')
+        router.push('/')
       } catch (error) {
         console.error(error)
       }

@@ -1,10 +1,6 @@
 <template>
   <div class="login row">
-    <img
-      class="col-12"
-      alt="Hunger Haven Logo"
-      src="https://files.slack.com/files-pri/T1GGQN1RU-FNB7BRSRH/screen_shot_2019-09-23_at_8.39.29_pm.png"
-    />
+    <img class="col-12" alt="Hunger Haven Logo" src="../assets/HungerHavenLogo.png" />
     <h2>Welcome to Hunger Haven, please log in</h2>
     <form class="col-10 offset-1" @submit="login(creds)">
       <input
