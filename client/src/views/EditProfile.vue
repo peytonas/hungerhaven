@@ -30,15 +30,41 @@
         placeholder="Phone Number"
         v-model="user.phoneNumber"
       />
-      <input
+      <!-- <input
         class="form-control mb-2"
         type="text"
         name="allergies"
         id="registerallergies"
         placeholder="Allergies"
         v-model="user.allergies"
-      />
-      <button class="btn btn-warning mb-2" type="submit">Submit</button>
+      />-->
+      <div class="text-left">
+        <h1>Allergies:</h1>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value id="defaultCheck1" />
+          <label class="form-check-label" for="defaultCheck1">Lactose</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value id="defaultCheck1" />
+          <label class="form-check-label" for="defaultCheck1">Eggs</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value id="defaultCheck1" />
+          <label class="form-check-label" for="defaultCheck1">Nuts</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value id="defaultCheck1" />
+          <label class="form-check-label" for="defaultCheck1">Seafood</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value id="defaultCheck1" />
+          <label class="form-check-label" for="defaultCheck1">Glutin</label>
+        </div>
+        <input type="text" placeholder="other" />
+      </div>
+      <div>
+        <button class="btn btn-warning mb-2 mt-2" type="submit">Submit</button>
+      </div>
     </form>
     <button class="btn btn-primary" @click="goHome()">Go Home</button>
   </div>
