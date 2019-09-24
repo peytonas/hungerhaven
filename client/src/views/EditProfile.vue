@@ -3,7 +3,7 @@
     <h1>Your Profile</h1>
     <h2>{{user.name}}</h2>
     <p>{{user.address}}</p>
-    <p>{{user.allergies}}</p>
+    <p>{{user.allergies.toString()}}</p>
     <p>{{user.phoneNumber}}</p>
     <form class="col-10 offset-1" @submit.prevent="edit">
       <input
