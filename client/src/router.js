@@ -20,6 +20,13 @@ export default new Router({
       component: function () {
         return import(/* webpackChunkName: "home" */ './views/Home.vue')
       }
+    },
+    {
+      path: '/edit',
+      name: 'edit',
+      component: function () {
+        return import(/* webpackChunkName: "edit" */ './views/EditProfile.vue')
+      }
     }
   ]
 })

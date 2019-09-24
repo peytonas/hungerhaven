@@ -7,6 +7,7 @@
         src="../assets/HH-Logo-Transparent-Color-Wings.png"
       />
       <h1>Welcome back, {{user.name}}!</h1>
+      <button class="btn btn-warning" @click="goEdit()">Edit Your Profile</button>
     </div>
     <div class="row justify-content-center">
       <form>
@@ -49,6 +50,9 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch("logout");
+    },
+    goEdit() {
+      this.$router.push("/edit");
     }
   }
 };
