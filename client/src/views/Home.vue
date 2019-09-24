@@ -14,14 +14,14 @@
         <div class="input-group">
           <input type="string" class="form-control" id="PIN" placeholder="12345" />
           <div class="input-group-append">
-            <span type="submit" class="btn btn-danger">🍕</span>
+            <button type="submit" class="btn btn-outline-info">🍕</button>
           </div>
         </div>
       </form>
-      <button class="btn btn-outline-primary">Host An Event</button>
+      <button class="btn btn-outline-primary mt-2">Host An Event</button>
     </div>
     <div class="row justify-content-center">
-      <div class="col-12">
+      <div class="col-12 mt-2">
         <h5>My Events</h5>
       </div>
       <hr />
