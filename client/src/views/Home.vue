@@ -1,7 +1,11 @@
 <template>
   <div>
     <div class="home row justify-content-center">
-      <img class="col-12" alt="Hunger Haven Logo" />
+      <img
+        class="col-12"
+        alt="Hunger Haven Logo"
+        src="../assets/HH-Logo-Transparent-Color-Wings.png"
+      />
       <h1>He's dead {{user.name}}</h1>
     </div>
     <div class="row justify-content-center">
@@ -14,7 +18,7 @@
           </div>
         </div>
       </form>
-      <button class="btn">Host An Event</button>
+      <button class="btn btn-outline-primary">Host An Event</button>
     </div>
     <div class="row justify-content-center">
       <div class="col-12">
