@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="home row justify-content-center">
-      <img class="col-12" alt="Hunger Haven Logo" src="../assets/HungerHavenLogo.png" />
+      <img class="col-12" alt="Hunger Haven Logo" />
       <h1>He's dead {{user.name}}</h1>
     </div>
     <div class="row justify-content-center">
