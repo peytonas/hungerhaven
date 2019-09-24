@@ -9,13 +9,13 @@ const SALT = 10
 
 
 let _schema = new Schema({
-    name: { type: String, required: true },
     //every email must be unique on the database
+    name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     hash: { type: String, required: true },
-    allergies: { type: Array, required: true, default: [] },
-    address: { type: String, required: true, default: "" },
-    phoneNumber: { type: String, required: true, default: "" },
+    allergies: { type: Array, required: true || [] },
+    address: { type: String, default: '' },
+    phoneNumber: { type: String, default: '' },
 
 
 }, { timestamps: true })
