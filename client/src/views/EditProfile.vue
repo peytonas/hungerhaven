@@ -45,19 +45,19 @@
           <label class="form-check-label" for="defaultCheck1">Lactose</label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" value id="defaultCheck1" />
+          <input class="form-check-input" type="checkbox" value id="defaultCheck2" />
           <label class="form-check-label" for="defaultCheck1">Eggs</label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" value id="defaultCheck1" />
+          <input class="form-check-input" type="checkbox" value id="defaultCheck3" />
           <label class="form-check-label" for="defaultCheck1">Nuts</label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" value id="defaultCheck1" />
+          <input class="form-check-input" type="checkbox" value id="defaultCheck4" />
           <label class="form-check-label" for="defaultCheck1">Seafood</label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" value id="defaultCheck1" />
+          <input class="form-check-input" type="checkbox" value id="defaultCheck5" />
           <label class="form-check-label" for="defaultCheck1">Gluten</label>
         </div>
         <input type="text" placeholder="other" />
