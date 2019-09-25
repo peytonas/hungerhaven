@@ -22,9 +22,11 @@
       <sideModal />
       <drinkModal />
       <dessertModal />
+      <timeModal />
+      <placeModal />
       <div class="col-4">
-        <button class="home-button">Time</button>
-        <button class="home-button">Place</button>
+        <button class="home-button" data-toggle="modal" data-target="#timeModal">Time</button>
+        <button class="home-button" data-toggle="modal" data-target="#placeModal">Place</button>
       </div>
     </div>
     <div class="row justify-content-center">
@@ -48,6 +50,8 @@ import mainCourseModal from "../Components/MainCourseModal";
 import sideModal from "../Components/SideModal";
 import drinkModal from "../Components/DrinkModal";
 import dessertModal from "../Components/DessertModal";
+import timeModal from "../Components/TimeModal";
+import placeModal from "../Components/PlaceModal";
 
 export default {
   name: "hostView",
@@ -77,7 +81,14 @@ export default {
       return this.$store.state.user;
     }
   },
-  components: { mainCourseModal, sideModal, drinkModal, dessertModal }
+  components: {
+    mainCourseModal,
+    sideModal,
+    drinkModal,
+    dessertModal,
+    timeModal,
+    placeModal
+  }
 };
 </script>
 <style>
