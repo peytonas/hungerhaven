@@ -7,7 +7,7 @@
         src="../assets/HH-Logo-Transparent-Color-Wings.png"
       />
       <div>
-        <h2>Event #8675309</h2>
+        <h2>Event #{{event.pin}}</h2>
         <p>What would you like to make?</p>
       </div>
     </div>
@@ -79,6 +79,9 @@ export default {
   computed: {
     user() {
       return this.$store.state.user;
+    },
+    event() {
+      return this.$store.state.event;
     }
   },
   components: {
