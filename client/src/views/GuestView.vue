@@ -9,7 +9,7 @@
       <h2>Event:{{this.event.pin}}</h2>
       <h3>Would you like to attend this event?</h3>
       <button class="btn btn-success" @click="RSVPyes">Yes</button>
-      <button class="btn btn-danger" @click="goHome">No</button>
+      <button class="btn btn-danger" @click="RSVPno">No</button>
     </div>
     <div class="row justify-content-around">
       <div class="col-4">
@@ -53,7 +53,6 @@ export default {
   mounted() {
     this.$store.dispatch("authenticate");
     this.$store.dispatch("getEventInfo", this.$route.params);
-    this.$store.dispatch("getAllergies", this.$);
   },
   props: ["hostProp"],
   computed: {
@@ -82,6 +81,13 @@ export default {
     },
     RSVPyes() {
       console.log("no");
+    },
+    RSVPno() {
+      this.$store.dispatch("setRSVPno", {
+        declined: this.user.name,
+        eventId: this.event._id
+      });
+      goHome();
     }
   },
   components: { mainCourseModal }
