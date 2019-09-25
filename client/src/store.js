@@ -76,5 +76,10 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
+    // async addListItem({ commit, dispatch }, payload) {
+    //   try {
+
+    //   }
+    // }
   }
 })
