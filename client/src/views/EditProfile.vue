@@ -4,7 +4,13 @@
     <h2>{{user.name}}</h2>
     <p>{{user.address}}</p>
     <p>
-      <span v-for="allergy in user.allergies">{{allergy+', '}}</span>
+      ALLERGIES:
+      <br />
+      <span v-for="allergy in user.allergies" :key="allergy">
+        {{allergy}}
+        <span class="text-danger" @click="removeAllergy">x</span>
+        <br />
+      </span>
     </p>
     <p>{{user.phoneNumber}}</p>
     <form class="col-10 offset-1" @submit.prevent="edit">
@@ -111,6 +117,9 @@ export default {
       this.newUser.allergies = output;
       this.$store.dispatch("editProfile", this.newUser);
       this.$store.dispatch("authenticate");
+    },
+    removeAllergy() {
+      console.log(this.newUser.allergies);
     }
   },
   components: {}
