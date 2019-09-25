@@ -30,6 +30,15 @@ export default new Router({
         // @ts-ignore
         return import(/* webpackChunkName: "edit" */ './views/EditProfile.vue')
       }
+    },
+    {
+      path: '/host',
+      name: 'host',
+      component: function () {
+        // @ts-ignore
+        return import(/* webpackChunkName: "edit" */ './views/HostView.vue')
+      }
+
     }
   ]
 })

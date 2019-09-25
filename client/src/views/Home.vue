@@ -19,7 +19,7 @@
           </div>
         </div>
       </form>
-      <button class="home-button mt-2">Host an Event</button>
+      <button class="home-button mt-2" @click="goHost()">Host an Event</button>
     </div>
     <div class="row justify-content-center">
       <div class="col-12 mt-2">
@@ -28,7 +28,7 @@
           <div class="card-header card-bg">My Events:</div>
           <ul class="list-group list-group-flush scroll">
             <!-- instead of 30 list items, this will be a v-for to populate each event the user is attending/hosting -->
-            <li class="list-group-item">Cras justo odio</li> 
+            <li class="list-group-item">Cras justo odio</li>
             <li class="list-group-item">Dapibus ac facilisis in</li>
             <li class="list-group-item">Vestibulum at eros</li>
             <li class="list-group-item">Vestibulum at eros</li>
@@ -71,6 +71,9 @@ export default {
     },
     goEdit() {
       this.$router.push("/edit");
+    },
+    goHost() {
+      this.$router.push("/host");
     },
     addListItem() {
       //every time a user joins or creates an event, a list-item is populated pulling that event's data, and pushing it to the user's profile based on user ID.
