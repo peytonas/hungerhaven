@@ -30,6 +30,7 @@ export default class AuthController {
             //CREATE THE USER
             let user = await _repo.create(req.body)
             //REMOVE THE PASSWORD BEFORE RETURNING
+            // @ts-ignore
             delete user._doc.hash
             //SET THE SESSION UID (SHORT FOR USERID)
             req.session.uid = user._id
@@ -47,11 +48,13 @@ export default class AuthController {
                 return res.status(400).send("Invalid Username Or Password")
             }
             //CHECK THE PASSWORD
+            // @ts-ignore
             let valid = await user.validatePassword(req.body.password)
             if (!valid) {
                 return res.status(400).send("Invalid Username Or Password")
             }
             //ALWAYS REMOVE THE PASSWORD FROM THE USER OBJECT
+            // @ts-ignore
             delete user._doc.hash
             req.session.uid = user._id
             res.send(user)
@@ -69,6 +72,7 @@ export default class AuthController {
                     error: 'Please login to continue'
                 })
             }
+            // @ts-ignore
             delete user._doc.hash
             res.send(user)
         }

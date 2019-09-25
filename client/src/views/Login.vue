@@ -19,7 +19,7 @@
         placeholder="password"
         v-model="creds.password"
       />
-      <button class="login-button mb-2" type="submit">Login</button>
+      <button class="home-button mb-2" type="submit">Login</button>
     </form>
     <form v-else class="col-10 offset-1" @submit.prevent="register(newUser)">
       <input
@@ -101,6 +101,8 @@ export default {
   display: inline-block;
   text-decoration: none;
   cursor: pointer;
+  margin-top: 2px;
+  margin-bottom: 2px;
 }
 .register-button:hover {
   background-color: #ffef5c;
@@ -111,8 +113,8 @@ export default {
 .register-button:focus {
   outline: 0;
 }
-.login-button {
-  background-color: #ff6242;
+.home-button {
+  background-color: #016fff;
   border: none;
   border-radius: 25px;
   color: white;
@@ -123,14 +125,16 @@ export default {
   display: inline-block;
   text-decoration: none;
   cursor: pointer;
+  margin-top: 2px;
+  margin-bottom: 2px;
 }
-.login-button:hover {
-  background-color: #ff7256;
+.home-button:hover {
+  background-color: #4595fe;
 }
-.login-button:active {
-  background-color: #ff6242;
+.home-button:active {
+  background-color: #016fff;
 }
-.login-button:focus {
+.home-button:focus {
   outline: 0;
 }
 </style>

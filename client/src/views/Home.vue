@@ -6,7 +6,7 @@
         alt="Hunger Haven Logo"
         src="../assets/HH-Logo-Transparent-Color-Wings.png"
       />
-      <h3>Welcome back, {{user.name}}!</h3>
+      <h2>Welcome back, {{user.name}}!</h2>
       <button class="register-button text-dark" @click="goEdit()">Edit Your Profile</button>
     </div>
     <div class="row justify-content-center">
@@ -19,10 +19,12 @@
           </div>
         </div>
       </form>
-      <button class="home-button mt-2" @click="goHost()">Host an Event</button>
     </div>
     <div class="row justify-content-center">
-      <div class="col-12 mt-2">
+      <button class="home-button" @click="goHost()">Host an Event</button>
+    </div>
+    <div class="row justify-content-center">
+      <div>
         <!-- <h5>My Events</h5> -->
         <div class="card" style="width: 18rem;">
           <div class="card-header card-bg">My Events:</div>
@@ -30,23 +32,16 @@
             <!-- instead of 30 list items, this will be a v-for to populate each event the user is attending/hosting -->
             <li class="list-group-item">Cras justo odio</li>
             <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-            <li class="list-group-item">Vestibulum at eros</li>
+            <li class="list-group-item">examples</li>
+            <li class="list-group-item">of the</li>
+            <li class="list-group-item">scrollcard</li>
+            <li class="list-group-item">working</li>
           </ul>
         </div>
       </div>
-      <hr />
     </div>
-    <div>
-      <button class="logout-button mb-2 mt-2" @click="logout">Logout</button>
+    <div class="row justify-content-center">
+      <button class="logout-button" @click="logout">Logout</button>
     </div>
   </div>
 </template>
@@ -101,6 +96,8 @@ export default {
   display: inline-block;
   text-decoration: none;
   cursor: pointer;
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 .register-button:hover {
   background-color: #ffef5c;
@@ -123,6 +120,8 @@ export default {
   display: inline-block;
   text-decoration: none;
   cursor: pointer;
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 .logout-button:hover {
   background-color: #ff7256;
@@ -145,6 +144,8 @@ export default {
   display: inline-block;
   text-decoration: none;
   cursor: pointer;
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 .home-button:hover {
   background-color: #4595fe;
