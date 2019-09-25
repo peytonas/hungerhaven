@@ -91,23 +91,29 @@ export default new Vuex.Store({
     },
     async createEvent({ commit, dispatch }) {
       try {
-        let pin = Math.floor(Math.random() * 99999)
+        let pin = Math.floor(Math.random() * 9999999)
         let output
         switch (pin.toString().length) {
-          case 5:
+          case 7:
             output = pin;
             break;
-          case 4:
+          case 6:
             output = '0' + pin;
             break;
-          case 3:
+          case 5:
             output = '00' + pin;
             break;
-          case 2:
+          case 4:
             output = '000' + pin;
             break;
-          case 1:
+          case 3:
             output = '0000' + pin;
+            break;
+          case 2:
+            output = '00000' + pin;
+            break;
+          case 1:
+            output = '000000' + pin;
             break;
         }
         let newEvent = await api.post(`/events`, { pin: output })
