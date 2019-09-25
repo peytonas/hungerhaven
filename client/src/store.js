@@ -81,7 +81,6 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
-<<<<<<< HEAD
     async getEventInfo({ commit }, payload) {
       try {
         let event = await api.get('/events/' + payload.pin)
@@ -92,14 +91,12 @@ export default new Vuex.Store({
         console.error(error)
       }
     }
-=======
     // async createEvent({ commit, dispatch }, payload) {
     //   try {
     //     let newEvent = await api.post(`/events`)
     //     commit('')
     //   }
     // }
->>>>>>> 1e5e7bff44915f03342000f00138e8ab3b11edbb
     // async addListItem({ commit, dispatch }, payload) {
     //   try {
 
