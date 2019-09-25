@@ -39,7 +39,7 @@
   </div>
 </template>
 <script>
-import mainCourseModal from "../Components/MainCourseModal";
+import mainCourseModal from "../components/MainCourseModal";
 export default {
   name: "hostView",
   data() {
