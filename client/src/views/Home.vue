@@ -53,7 +53,7 @@ export default {
   name: "home",
   components: {},
   data() {
-    return (pin = "");
+    return { pin: "" };
   },
   mounted() {
     this.$store.dispatch("authenticate");
@@ -62,6 +62,9 @@ export default {
     user() {
       return this.$store.state.user;
     }
+    // pin() {
+    //   return ''
+    // }
   },
   methods: {
     logout() {
