@@ -11,7 +11,7 @@ export default class EventController {
       .use(Authorize.authenticated)
       .get('', this.getAll)
       .get('/:id/events', this.getById)
-      .post('/:pin', this.create)
+      .post('', this.create)
       .get('/:pin', this.getById)
       .put('/:id', this.edit)
       .delete('/:id', this.delete)
