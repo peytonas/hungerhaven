@@ -7,7 +7,7 @@
         src="../assets/HH-Logo-Transparent-Color-Wings.png"
       />
       <h1>Welcome back, {{user.name}}!</h1>
-      <button class="btn btn-warning" @click="goEdit()">Edit Your Profile</button>
+      <button class="register-button text-dark" @click="goEdit()">Edit Your Profile</button>
     </div>
     <div class="row justify-content-center">
       <form>
@@ -19,7 +19,7 @@
           </div>
         </div>
       </form>
-      <button class="btn btn-outline-primary mt-2">Host an Event</button>
+      <button class="home-button mt-2">Host an Event</button>
     </div>
     <div class="row justify-content-center">
       <div class="col-12 mt-2">
@@ -28,7 +28,7 @@
       <hr />
     </div>
     <div class="fixed-bottom">
-      <button class="btn btn-danger mb-2" @click="logout">Logout</button>
+      <button class="logout-button mb-2" @click="logout">Logout</button>
     </div>
   </div>
 </template>
@@ -57,4 +57,72 @@ export default {
   }
 };
 </script>
+<style>
+.register-button {
+  background-color: #ffe501;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  font-size: 12px;
+  transition: 0.1s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+.register-button:hover {
+  background-color: #ffef5c;
+}
+.register-button:active {
+  background-color: #ffe501;
+}
+.register-button:focus {
+  outline: 0;
+}
+.logout-button {
+  background-color: #ff6242;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  font-size: 12px;
+  transition: 0.1s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+.logout-button:hover {
+  background-color: #ff7256;
+}
+.logout-button:active {
+  background-color: #ff6242;
+}
+.logout-button:focus {
+  outline: 0;
+}
+.home-button {
+  background-color: #016fff;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  font-size: 12px;
+  transition: 0.1s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+.home-button:hover {
+  background-color: #4595fe;
+}
+.home-button:active {
+  background-color: #016fff;
+}
+.home-button:focus {
+  outline: 0;
+}
+</style>
 

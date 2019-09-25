@@ -19,7 +19,7 @@
         placeholder="password"
         v-model="creds.password"
       />
-      <button class="btn btn-success mb-2" type="submit">Login</button>
+      <button class="login-button mb-2" type="submit">Login</button>
     </form>
     <form v-else class="col-10 offset-1" @submit.prevent="register(newUser)">
       <input
@@ -46,7 +46,7 @@
         placeholder="password"
         v-model="newUser.password"
       />
-      <button class="btn btn-warning mb-2" type="submit">Register</button>
+      <button class="register-button text-dark mb-2" type="submit">Register</button>
     </form>
     <div class="col-12 text-center">
       <div class="action" @click="loginForm = !loginForm">
@@ -88,5 +88,49 @@ export default {
 <style>
 .action {
   cursor: pointer;
+}
+.register-button {
+  background-color: #ffe501;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  font-size: 12px;
+  transition: 0.1s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+.register-button:hover {
+  background-color: #ffef5c;
+}
+.register-button:active {
+  background-color: #ffe501;
+}
+.register-button:focus {
+  outline: 0;
+}
+.login-button {
+  background-color: #ff6242;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  font-size: 12px;
+  transition: 0.1s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+.login-button:hover {
+  background-color: #ff7256;
+}
+.login-button:active {
+  background-color: #ff6242;
+}
+.login-button:focus {
+  outline: 0;
 }
 </style>

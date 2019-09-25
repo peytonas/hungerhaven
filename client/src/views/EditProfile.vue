@@ -63,10 +63,10 @@
         <input type="text" placeholder="other" />
       </div>
       <div>
-        <button class="btn btn-warning mb-2 mt-2" type="submit">Submit</button>
+        <button class="register-button text-dark mb-2 mt-2" type="submit">Submit</button>
       </div>
     </form>
-    <button class="btn btn-primary" @click="goHome()">Go Home</button>
+    <button class="home-button" @click="goHome()">Go Home</button>
   </div>
 </template>
 
@@ -99,4 +99,48 @@ export default {
 
 
 <style scoped>
+.register-button {
+  background-color: #ffe501;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  font-size: 12px;
+  transition: 0.1s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+.register-button:hover {
+  background-color: #ffef5c;
+}
+.register-button:active {
+  background-color: #ffe501;
+}
+.register-button:focus {
+  outline: 0;
+}
+.home-button {
+  background-color: #016fff;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  font-size: 12px;
+  transition: 0.1s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+.home-button:hover {
+  background-color: #4595fe;
+}
+.home-button:active {
+  background-color: #016fff;
+}
+.home-button:focus {
+  outline: 0;
+}
 </style>
