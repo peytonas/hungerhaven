@@ -11,7 +11,7 @@ const SALT = 10
 let _schema = new Schema({
   //every email must be unique on the database
   pin: { type: String, required: true },
-  maincourse: { type: String, required: true },
+  maincourse: { type: String, default: "" },
   sides: { type: Array, required: true, default: [] },
   drinks: { type: Array, required: true, default: [] },
   desserts: { type: Array, required: true, default: [] },

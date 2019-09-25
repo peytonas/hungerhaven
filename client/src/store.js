@@ -91,7 +91,7 @@ export default new Vuex.Store({
     },
     async createEvent({ commit, dispatch }) {
       try {
-        let newEvent = await api.post(`/events`)
+        let newEvent = await api.post(`/events`, { pin: Math.floor(Math.random() * 5) })
         commit('setEvent', newEvent.data)
       } catch (error) {
         console.error(error)

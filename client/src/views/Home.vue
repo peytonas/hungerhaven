@@ -74,6 +74,7 @@ export default {
       this.$router.push("/edit");
     },
     goHost() {
+      this.$store.dispatch("createEvent");
       this.$router.push("/host");
     },
     addListItem() {
