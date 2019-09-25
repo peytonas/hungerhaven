@@ -13,15 +13,15 @@
     </div>
     <div class="row justify-content-around">
       <div class="col-4">
-        <button
-          class="home-button"
-          data-toggle="modal"
-          :data-target="mainCourseModal + eventId"
-        >Main Course</button>
-        <button class="home-button" @click="addSide">Sides</button>
-        <button class="home-button" @click="addDrink">Drinks</button>
-        <button class="home-button" @click="addDessert">Desserts</button>
+        <button class="home-button" data-toggle="modal" data-target="#mainCourseModal">Main Course</button>
+        <button class="home-button" data-toggle="modal" data-target="#sideModal">Sides</button>
+        <button class="home-button" data-toggle="modal" data-target="#drinkModal">Drinks</button>
+        <button class="home-button" data-toggle="modal" data-target="#dessertModal">Desserts</button>
       </div>
+      <mainCourseModal />
+      <sideModal />
+      <drinkModal />
+      <dessertModal />
       <div class="col-4">
         <button class="home-button">Time</button>
         <button class="home-button">Place</button>
@@ -45,26 +45,19 @@
 </template>
 <script>
 import mainCourseModal from "../Components/MainCourseModal";
+import sideModal from "../Components/SideModal";
+import drinkModal from "../Components/DrinkModal";
+import dessertModal from "../Components/DessertModal";
+
 export default {
   name: "hostView",
-  data() {
-    return {};
-  },
   mounted() {
     this.$store.dispatch("authenticate");
   },
   props: [],
-  computed: {
-    user() {
-      return this.$store.state.user;
-    }
-  },
   methods: {
     goHome() {
       this.$router.push("/home");
-    },
-    addMainCourse() {
-      this.$router.push;
     },
     addSide() {
       this.$router.push;
@@ -76,7 +69,15 @@ export default {
       this.$router.push;
     }
   },
-  components: { mainCourseModal }
+  data() {
+    return {};
+  },
+  computed: {
+    user() {
+      return this.$store.state.user;
+    }
+  },
+  components: { mainCourseModal, sideModal, drinkModal, dessertModal }
 };
 </script>
 <style>
