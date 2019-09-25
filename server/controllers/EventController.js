@@ -12,7 +12,7 @@ export default class EventController {
       .get('', this.getAll)
       .get('/:id/events', this.getById)
       .post('', this.create)
-      .get('/:pin', this.getById)
+      .get('/:pin', this.getByPin)
       .put('/:id', this.edit)
       .delete('/:id', this.delete)
   }
@@ -28,6 +28,16 @@ export default class EventController {
   async getById(req, res, next) {
     try {
       let data = await _eventService.findById(req.params.id)
+      if (!data) {
+        throw new Error("Invalid Id")
+      }
+      res.send(data)
+    } catch (error) { next(error) }
+  }
+
+  async getByPin(req, res, next) {
+    try {
+      let data = await _eventService.findOne({ pin: req.params.pin })
       if (!data) {
         throw new Error("Invalid Id")
       }

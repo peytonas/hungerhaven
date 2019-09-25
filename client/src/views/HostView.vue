@@ -1,28 +1,35 @@
 <template>
-  <div class="row justify-content-center">
-    <img
-      class="col-12 image"
-      alt="Hunger Haven Logo"
-      src="../assets/HH-Logo-Transparent-Color-Wings.png"
-    />
-    <div>
-      <h2>Event #8675309</h2>
-      <p>What would you like to make?</p>
+  <div class="container">
+    <div class="row justify-content-center">
+      <img
+        class="col-12 image"
+        alt="Hunger Haven Logo"
+        src="../assets/HH-Logo-Transparent-Color-Wings.png"
+      />
+      <div>
+        <h2>Event #8675309</h2>
+        <p>What would you like to make?</p>
+      </div>
     </div>
     <div class="row justify-content-around">
       <div class="col-4">
-        <button class="home-button" data-toggle="modal" @click="addMainCourse">Main Course</button>
+        <button
+          class="home-button"
+          data-toggle="modal"
+          :data-target="mainCourseModal + eventId"
+        >Main Course</button>
         <button class="home-button" @click="addSide">Sides</button>
         <button class="home-button" @click="addDrink">Drinks</button>
         <button class="home-button" @click="addDessert">Desserts</button>
       </div>
+      <!-- <mainCourseModal :eventId="" /> -->
       <div class="col-4">
         <button class="home-button">Time</button>
         <button class="home-button">Place</button>
       </div>
     </div>
     <div class="row justify-content-center">
-      <div class="col-12 mt-2">
+      <div class="mt-2">
         <!-- <h5>My Events</h5> -->
         <div class="card" style="width: 18rem;">
           <div class="card-header card-bg">Your Potluck:</div>
@@ -33,7 +40,7 @@
         </div>
       </div>
     </div>
-    <div>
+    <div class="row justify-content-center">
       <button class="logout-button" @click="goHome">Go Home</button>
     </div>
   </div>
@@ -48,7 +55,7 @@ export default {
   mounted() {
     this.$store.dispatch("authenticate");
   },
-  props: ["hostProp"],
+  props: [],
   computed: {
     user() {
       return this.$store.state.user;
