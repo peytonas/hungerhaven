@@ -16,7 +16,9 @@ let api = axios.create({
 
 export default new Vuex.Store({
   state: {
-    user: {}
+    user: {},
+    events: [],
+    event: {}
   },
   mutations: {
     setUser(state, payload) {
@@ -24,6 +26,9 @@ export default new Vuex.Store({
     },
     resetState(state) {
       state.user = {}
+    },
+    setEvent(state, payload) {
+      state.event = payload
     }
   },
   actions: {
@@ -76,6 +81,16 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
+    async getEventInfo({ commit }, payload) {
+      try {
+        let event = await api.get('/events/' + payload.pin)
+        console.log(event);
+
+        commit('setEvent', event.data)
+      } catch (error) {
+        console.error(error)
+      }
+    }
     // async addListItem({ commit, dispatch }, payload) {
     //   try {
 

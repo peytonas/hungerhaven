@@ -7,18 +7,13 @@
     />
     <div>
       <h2>Event #8675309</h2>
-      <p>What would you like to make?</p>
+      <p>What would you like to bring?</p>
     </div>
     <div class="row justify-content-around">
       <div class="col-4">
-        <button class="home-button" data-toggle="modal" @click="addMainCourse">Main Course</button>
         <button class="home-button" @click="addSide">Sides</button>
         <button class="home-button" @click="addDrink">Drinks</button>
         <button class="home-button" @click="addDessert">Desserts</button>
-      </div>
-      <div class="col-4">
-        <button class="home-button">Time</button>
-        <button class="home-button">Place</button>
       </div>
     </div>
     <div class="row justify-content-center">
@@ -28,7 +23,7 @@
           <div class="card-header card-bg">Your Potluck:</div>
           <div class="card-body">
             <h5 class="card-title">Event Data Goes Here</h5>
-            <p class="card-text">(Food Thangs 'n' Stuff)</p>
+            <p class="card-text">{{this.event.maincourse}}</p>
           </div>
         </div>
       </div>
@@ -47,11 +42,15 @@ export default {
   },
   mounted() {
     this.$store.dispatch("authenticate");
+    this.$store.dispatch("getEventInfo", this.$route.params);
   },
   props: ["hostProp"],
   computed: {
     user() {
       return this.$store.state.user;
+    },
+    event() {
+      return this.$store.state.event;
     }
   },
   methods: {
@@ -59,16 +58,16 @@ export default {
       this.$router.push("/home");
     },
     addMainCourse() {
-      this.$router.push;
+      console.log("no");
     },
     addSide() {
-      this.$router.push;
+      console.log("no");
     },
     addDrink() {
-      this.$router.push;
+      console.log("no");
     },
     addDessert() {
-      this.$router.push;
+      console.log("no");
     }
   },
   components: { mainCourseModal }

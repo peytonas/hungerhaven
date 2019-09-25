@@ -38,7 +38,14 @@ export default new Router({
         // @ts-ignore
         return import(/* webpackChunkName: "edit" */ './views/HostView.vue')
       }
-
+    },
+    {
+      path: '/guest/:pin',
+      name: 'guest',
+      component: function () {
+        // @ts-ignore
+        return import(/* webpackChunkName: "edit" */ './views/GuestView.vue')
+      }
     }
   ]
 })
