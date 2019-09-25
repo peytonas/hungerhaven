@@ -10,10 +10,10 @@
       <button class="register-button text-dark" @click="goEdit()">Edit Your Profile</button>
     </div>
     <div class="row justify-content-center">
-      <form>
+      <form @submit="findEvent">
         <label for="pin">Enter Event PIN:</label>
         <div class="input-group">
-          <input type="string" class="form-control" id="PIN" placeholder="ex:12345" />
+          <input v-model="pin" type="string" class="form-control" id="PIN" placeholder="ex:12345" />
           <div class="input-group-append">
             <button type="submit">🍕</button>
           </div>
@@ -52,6 +52,9 @@
 export default {
   name: "home",
   components: {},
+  data() {
+    return { pin: "" };
+  },
   mounted() {
     this.$store.dispatch("authenticate");
   },
@@ -59,6 +62,9 @@ export default {
     user() {
       return this.$store.state.user;
     }
+    // pin() {
+    //   return ''
+    // }
   },
   methods: {
     logout() {
@@ -72,6 +78,9 @@ export default {
     },
     addListItem() {
       //every time a user joins or creates an event, a list-item is populated pulling that event's data, and pushing it to the user's profile based on user ID.
+    },
+    findEvent() {
+      this.$router.push("/guest/" + this.pin);
     }
   }
 };

@@ -1,44 +1,42 @@
 <template>
-  <div class="container">
-    <div class="row justify-content-center">
-      <img
-        class="col-12 image"
-        alt="Hunger Haven Logo"
-        src="../assets/HH-Logo-Transparent-Color-Wings.png"
-      />
-      <div>
-        <h2>Event #8675309</h2>
-        <p>What would you like to make?</p>
-      </div>
+  <div class="row justify-content-center">
+    <img
+      class="col-12 image"
+      alt="Hunger Haven Logo"
+      src="../assets/HH-Logo-Transparent-Color-Wings.png"
+    />
+    <div>
+      <h2>Event:{{this.event.pin}}</h2>
+      <p>What would you like to bring?</p>
     </div>
     <div class="row justify-content-around">
       <div class="col-4">
-        <button
-          class="home-button"
-          data-toggle="modal"
-          :data-target="mainCourseModal + eventId"
-        >Main Course</button>
         <button class="home-button" @click="addSide">Sides</button>
         <button class="home-button" @click="addDrink">Drinks</button>
         <button class="home-button" @click="addDessert">Desserts</button>
       </div>
-      <div class="col-4">
-        <button class="home-button">Time</button>
-        <button class="home-button">Place</button>
-      </div>
     </div>
     <div class="row justify-content-center">
-      <div class="mt-2">
-        <div class="card" style="width: 18rem;">
+      <div class="col-12 mt-2">
+        <!-- <h5>My Events</h5> -->
+        <div class="card container-fluid justify-content-center" style="width: 18rem;">
           <div class="card-header card-bg">Your Potluck:</div>
-          <div class="card-body">
-            <h5 class="card-title">Event Data Goes Here</h5>
-            <p class="card-text">(Food Thangs 'n' Stuff)</p>
+          <div class="card-body row">
+            <p class="card-text col-6">
+              Main Course: {{this.event.maincourse}}
+              <br />Sides:
+              <br />Drinks:
+            </p>
+            <p class="card-text col-6">
+              {{this.event.time}}
+              <br />
+              {{this.event.place}}
+            </p>
           </div>
         </div>
       </div>
     </div>
-    <div class="row justify-content-center">
+    <div>
       <button class="logout-button" @click="goHome">Go Home</button>
     </div>
   </div>
@@ -52,11 +50,15 @@ export default {
   },
   mounted() {
     this.$store.dispatch("authenticate");
+    this.$store.dispatch("getEventInfo", this.$route.params);
   },
-  props: [],
+  props: ["hostProp"],
   computed: {
     user() {
       return this.$store.state.user;
+    },
+    event() {
+      return this.$store.state.event;
     }
   },
   methods: {
@@ -64,16 +66,16 @@ export default {
       this.$router.push("/home");
     },
     addMainCourse() {
-      this.$router.push;
+      console.log("no");
     },
-    addSide() {
-      this.$router.push;
+    addSide(side) {
+      this.event.sides.push(side);
     },
     addDrink() {
-      this.$router.push;
+      console.log("no");
     },
     addDessert() {
-      this.$router.push;
+      console.log("no");
     }
   },
   components: { mainCourseModal }
