@@ -9,7 +9,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <!-- <form @submit.prevent="addMainCourse(event)">
+          <form @submit.prevent="addMainCourse(event)">
             <div class="form-group">
               <label for="body">Body</label>
               <input
@@ -22,7 +22,7 @@
               />
             </div>
             <button class="btn btn-primary">Add Main Course</button>
-          </form>-->
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary">Save changes</button>
@@ -46,10 +46,10 @@ export default {
   },
   computed: {},
   methods: {
-    // addMainCourse(e) {
-    //   this.$store.dispatch("addMainCourse", this.newModal);
-    //   e.target.reset();
-    // }
+    addMainCourse(e) {
+      this.$store.dispatch("addMainCourse", this.newModal);
+      e.target.reset();
+    }
   },
   components: {}
 };

@@ -22,7 +22,6 @@
         <button class="home-button" @click="addDrink">Drinks</button>
         <button class="home-button" @click="addDessert">Desserts</button>
       </div>
-      <!-- <mainCourseModal :eventId="" /> -->
       <div class="col-4">
         <button class="home-button">Time</button>
         <button class="home-button">Place</button>
@@ -30,7 +29,6 @@
     </div>
     <div class="row justify-content-center">
       <div class="mt-2">
-        <!-- <h5>My Events</h5> -->
         <div class="card" style="width: 18rem;">
           <div class="card-header card-bg">Your Potluck:</div>
           <div class="card-body">

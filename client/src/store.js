@@ -88,17 +88,14 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error)
       }
+    },
+    async createEvent({ commit, dispatch }) {
+      try {
+        let newEvent = await api.post(`/events`, { pin: Math.floor(Math.random() * 5) })
+        commit('setEvent', newEvent.data)
+      } catch (error) {
+        console.error(error)
+      }
     }
-    // async createEvent({ commit, dispatch }, payload) {
-    //   try {
-    //     let newEvent = await api.post(`/events`)
-    //     commit('')
-    //   }
-    // }
-    // async addListItem({ commit, dispatch }, payload) {
-    //   try {
-
-    //   }
-    // }
   }
 })
