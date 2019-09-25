@@ -91,8 +91,8 @@ export default {
         _id: this.user._id,
         name: this.user.name,
         address: this.user.address,
-        phoneNumber: this.$store.state.user.phoneNumber,
-        allergies: this.$store.state.user.allergies
+        phoneNumber: this.user.phoneNumber,
+        allergies: this.user.allergies
       };
     }
   },
