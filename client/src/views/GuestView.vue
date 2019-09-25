@@ -7,7 +7,9 @@
     />
     <div>
       <h2>Event:{{this.event.pin}}</h2>
-      <p>What would you like to bring?</p>
+      <h3>Would you like to attend this event?</h3>
+      <button class="btn btn-success" @click="RSVPyes">Yes</button>
+      <button class="btn btn-danger" @click="goHome">No</button>
     </div>
     <div class="row justify-content-around">
       <div class="col-4">
@@ -44,13 +46,14 @@
 <script>
 import mainCourseModal from "../Components/MainCourseModal";
 export default {
-  name: "hostView",
+  name: "guestView",
   data() {
     return {};
   },
   mounted() {
     this.$store.dispatch("authenticate");
     this.$store.dispatch("getEventInfo", this.$route.params);
+    this.$store.dispatch("getAllergies", this.$);
   },
   props: ["hostProp"],
   computed: {
@@ -75,6 +78,9 @@ export default {
       console.log("no");
     },
     addDessert() {
+      console.log("no");
+    },
+    RSVPyes() {
       console.log("no");
     }
   },
