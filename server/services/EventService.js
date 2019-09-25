@@ -17,8 +17,8 @@ let _schema = new Schema({
   //every email must be unique on the database
   pin: { type: String, required: true },
   maincourse: { type: String, default: "" },
-  sides: { type: Array, required: true, default: [] },
-  drinks: { type: Array, required: true, default: [] },
+  sides: [{ type: String }],
+  drinks: [{ type: String }],
   desserts: [{ type: String }],
   time: { type: String, default: "" },
   place: { type: String, default: "" },
