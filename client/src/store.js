@@ -76,6 +76,12 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
+    // async createEvent({ commit, dispatch }, payload) {
+    //   try {
+    //     let newEvent = await api.post(`/events`)
+    //     commit('')
+    //   }
+    // }
     // async addListItem({ commit, dispatch }, payload) {
     //   try {
 
