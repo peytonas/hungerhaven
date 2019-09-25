@@ -1,15 +1,15 @@
 <template>
-  <div id="mainCourseModal" class="modal" tabindex="-1" role="dialog">
+  <div id="dessertModal" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">add a main course</h5>
+          <h5 class="modal-title">add a dessert</h5>
           <button class="btn btn-danger" data-dismiss="modal" aria-label="close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <form @submit.prevent="addMainCourse()">
+          <form @submit.prevent="addDessert()">
             <div class="form-group">
               <label for="title">title</label>
               <input
@@ -17,7 +17,7 @@
                 class="form-control"
                 id="title"
                 placeholder="add a main..."
-                v-model="newMainCourse.title"
+                v-model="newDessert.title"
                 required
               />
             </div>
@@ -31,15 +31,15 @@
 </template>
 <script>
 export default {
-  name: "mainCourseModal",
+  name: "dessertModal",
   props: [],
   data() {
     return {
-      newMainCourse: {}
+      newDessert: {}
     };
   },
   methods: {
-    addMainCourse() {}
+    addDessert() {}
   },
   computed: {},
   components: {}
