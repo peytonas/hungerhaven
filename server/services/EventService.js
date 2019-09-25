@@ -15,8 +15,8 @@ let _schema = new Schema({
   sides: { type: Array, required: true, default: [] },
   drinks: { type: Array, required: true, default: [] },
   desserts: { type: Array, required: true, default: [] },
-  time: { type: String, required: true, default: "" },
-  place: { type: String, required: true, default: "" },
+  time: { type: String, default: "" },
+  place: { type: String, default: "" },
   attending: { type: Array, required: true, default: [] },
   allergies: { type: Array, required: true, default: [] },
 
