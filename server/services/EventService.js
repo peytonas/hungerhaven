@@ -7,6 +7,11 @@ let ObjectId = Schema.Types.ObjectId
 //bcrypt uses hashing and salt to obfiscate your password 
 const SALT = 10
 
+let invites = new Schema({
+  userId: { type: ObjectId, ref: 'User' },
+  status: { type: String, enum: ['pending', 'accepted', 'declined'] }
+})
+
 
 let _schema = new Schema({
   //every email must be unique on the database
@@ -14,11 +19,14 @@ let _schema = new Schema({
   maincourse: { type: String, default: "" },
   sides: { type: Array, required: true, default: [] },
   drinks: { type: Array, required: true, default: [] },
-  desserts: { type: Array, required: true, default: [] },
+  desserts: [{ type: String }],
   time: { type: String, default: "" },
   place: { type: String, default: "" },
-  attending: { type: Array, required: true, default: [] },
-  allergies: { type: Array, required: true, default: [] },
+  // attending: { type: Array, required: true, default: [] },
+  attendees: [invites],
+  allergies: [{ type: String }],
+  // declined: [{ type: ObjectId, ref: 'User' }]
+
 
 }, { timestamps: true })
 
