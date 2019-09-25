@@ -27,6 +27,8 @@ export default new Vuex.Store({
     }
   },
   actions: {
+
+    //SECTION -- LOGIN THINGS --
     async login({ commit, dispatch }, payload) {
       try {
         let user = await AuthService.Login(payload)
@@ -63,14 +65,16 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
+
+    //!SECTION 
+
     async editProfile({ commit, dispatch }, payload) {
       try {
-        debugger
         let newInfo = await api.put(`/user/${payload._id}`, payload)
-        commit('setUser', newInfo)
+        commit('setUser', newInfo.data)
       } catch (error) {
         console.error(error)
       }
-    }
+    },
   }
 })

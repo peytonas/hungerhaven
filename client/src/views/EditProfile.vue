@@ -3,7 +3,9 @@
     <h1>Your Profile</h1>
     <h2>{{user.name}}</h2>
     <p>{{user.address}}</p>
-    <p>{{user.allergies.toString().replace(',',', ')}}</p>
+    <p>
+      <span v-for="allergy in user.allergies">{{allergy+', '}}</span>
+    </p>
     <p>{{user.phoneNumber}}</p>
     <form class="col-10 offset-1" @submit.prevent="edit">
       <input
@@ -11,8 +13,8 @@
         type="text"
         name="name"
         id="name"
-        placeholder="name"
-        v-model="user.name"
+        placeholder="Name"
+        v-model="newUser.name"
       />
       <input
         class="form-control mb-2"
@@ -20,7 +22,7 @@
         name="address"
         id="registeraddress"
         placeholder="Address"
-        v-model="user.address"
+        v-model="newUser.address"
       />
       <input
         class="form-control mb-2"
@@ -28,40 +30,40 @@
         name="phoneNumber"
         id="registerphoneNumber"
         placeholder="Phone Number"
-        v-model="user.phoneNumber"
+        v-model="newUser.phoneNumber"
       />
-      <!-- <input
+      <textarea
         class="form-control mb-2"
         type="text"
         name="allergies"
         id="registerallergies"
         placeholder="Allergies"
-        v-model="user.allergies"
-      />-->
-      <div class="text-left">
+        v-model="newUser.allergies"
+      ></textarea>
+      <!-- <div class="text-left">
         <h5>Allergies:</h5>
         <div class="form-check">
           <input class="form-check-input" type="checkbox" value id="defaultCheck1" />
           <label class="form-check-label" for="defaultCheck1">Lactose</label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" value id="defaultCheck1" />
-          <label class="form-check-label" for="defaultCheck1">Eggs</label>
+          <input class="form-check-input" type="checkbox" value id="defaultCheck2" />
+          <label class="form-check-label" for="defaultCheck2">Eggs</label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" value id="defaultCheck1" />
-          <label class="form-check-label" for="defaultCheck1">Nuts</label>
+          <input class="form-check-input" type="checkbox" value id="defaultCheck3" />
+          <label class="form-check-label" for="defaultCheck3">Nuts</label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" value id="defaultCheck1" />
-          <label class="form-check-label" for="defaultCheck1">Seafood</label>
+          <input class="form-check-input" type="checkbox" value id="defaultCheck4" />
+          <label class="form-check-label" for="defaultCheck4">Seafood</label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" value id="defaultCheck1" />
-          <label class="form-check-label" for="defaultCheck1">Gluten</label>
+          <input class="form-check-input" type="checkbox" value id="defaultCheck5" />
+          <label class="form-check-label" for="defaultCheck5">Gluten</label>
         </div>
         <input type="text" placeholder="other" />
-      </div>
+      </div>-->
       <div>
         <button class="register-button text-dark mb-2 mt-2" type="submit">Submit</button>
       </div>
@@ -83,6 +85,15 @@ export default {
   computed: {
     user() {
       return this.$store.state.user;
+    },
+    newUser() {
+      return {
+        _id: this.user._id,
+        name: this.user.name,
+        address: this.user.address,
+        phoneNumber: this.$store.state.user.phoneNumber,
+        allergies: this.$store.state.user.allergies
+      };
     }
   },
   methods: {
@@ -90,7 +101,16 @@ export default {
       this.$router.push("/home");
     },
     edit() {
-      this.$store.dispatch("editProfile", this.user);
+      let allergies = this.newUser.allergies;
+      let splitAllergies = allergies.split(",");
+      let output = [];
+      for (let i = 0; i < splitAllergies.length; i++) {
+        output.push(splitAllergies[i].trim());
+      }
+
+      this.newUser.allergies = output;
+      this.$store.dispatch("editProfile", this.newUser);
+      this.$store.dispatch("authenticate");
     }
   },
   components: {}
