@@ -6,7 +6,7 @@
       src="../assets/HH-Logo-Transparent-Color-Wings.png"
     />
     <div>
-      <h2>Event #8675309</h2>
+      <h2></h2>
       <p>What would you like to bring?</p>
     </div>
     <div class="row justify-content-around">
@@ -22,7 +22,7 @@
         <div class="card" style="width: 18rem;">
           <div class="card-header card-bg">Your Potluck:</div>
           <div class="card-body">
-            <h5 class="card-title">Event Data Goes Here</h5>
+            <h5 class="card-title">{{this.event.pin}}</h5>
             <p class="card-text">{{this.event.maincourse}}</p>
           </div>
         </div>
