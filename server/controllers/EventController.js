@@ -5,6 +5,7 @@ import { Authorize } from '../middleware/authorize.js'
 let _eventService = new EventService().repository
 
 export default class EventController {
+
   constructor() {
     this.router = express.Router()
       //NOTE all routes after the authenticate method will require the user to be logged in to access
@@ -12,8 +13,10 @@ export default class EventController {
       .get('', this.getAll)
       .get('/:id/events', this.getById)
       .post('', this.create)
+      .post('/:id/join', this.joinEvent)
       .get('/:pin', this.getByPin)
-      .put('/:id', this.edit)
+      .put('/:eventId', this.edit)
+      .put('/:eventId/attendee', this.changeAttendeeStatus) // this allows a user to change thier own status
       .delete('/:id', this.delete)
   }
 
@@ -54,9 +57,27 @@ export default class EventController {
     } catch (error) { next(error) }
   }
 
+  async joinEvent(req, res, next) {
+    try {
+      //NOTE Get the event
+      let event = await _eventService.findById(req.params.id)
+      if (!event) { throw new Error('Invalid Event Id') }
+
+      //NOTE if the user is already in the list throw error
+      if (event.attendees.find(a => a.userId == req.session.uid)) { throw new Error("already attendee") }
+
+      //NOTE Create the attendee as the person logged in
+      let a = { userId: req.session.uid, status: "pending" }
+      //NOTE Add user to event
+      event.attendees.push(a)
+      await event.save()
+      res.send('Added Attendee')
+    } catch (error) { next(error) }
+  }
+
   async edit(req, res, next) {
     try {
-      let data = await _eventService.findOneAndUpdate({ _id: req.params.id, }, req.body, { new: true })
+      let data = await _eventService.findOneAndUpdate({ _id: req.params.userId, }, req.body, { new: true })
       if (data) {
         return res.send(data)
       }
@@ -64,6 +85,24 @@ export default class EventController {
     } catch (error) {
       next(error)
     }
+  }
+
+  async changeAttendeeStatus(req, res, next) {
+    try {
+      //NOTE Get the event
+      let event = await _eventService.findById(req.params.eventId)
+      if (!event) { throw new Error('Invalid Event Id') }
+
+      let attendee = event.attendees.find(a => a.userId == req.session.uid)
+
+      //NOTE if the user is already in the list throw error
+      if (!attendee) { throw new Error("not an attendee") }
+
+      attendee.status = req.body.status
+
+      await event.save()
+      res.send('Added updated')
+    } catch (error) { next(error) }
   }
 
   async delete(req, res, next) {

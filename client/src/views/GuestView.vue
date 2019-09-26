@@ -84,10 +84,10 @@ export default {
     },
     RSVPno() {
       this.$store.dispatch("setRSVPno", {
-        declined: this.user.name,
-        eventId: this.event._id
+        eventId: this.event._id,
+        status: "declined"
       });
-      goHome();
+      this.goHome();
     }
   },
   components: { mainCourseModal }

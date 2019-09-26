@@ -18,7 +18,8 @@ export default new Vuex.Store({
   state: {
     user: {},
     events: [],
-    event: {}
+    event: {},
+    pending: []
   },
   mutations: {
     setUser(state, payload) {
@@ -29,6 +30,9 @@ export default new Vuex.Store({
     },
     setEvent(state, payload) {
       state.event = payload
+    },
+    setRSVP(state, payload) {
+      state.pending.push(payload)
     }
   },
   actions: {
@@ -123,8 +127,7 @@ export default new Vuex.Store({
       }
     },
     async setRSVPno({ commit }, payload) {
-      let something = await api.post('/events/' + payload.eventId, payload.declined)
-      commit('setRSVP', payload)
+      let something = await api.put('/events/' + payload.eventId + "/attendee", payload)
     }
   }
 })
