@@ -85,7 +85,11 @@ export default {
     findEvent() {
       this.$store.dispatch("getEventInfo", { pin: this.pin }).then(res => {
         if (this.$store.state.event.pin) {
-          this.$store.dispatch("setPending", this.$store.state.event._id);
+          this.$store.dispatch("setPending", {
+            eventId: this.$store.state.event._id,
+            name: this.user.name,
+            allergies: this.user.allergies
+          });
           this.$router.push("/guest/" + this.pin);
         } else {
           console.log("Ah ah ah, you didn't say the magic word.");

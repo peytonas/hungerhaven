@@ -131,7 +131,7 @@ export default new Vuex.Store({
     },
     async setPending({ commit }, payload) {
       try {
-        let dave = await api.post('/events/' + payload + '/join')
+        let dave = await api.post('/events/' + payload.eventId + '/join', payload)
       } catch (error) { console.error(error) }
     }
   }

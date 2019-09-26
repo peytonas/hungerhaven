@@ -1,6 +1,7 @@
 import express from 'express'
 import EventService from '../services/EventService';
 import { Authorize } from '../middleware/authorize.js'
+import { userInfo } from 'os';
 
 let _eventService = new EventService().repository
 
@@ -68,7 +69,7 @@ export default class EventController {
       if (event.attendees.find(a => a.userId == req.session.uid)) { throw new Error("already attendee") }
 
       //NOTE Create the attendee as the person logged in
-      let a = { userId: req.session.uid, status: "pending" }
+      let a = { userId: req.session.uid, status: "pending", name: req.body.name, allergies: req.body.allergies }
       //NOTE Add user to event
       // @ts-ignore
       event.attendees.push(a)

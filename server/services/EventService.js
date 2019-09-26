@@ -9,7 +9,9 @@ const SALT = 10
 
 let invites = new Schema({
   userId: { type: ObjectId, ref: 'User' },
-  status: { type: String, enum: ['pending', 'accepted', 'declined'] }
+  status: { type: String, enum: ['pending', 'accepted', 'declined'] },
+  name: { type: String },
+  allergies: [{ type: String }]
 })
 
 
