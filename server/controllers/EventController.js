@@ -101,7 +101,7 @@ export default class EventController {
 
       //NOTE if the user is already in the list throw error
       if (!attendee) { throw new Error("not an attendee") }
-
+      attendee.allergies = req.body.allergies
       attendee.status = req.body.status
 
       await event.save()
