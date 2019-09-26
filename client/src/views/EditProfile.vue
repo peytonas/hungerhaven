@@ -106,7 +106,7 @@
             <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFour">edit</button>
           </h5>
         </div>
-        <div id="collapseFour" class="collapse" data-parent="#accordion4">
+        <div id="collapseFour" class="collapse" data-parent="#accordion">
           <div>
             <form @submit.prevent="editPhoneNumber">
               <div class="input-group">
