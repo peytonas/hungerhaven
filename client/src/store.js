@@ -85,6 +85,7 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
+
     async getEventInfo({ commit }, payload) {
       try {
         let event = await api.get('/events/' + payload.pin)
