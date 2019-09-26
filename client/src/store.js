@@ -85,6 +85,7 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
+
     async getEventInfo({ commit }, payload) {
       try {
         let event = await api.get('/events/' + payload.pin)
@@ -133,14 +134,6 @@ export default new Vuex.Store({
       try {
         let dave = await api.post('/events/' + payload.eventId + '/join', payload)
       } catch (error) { console.error(error) }
-    },
-    async addMainCourse({ commit, dispatch }, payload) {
-      try {
-        let mainCourse = await api.put('/events/' + payload.eventId, payload)
-        dispatch('getEventInfo', payload)
-      } catch (error) {
-        console.error(error)
-      }
     }
   }
 })
