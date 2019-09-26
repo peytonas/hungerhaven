@@ -41,7 +41,10 @@
               </span>
             </p>
             <p class="card-text col-6">
-              <span v-for="attendee in this.event.attendees">{{attendee.allergies}}</span>
+              <span v-for="allergy in this.allergies">
+                {{allergy}}
+                <hr />
+              </span>
             </p>
           </div>
         </div>
@@ -71,6 +74,18 @@ export default {
     },
     event() {
       return this.$store.state.event;
+    },
+    attendees() {
+      return this.$store.state.event.attendees;
+    },
+    allergies() {
+      let output = [];
+      for (let i = 0; i < this.attendees.length; i++) {
+        for (let j = 0; j < this.attendees[i].allergies.length; j++) {
+          output.push(this.attendees[i].allergies[j]);
+        }
+      }
+      return output;
     }
   },
   methods: {
