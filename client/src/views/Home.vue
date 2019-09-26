@@ -83,13 +83,14 @@ export default {
       //every time a user joins or creates an event, a list-item is populated pulling that event's data, and pushing it to the user's profile based on user ID.
     },
     findEvent() {
-      this.$store.dispatch("getEventInfo", { pin: this.pin });
-      if (this.$store.state.event.pin) {
-        this.$store.dispatch("setPending", this.$store.state.event._id);
-        this.$router.push("/guest/" + this.pin);
-      } else {
-        console.log("Ah ah ah, you didn't say the magic word.");
-      }
+      this.$store.dispatch("getEventInfo", { pin: this.pin }).then(res => {
+        if (this.$store.state.event.pin) {
+          this.$store.dispatch("setPending", this.$store.state.event._id);
+          this.$router.push("/guest/" + this.pin);
+        } else {
+          console.log("Ah ah ah, you didn't say the magic word.");
+        }
+      });
     }
   }
 };
