@@ -76,8 +76,9 @@ export default {
       this.$router.push("/edit");
     },
     goHost() {
-      this.$store.dispatch("createEvent");
-      this.$router.push("/host");
+      this.$store.dispatch("createEvent").then(res => {
+        this.$router.push("/host/" + this.$store.state.event.pin);
+      });
     },
     addListItem() {
       //every time a user joins or creates an event, a list-item is populated pulling that event's data, and pushing it to the user's profile based on user ID.

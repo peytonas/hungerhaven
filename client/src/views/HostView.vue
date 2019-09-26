@@ -37,7 +37,7 @@
           <div class="card-header card-bg">Your Potluck:</div>
           <div class="card-body">
             <h5 class="card-title">Event Data Goes Here</h5>
-            <p class="card-text">(Food Thangs 'n' Stuff)</p>
+            <p class="card-text">Main Course: {{event.maincourse}}</p>
           </div>
         </div>
       </div>
@@ -59,6 +59,7 @@ export default {
   name: "hostView",
   mounted() {
     this.$store.dispatch("authenticate");
+    this.$store.dispatch("getEventInfo", this.$route.params);
   },
   props: [],
   methods: {

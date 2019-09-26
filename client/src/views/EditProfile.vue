@@ -70,7 +70,7 @@
           <br />
           <span v-for="allergy in user.allergies" :key="allergy">
             {{allergy}}
-            <span class="text-danger cursor" @submit="removeAllergy">x</span>
+            <span class="text-danger cursor" @click.prevent="removeAllergy">x</span>
           </span>
         </div>
         <div>
@@ -174,12 +174,8 @@ export default {
       this.$store.dispatch("authenticate");
     },
     editAllergies() {
-      let allergies = this.newUser.allergies;
-      let splitAllergies = allergies.split(",");
-      let output = [];
-      for (let i = 0; i < splitAllergies.length; i++) {
-        output.push(splitAllergies[i].trim());
-      }
+      this.newUser.allergies.push(this.allergies);
+      let output = this.newUser.allergies;
       this.newUser.allergies = output;
       this.$store.dispatch("editProfile", this.newUser);
       this.$store.dispatch("authenticate");
@@ -192,7 +188,7 @@ export default {
       this.$store.dispatch("authenticate");
     },
     removeAllergy() {
-      console.log(this.newUser.allergies);
+      this.$store.dispatch("removeAllergy");
     }
   },
   components: {}

@@ -32,7 +32,7 @@ export default new Router({
       }
     },
     {
-      path: '/host',
+      path: '/host/:pin',
       name: 'host',
       component: function () {
         // @ts-ignore
