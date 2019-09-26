@@ -64,11 +64,13 @@ export default class EventController {
       if (!event) { throw new Error('Invalid Event Id') }
 
       //NOTE if the user is already in the list throw error
+      // @ts-ignore
       if (event.attendees.find(a => a.userId == req.session.uid)) { throw new Error("already attendee") }
 
       //NOTE Create the attendee as the person logged in
       let a = { userId: req.session.uid, status: "pending" }
       //NOTE Add user to event
+      // @ts-ignore
       event.attendees.push(a)
       await event.save()
       res.send('Added Attendee')
@@ -93,6 +95,7 @@ export default class EventController {
       let event = await _eventService.findById(req.params.eventId)
       if (!event) { throw new Error('Invalid Event Id') }
 
+      // @ts-ignore
       let attendee = event.attendees.find(a => a.userId == req.session.uid)
 
       //NOTE if the user is already in the list throw error
