@@ -7,7 +7,6 @@
         src="../assets/HH-Logo-Transparent-Color-Wings.png"
       />
       <h2>Welcome back, {{user.name}}!</h2>
-      <button class="register-button text-dark" @click="goEdit()">Edit Your Profile</button>
     </div>
     <div class="row justify-content-center">
       <form @submit="findEvent">
@@ -39,6 +38,9 @@
           </ul>
         </div>
       </div>
+    </div>
+    <div class="row justify-content-center">
+      <button class="register-button text-dark" @click="goEdit()">Edit Your Profile</button>
     </div>
     <div class="row justify-content-center">
       <button class="logout-button" @click="logout">Logout</button>
@@ -81,7 +83,12 @@ export default {
       //every time a user joins or creates an event, a list-item is populated pulling that event's data, and pushing it to the user's profile based on user ID.
     },
     findEvent() {
-      this.$router.push("/guest/" + this.pin);
+      this.$store.dispatch("getEventInfo", { pin: this.pin });
+      if (this.$store.state.event.pin) {
+        this.$router.push("/guest/" + this.pin);
+      } else {
+        console.log("ah ah ah, didn't say the magic word");
+      }
     }
   }
 };
