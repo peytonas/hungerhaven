@@ -8,8 +8,8 @@
     <div>
       <h2>Event:{{this.event.pin}}</h2>
       <h3>Would you like to attend this event?</h3>
-      <button class="btn btn-success" @click="RSVPyes">Yes</button>
-      <button class="btn btn-danger" @click="RSVPno">No</button>
+      <button class="btn btn-success" @click="RSVP('accepted')">Yes</button>
+      <button class="btn btn-danger" @click="RSVP('declined')">No</button>
     </div>
     <div class="row justify-content-around">
       <div class="col-4">
@@ -45,6 +45,7 @@
 </template>
 <script>
 import mainCourseModal from "../Components/MainCourseModal";
+import swal from "sweetalert2";
 export default {
   name: "guestView",
   data() {
@@ -79,21 +80,22 @@ export default {
     addDessert() {
       console.log("no");
     },
-    RSVPyes() {
-      console.log("no");
-    },
-    RSVPno() {
+    RSVP(msg) {
       this.$store.dispatch("setRSVP", {
         eventId: this.event._id,
-        status: "declined"
+        status: msg
+      });
+      const toast = swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 5000
+      });
+      toast.fire({
+        type: "success",
+        title: "Successfully " + msg
       });
       this.goHome();
-    },
-    RSVPyes() {
-      this.$store.dispatch("setRSVP", {
-        eventId: this.event._id,
-        status: "accepted"
-      });
     }
   },
   components: { mainCourseModal }
