@@ -93,9 +93,11 @@ export default {
       });
       toast.fire({
         type: "success",
-        title: "Successfully " + msg
+        title: "Event " + msg
       });
-      this.goHome();
+      if (msg == "declined") {
+        this.goHome();
+      }
     }
   },
   components: { mainCourseModal }
