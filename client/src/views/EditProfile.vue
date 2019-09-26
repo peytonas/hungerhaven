@@ -11,7 +11,7 @@
       <u>Your Profile</u>
     </h3>
     <hr />
-    <!-- accordion 1 -->
+    <!--SECTION accordion -->
     <div id="headingOne">
       <div id="accordion">
         <div>
@@ -21,30 +21,22 @@
         </div>
         <div>
           <h5 class="mb-0">
-            <button
-              class="btn btn-link"
-              data-toggle="collapse"
-              data-target="#collapseOne"
-              aria-expanded="true"
-              aria-controls="collapseOne"
-            >edit</button>
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne">edit</button>
           </h5>
         </div>
-        <div
-          id="collapseOne"
-          class="collapse"
-          aria-labelledby="headingOne"
-          data-parent="#accordion"
-        >
-          <div>Edit Name Options</div>
+        <div id="collapseOne" class="collapse" data-parent="#accordion">
+          <div>
+            <form @submit.prevent="editName">
+              <div class="input-group">
+                <input v-model="name" type="string" class="form-control" placeholder="type name..." />
+                <div>
+                  <button class="home-button" type="submit">➕</button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
-    </div>
-    <hr />
-    <!-- end accordion 1 -->
-    <!-- accordion 2 -->
-    <div id="headingTwo">
-      <div id="accordion">
+        <hr />
         <div>
           <b>Address:</b>
           <br />
@@ -52,67 +44,58 @@
         </div>
         <div>
           <h5 class="mb-0">
-            <button
-              class="btn btn-link"
-              data-toggle="collapse"
-              data-target="#collapseTwo"
-              aria-expanded="true"
-              aria-controls="collapseTwo"
-            >edit</button>
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo">edit</button>
           </h5>
         </div>
-
-        <div
-          id="collapseTwo"
-          class="collapse"
-          aria-labelledby="headingTwo"
-          data-parent="#accordion"
-        >
-          <div>Edit Address Options</div>
+        <div id="collapseTwo" class="collapse" data-parent="#accordion">
+          <div>
+            <form @submit.prevent="editAddress">
+              <div class="input-group">
+                <input
+                  v-model="address"
+                  type="string"
+                  class="form-control"
+                  placeholder="type address..."
+                />
+                <div>
+                  <button class="home-button" type="submit">➕</button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
-    </div>
-    <hr />
-    <!-- end accordion 2 -->
-    <!-- accordion 3 -->
-    <div id="headingThree">
-      <div id="accordion">
-        <p>
+        <hr />
+        <div>
           <b>Allergies:</b>
           <br />
           <span v-for="allergy in user.allergies" :key="allergy">
             {{allergy}}
-            <span class="text-danger cursor" @click="removeAllergy">x</span>
-            <br />
+            <span class="text-danger cursor" @submit="removeAllergy">x</span>
           </span>
-        </p>
+        </div>
         <div>
           <h5 class="mb-0">
-            <button
-              class="btn btn-link"
-              data-toggle="collapse"
-              data-target="#collapseThree"
-              aria-expanded="true"
-              aria-controls="collapseThree"
-            >edit</button>
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree">edit</button>
           </h5>
         </div>
-
-        <div
-          id="collapseThree"
-          class="collapse"
-          aria-labelledby="headingThree"
-          data-parent="#accordion"
-        >
-          <div>Edit Allergy Options</div>
+        <div id="collapseThree" class="collapse" data-parent="#accordion">
+          <div>
+            <form @submit.prevent="editAllergies">
+              <div class="input-group">
+                <input
+                  v-model="allergies"
+                  type="string"
+                  class="form-control"
+                  placeholder="type allergies..."
+                />
+                <div>
+                  <button class="home-button" type="submit">➕</button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
-    </div>
-    <hr />
-    <!-- end accordion 3 -->
-    <!-- accordion 4 -->
-    <div id="headingFour">
-      <div id="accordion">
+        <hr />
         <div>
           <b>Phone Number:</b>
           <br />
@@ -120,29 +103,31 @@
         </div>
         <div>
           <h5 class="mb-0">
-            <button
-              class="btn btn-link"
-              data-toggle="collapse"
-              data-target="#collapseFour"
-              aria-expanded="true"
-              aria-controls="collapseFour"
-            >edit</button>
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFour">edit</button>
           </h5>
         </div>
-
-        <div
-          id="collapseFour"
-          class="collapse"
-          aria-labelledby="headingFour"
-          data-parent="#accordion"
-        >
-          <div>Edit Phone Number</div>
+        <div id="collapseFour" class="collapse" data-parent="#accordion">
+          <div>
+            <form @submit.prevent="editPhoneNumber">
+              <div class="input-group">
+                <input
+                  v-model="phoneNumber"
+                  type="string"
+                  class="form-control"
+                  placeholder="type number..."
+                />
+                <div>
+                  <button class="home-button" type="submit">➕</button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
     <hr />
-    <!-- end accordion 4 -->
-    <button class="home-button cursor" @click="goHome()">Go Home</button>
+    <!-- !SECTION -->
+    <button class="logout-button cursor" @click="goHome()">Go Home</button>
   </div>
 </template>
 
@@ -151,7 +136,7 @@
 export default {
   name: "editProfile",
   data() {
-    return {};
+    return { name: "", address: "", allergies: [], phoneNumber: "" };
   },
   mounted() {
     this.$store.dispatch("authenticate");
@@ -174,15 +159,35 @@ export default {
     goHome() {
       this.$router.push("/home");
     },
-    edit() {
+    editName() {
+      let name = this.newUser.name;
+      let output = this.name;
+      this.newUser.name = output;
+      this.$store.dispatch("editProfile", this.newUser);
+      this.$store.dispatch("authenticate");
+    },
+    editAddress() {
+      let name = this.newUser.address;
+      let output = this.address;
+      this.newUser.address = output;
+      this.$store.dispatch("editProfile", this.newUser);
+      this.$store.dispatch("authenticate");
+    },
+    editAllergies() {
       let allergies = this.newUser.allergies;
       let splitAllergies = allergies.split(",");
       let output = [];
       for (let i = 0; i < splitAllergies.length; i++) {
         output.push(splitAllergies[i].trim());
       }
-
       this.newUser.allergies = output;
+      this.$store.dispatch("editProfile", this.newUser);
+      this.$store.dispatch("authenticate");
+    },
+    editPhoneNumber() {
+      let name = this.newUser.phoneNumber;
+      let output = this.phoneNumber;
+      this.newUser.phoneNumber = output;
       this.$store.dispatch("editProfile", this.newUser);
       this.$store.dispatch("authenticate");
     },
@@ -241,6 +246,30 @@ export default {
   background-color: #016fff;
 }
 .home-button:focus {
+  outline: 0;
+}
+.logout-button {
+  background-color: #ff6242;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  font-size: 12px;
+  transition: 0.1s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+.logout-button:hover {
+  background-color: #ff7256;
+}
+.logout-button:active {
+  background-color: #ff6242;
+}
+.logout-button:focus {
   outline: 0;
 }
 .image {
