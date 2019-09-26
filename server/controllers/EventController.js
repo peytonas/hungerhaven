@@ -80,7 +80,7 @@ export default class EventController {
 
   async edit(req, res, next) {
     try {
-      let data = await _eventService.findOneAndUpdate({ _id: req.params.userId, }, req.body, { new: true })
+      let data = await _eventService.findOneAndUpdate({ _id: req.params.eventId, }, req.body, { new: true })
       if (data) {
         return res.send(data)
       }
