@@ -34,6 +34,15 @@
               <br />
               {{this.event.place}}
             </p>
+            <p class="card-text col-6">
+              <span v-for="attendee in this.event.attendees">
+                {{attendee.name}}: {{attendee.status}}
+                <br />
+              </span>
+            </p>
+            <p class="card-text col-6">
+              <span v-for="attendee in this.event.attendees">{{attendee.allergies}}</span>
+            </p>
           </div>
         </div>
       </div>
