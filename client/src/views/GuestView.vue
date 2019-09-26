@@ -40,12 +40,30 @@
                 <br />
               </span>
             </p>
-            <p class="card-text col-6">
+            <div class="dropdown">
+              <button
+                class="btn blue-grade dropdown-toggle"
+                id="menu1"
+                type="button"
+                data-toggle="dropdown"
+              >
+                Allergies
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu blue-grade" role="menu" aria-labelledby="menu1">
+                <li
+                  class="d-flex justify-content-center text-center"
+                  role="presentation"
+                  v-for="allergy in this.allergies"
+                >• {{allergy}}</li>
+              </ul>
+            </div>
+            <!-- <p class="card-text col-6">
               <span v-for="allergy in this.allergies">
                 {{allergy}}
                 <hr />
               </span>
-            </p>
+            </p>-->
           </div>
         </div>
       </div>
@@ -180,5 +198,12 @@ export default {
 .image {
   max-height: 100px;
   max-width: 185px;
+}
+.blue-grade {
+  background: linear-gradient(#add8e6, white) no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 </style>
