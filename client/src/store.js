@@ -141,6 +141,14 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error)
       }
+    },
+    async addTime({ commit, dispatch }, payload) {
+      try {
+        let time = await api.put('/events/' + payload.eventId, payload)
+        dispatch('getEventInfo', payload)
+      } catch (error) {
+        console.error(error)
+      }
     }
   }
 })

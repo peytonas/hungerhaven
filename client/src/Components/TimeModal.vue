@@ -17,7 +17,7 @@
                 class="form-control"
                 id="title"
                 placeholder="add a time..."
-                v-model="newTime.title"
+                v-model="newTime.time"
                 required
               />
             </div>
@@ -39,7 +39,11 @@ export default {
     };
   },
   methods: {
-    addTime() {}
+    addTime() {
+      this.newTime.eventId = this.$store.state.event._id;
+      this.newTime.pin = this.$store.state.event.pin;
+      this.$store.dispatch("addTime", this.newTime);
+    }
   },
   computed: {},
   components: {}
