@@ -8,7 +8,7 @@
     <div>
       <h2>Event:{{this.event.pin}}</h2>
       <h3>Would you like to attend this event?</h3>
-      <button class="register-button" @click="RSVP('accepted')">Yes</button>
+      <button class="register-button text-dark" @click="RSVP('accepted')">Yes</button>
       <button class="logout-button" @click="RSVP('declined')">No</button>
     </div>
     <div class="row justify-content-around">
