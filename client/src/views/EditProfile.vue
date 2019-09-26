@@ -174,12 +174,9 @@ export default {
       this.$store.dispatch("authenticate");
     },
     editAllergies() {
-      let allergies = this.newUser.allergies;
-      let splitAllergies = allergies.split(",");
-      let output = [];
-      for (let i = 0; i < splitAllergies.length; i++) {
-        output.push(splitAllergies[i].trim());
-      }
+      console.log(this.newUser.allergies);
+      this.newUser.allergies.push(this.allergies);
+      let output = this.newUser.allergies;
       this.newUser.allergies = output;
       this.$store.dispatch("editProfile", this.newUser);
       this.$store.dispatch("authenticate");
