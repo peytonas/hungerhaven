@@ -83,11 +83,17 @@ export default {
       console.log("no");
     },
     RSVPno() {
-      this.$store.dispatch("setRSVPno", {
+      this.$store.dispatch("setRSVP", {
         eventId: this.event._id,
         status: "declined"
       });
       this.goHome();
+    },
+    RSVPyes() {
+      this.$store.dispatch("setRSVP", {
+        eventId: this.event._id,
+        status: "accepted"
+      });
     }
   },
   components: { mainCourseModal }
