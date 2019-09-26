@@ -7,7 +7,6 @@
         src="../assets/HH-Logo-Transparent-Color-Wings.png"
       />
       <h2>Welcome back, {{user.name}}!</h2>
-      <button class="register-button text-dark" @click="goEdit()">Edit Your Profile</button>
     </div>
     <div class="row justify-content-center">
       <form @submit="findEvent">
@@ -39,6 +38,9 @@
           </ul>
         </div>
       </div>
+    </div>
+    <div class="row justify-content-center">
+      <button class="register-button text-dark" @click="goEdit()">Edit Your Profile</button>
     </div>
     <div class="row justify-content-center">
       <button class="logout-button" @click="logout">Logout</button>

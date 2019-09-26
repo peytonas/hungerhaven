@@ -1,80 +1,148 @@
 <template>
   <div class="editProfile">
-    <h1>Your Profile</h1>
-    <h2>{{user.name}}</h2>
-    <p>{{user.address}}</p>
-    <p>
-      ALLERGIES:
-      <br />
-      <span v-for="allergy in user.allergies" :key="allergy">
-        {{allergy}}
-        <span class="text-danger" @click="removeAllergy">x</span>
-        <br />
-      </span>
-    </p>
-    <p>{{user.phoneNumber}}</p>
-    <form class="col-10 offset-1" @submit.prevent="edit">
-      <input
-        class="form-control mb-2"
-        type="text"
-        name="name"
-        id="name"
-        placeholder="Name"
-        v-model="newUser.name"
+    <div class="row justify-content-center">
+      <img
+        class="col-12 image"
+        alt="Hunger Haven Logo"
+        src="../assets/HH-Logo-Transparent-Color-Wings.png"
       />
-      <input
-        class="form-control mb-2"
-        type="text"
-        name="address"
-        id="registeraddress"
-        placeholder="Address"
-        v-model="newUser.address"
-      />
-      <input
-        class="form-control mb-2"
-        type="text"
-        name="phoneNumber"
-        id="registerphoneNumber"
-        placeholder="Phone Number"
-        v-model="newUser.phoneNumber"
-      />
-      <textarea
-        class="form-control mb-2"
-        type="text"
-        name="allergies"
-        id="registerallergies"
-        placeholder="Allergies"
-        v-model="newUser.allergies"
-      ></textarea>
-      <!-- <div class="text-left">
-        <h5>Allergies:</h5>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value id="defaultCheck1" />
-          <label class="form-check-label" for="defaultCheck1">Lactose</label>
+    </div>
+    <h3>
+      <u>Your Profile</u>
+    </h3>
+    <hr />
+    <!-- accordion 1 -->
+    <div id="headingOne">
+      <div id="accordion">
+        <div>
+          <b>Name:</b>
+          <br />
+          {{user.name}}
         </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value id="defaultCheck2" />
-          <label class="form-check-label" for="defaultCheck2">Eggs</label>
+        <div>
+          <h5 class="mb-0">
+            <button
+              class="btn btn-link"
+              data-toggle="collapse"
+              data-target="#collapseOne"
+              aria-expanded="true"
+              aria-controls="collapseOne"
+            >edit</button>
+          </h5>
         </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value id="defaultCheck3" />
-          <label class="form-check-label" for="defaultCheck3">Nuts</label>
+        <div
+          id="collapseOne"
+          class="collapse"
+          aria-labelledby="headingOne"
+          data-parent="#accordion"
+        >
+          <div>Edit Name Options</div>
         </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value id="defaultCheck4" />
-          <label class="form-check-label" for="defaultCheck4">Seafood</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value id="defaultCheck5" />
-          <label class="form-check-label" for="defaultCheck5">Gluten</label>
-        </div>
-        <input type="text" placeholder="other" />
-      </div>-->
-      <div>
-        <button class="register-button text-dark mb-2 mt-2" type="submit">Submit</button>
       </div>
-    </form>
-    <button class="home-button" @click="goHome()">Go Home</button>
+    </div>
+    <hr />
+    <!-- end accordion 1 -->
+    <!-- accordion 2 -->
+    <div id="headingTwo">
+      <div id="accordion">
+        <div>
+          <b>Address:</b>
+          <br />
+          {{user.address}}
+        </div>
+        <div>
+          <h5 class="mb-0">
+            <button
+              class="btn btn-link"
+              data-toggle="collapse"
+              data-target="#collapseTwo"
+              aria-expanded="true"
+              aria-controls="collapseTwo"
+            >edit</button>
+          </h5>
+        </div>
+
+        <div
+          id="collapseTwo"
+          class="collapse"
+          aria-labelledby="headingTwo"
+          data-parent="#accordion"
+        >
+          <div>Edit Address Options</div>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <!-- end accordion 2 -->
+    <!-- accordion 3 -->
+    <div id="headingThree">
+      <div id="accordion">
+        <p>
+          <b>Allergies:</b>
+          <br />
+          <span v-for="allergy in user.allergies" :key="allergy">
+            {{allergy}}
+            <span class="text-danger cursor" @click="removeAllergy">x</span>
+            <br />
+          </span>
+        </p>
+        <div>
+          <h5 class="mb-0">
+            <button
+              class="btn btn-link"
+              data-toggle="collapse"
+              data-target="#collapseThree"
+              aria-expanded="true"
+              aria-controls="collapseThree"
+            >edit</button>
+          </h5>
+        </div>
+
+        <div
+          id="collapseThree"
+          class="collapse"
+          aria-labelledby="headingThree"
+          data-parent="#accordion"
+        >
+          <div>Edit Allergy Options</div>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <!-- end accordion 3 -->
+    <!-- accordion 4 -->
+    <div id="headingFour">
+      <div id="accordion">
+        <div>
+          <b>Phone Number:</b>
+          <br />
+          {{user.phoneNumber}}
+        </div>
+        <div>
+          <h5 class="mb-0">
+            <button
+              class="btn btn-link"
+              data-toggle="collapse"
+              data-target="#collapseFour"
+              aria-expanded="true"
+              aria-controls="collapseFour"
+            >edit</button>
+          </h5>
+        </div>
+
+        <div
+          id="collapseFour"
+          class="collapse"
+          aria-labelledby="headingFour"
+          data-parent="#accordion"
+        >
+          <div>Edit Phone Number</div>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <!-- end accordion 4 -->
+    <button class="home-button cursor" @click="goHome()">Go Home</button>
   </div>
 </template>
 
@@ -128,6 +196,9 @@ export default {
 
 
 <style scoped>
+.cursor:hover {
+  cursor: pointer;
+}
 .register-button {
   background-color: #ffe501;
   border: none;
@@ -171,5 +242,9 @@ export default {
 }
 .home-button:focus {
   outline: 0;
+}
+.image {
+  max-height: 100px;
+  max-width: 185px;
 }
 </style>

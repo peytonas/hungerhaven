@@ -6,10 +6,12 @@
         alt="Hunger Haven Logo"
         src="../assets/HH-Logo-Transparent-Color-Wings.png"
       />
-      <div>
-        <h2>Event #{{event.pin}}</h2>
-        <p>What would you like to make?</p>
-      </div>
+    </div>
+    <div class="row justify-content-center">
+      <h2>Event #{{event.pin}}</h2>
+    </div>
+    <div class="row justify-content-center">
+      <p>What are you providing?</p>
     </div>
     <div class="row justify-content-around">
       <div class="col-4">
