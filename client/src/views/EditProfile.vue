@@ -11,7 +11,7 @@
       <u>Your Profile</u>
     </h3>
     <hr />
-    <!-- accordion 1 -->
+    <!--SECTION accordion -->
     <div id="headingOne">
       <div id="accordion">
         <div>
@@ -21,31 +21,14 @@
         </div>
         <div>
           <h5 class="mb-0">
-            <button
-              class="btn btn-link"
-              data-toggle="collapse"
-              data-target="#collapseOne"
-              aria-expanded="true"
-              aria-controls="collapseOne"
-            >edit</button>
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne">edit</button>
           </h5>
         </div>
-        <div
-          id="collapseOne"
-          class="collapse"
-          aria-labelledby="headingOne"
-          data-parent="#accordion"
-        >
+        <div id="collapseOne" class="collapse" data-parent="#accordion">
           <div>
             <form @submit.prevent="editName">
               <div class="input-group">
-                <input
-                  v-model="name"
-                  type="string"
-                  class="form-control"
-                  id
-                  placeholder="type name..."
-                />
+                <input v-model="name" type="string" class="form-control" placeholder="type name..." />
                 <div>
                   <button class="home-button" type="submit">➕</button>
                 </div>
@@ -53,13 +36,7 @@
             </form>
           </div>
         </div>
-      </div>
-    </div>
-    <hr />
-    <!-- end accordion 1 -->
-    <!-- accordion 2 -->
-    <div id="headingTwo">
-      <div id="accordion">
+        <hr />
         <div>
           <b>Address:</b>
           <br />
@@ -67,21 +44,10 @@
         </div>
         <div>
           <h5 class="mb-0">
-            <button
-              class="btn btn-link"
-              data-toggle="collapse"
-              data-target="#collapseTwo"
-              aria-expanded="true"
-              aria-controls="collapseTwo"
-            >edit</button>
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo">edit</button>
           </h5>
         </div>
-        <div
-          id="collapseTwo"
-          class="collapse"
-          aria-labelledby="headingTwo"
-          data-parent="#accordion"
-        >
+        <div id="collapseTwo" class="collapse" data-parent="#accordion">
           <div>
             <form @submit.prevent="editAddress">
               <div class="input-group">
@@ -89,7 +55,6 @@
                   v-model="address"
                   type="string"
                   class="form-control"
-                  id
                   placeholder="type address..."
                 />
                 <div>
@@ -99,13 +64,7 @@
             </form>
           </div>
         </div>
-      </div>
-    </div>
-    <hr />
-    <!-- end accordion 2 -->
-    <!-- accordion 3 -->
-    <div id="headingThree">
-      <div id="accordion">
+        <hr />
         <div>
           <b>Allergies:</b>
           <br />
@@ -116,21 +75,10 @@
         </div>
         <div>
           <h5 class="mb-0">
-            <button
-              class="btn btn-link"
-              data-toggle="collapse"
-              data-target="#collapseThree"
-              aria-expanded="true"
-              aria-controls="collapseThree"
-            >edit</button>
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree">edit</button>
           </h5>
         </div>
-        <div
-          id="collapseThree"
-          class="collapse"
-          aria-labelledby="headingThree"
-          data-parent="#accordion"
-        >
+        <div id="collapseThree" class="collapse" data-parent="#accordion">
           <div>
             <form @submit.prevent="editAllergies">
               <div class="input-group">
@@ -138,7 +86,6 @@
                   v-model="allergies"
                   type="string"
                   class="form-control"
-                  id
                   placeholder="type allergies..."
                 />
                 <div>
@@ -148,13 +95,7 @@
             </form>
           </div>
         </div>
-      </div>
-    </div>
-    <hr />
-    <!-- end accordion 3 -->
-    <!-- accordion 4 -->
-    <div id="headingFour">
-      <div id="accordion">
+        <hr />
         <div>
           <b>Phone Number:</b>
           <br />
@@ -162,21 +103,10 @@
         </div>
         <div>
           <h5 class="mb-0">
-            <button
-              class="btn btn-link"
-              data-toggle="collapse"
-              data-target="#collapseFour"
-              aria-expanded="true"
-              aria-controls="collapseFour"
-            >edit</button>
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFour">edit</button>
           </h5>
         </div>
-        <div
-          id="collapseFour"
-          class="collapse"
-          aria-labelledby="headingFour"
-          data-parent="#accordion"
-        >
+        <div id="collapseFour" class="collapse" data-parent="#accordion4">
           <div>
             <form @submit.prevent="editPhoneNumber">
               <div class="input-group">
@@ -184,7 +114,6 @@
                   v-model="phoneNumber"
                   type="string"
                   class="form-control"
-                  id
                   placeholder="type number..."
                 />
                 <div>
@@ -197,7 +126,7 @@
       </div>
     </div>
     <hr />
-    <!-- end accordion 4 -->
+    <!-- !SECTION -->
     <button class="logout-button cursor" @click="goHome()">Go Home</button>
   </div>
 </template>
