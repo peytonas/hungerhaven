@@ -145,6 +145,22 @@ export default new Vuex.Store({
       try {
         let dave = await api.post('/events/' + payload.eventId + '/join', payload)
       } catch (error) { console.error(error) }
+    },
+    async addMainCourse({ commit, dispatch }, payload) {
+      try {
+        let mainCourse = await api.put('/events/' + payload.eventId, payload)
+        dispatch('getEventInfo', payload)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async addTime({ commit, dispatch }, payload) {
+      try {
+        let time = await api.put('/events/' + payload.eventId, payload)
+        dispatch('getEventInfo', payload)
+      } catch (error) {
+        console.error(error)
+      }
     }
   }
 })

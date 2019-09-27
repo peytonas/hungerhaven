@@ -123,15 +123,20 @@ export default {
       console.log("no");
     },
     RSVP(msg) {
-      this.$store.dispatch("setRSVP", {
+      let payload = {
         eventId: this.event._id,
-        status: msg
-      });
+        status: msg,
+        allergies: []
+      };
+      if (msg == "accepted") {
+        payload.allergies = this.user.allergies;
+      }
+      this.$store.dispatch("setRSVP", payload);
       const toast = swal.mixin({
         toast: true,
         position: "top-end",
         showConfirmButton: false,
-        timer: 5000
+        timer: 500
       });
       toast.fire({
         type: "success",
