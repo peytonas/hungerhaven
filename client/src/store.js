@@ -33,6 +33,9 @@ export default new Vuex.Store({
     },
     setRSVP(state, payload) {
       state.pending.push(payload)
+    },
+    setMyEvents(state, payload) {
+      state.events.push(payload)
     }
   },
   actions: {
@@ -163,6 +166,31 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error)
       }
-    }
+    },
+    async joinEvent({ commit, dispatch }, payload) {
+      try {
+        let data = await api.put('/user', payload)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    // async getMyEvents({ commit, dispatch }, payload) {
+    //   try {
+    //     let data = await api.get('/user/' + this.state.user._id)
+    //     console.log(data);
+
+    //     commit('setMyEvents', data.events)
+    //   } catch (error) {
+
+    //   }
+    // }
+    async getEventForList({ commit }, payload) {
+      try {
+        let event = await api.get('/events/' + payload.pin)
+        commit('setMyEvents', event.data)
+      } catch (error) {
+        console.error(error)
+      }
+    },
   }
 })

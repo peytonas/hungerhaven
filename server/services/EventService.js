@@ -28,6 +28,7 @@ let _schema = new Schema({
   // attending: { type: Array, required: true, default: [] },
   attendees: [invites],
   allergies: [{ type: String }],
+  hostId: { type: ObjectId, ref: 'User', required: true }
   // declined: [{ type: ObjectId, ref: 'User' }]
 
 
