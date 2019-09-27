@@ -36,7 +36,7 @@ export default new Vuex.Store({
     },
     setMyEvents(state, payload) {
       state.events.push(payload)
-    }
+    },
   },
   actions: {
 
@@ -174,16 +174,7 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
-    // async getMyEvents({ commit, dispatch }, payload) {
-    //   try {
-    //     let data = await api.get('/user/' + this.state.user._id)
-    //     console.log(data);
 
-    //     commit('setMyEvents', data.events)
-    //   } catch (error) {
-
-    //   }
-    // }
     async getEventForList({ commit }, payload) {
       try {
         let event = await api.get('/events/' + payload.pin)
@@ -192,5 +183,12 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
+    async addPlusOnes({ commit, dispatch }, payload) {
+      try {
+        let plusOnes = await api.put(`events/${this.state.event._id}/plusOnes`, payload)
+      } catch (error) {
+        console.error(error)
+      }
+    }
   }
 })

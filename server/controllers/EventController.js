@@ -17,6 +17,7 @@ export default class EventController {
       .post('/:id/join', this.joinEvent)
       .get('/:pin', this.getByPin)
       .put('/:eventId', this.edit)
+      .put("/:eventId/plusOnes", this.)
       .put('/:eventId/attendee', this.changeAttendeeStatus) // this allows a user to change thier own status
       .delete('/:id', this.delete)
   }
@@ -115,6 +116,13 @@ export default class EventController {
       res.send("deleted value")
     } catch (error) { next(error) }
 
+  }
+  async addPlusOnes(req, res, next) {
+    try {
+      let event = await _eventService.findById(req.params.eventId)
+      event.attendees.find(a => a.userId == req.session.uid).plusOnes = req.body
+      await event.save()
+    } catch (error) { next(error) }
   }
 
 }
