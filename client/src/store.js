@@ -92,7 +92,9 @@ export default new Vuex.Store({
       try {
         let index = payload.user.allergies.indexOf(payload.allergy)
         let deleted = payload.user.allergies.splice(index, 1)
-        api.put(`/user/${payload.user._id}`, deleted)
+        let test = await api.put(`/user/${payload.user._id}`, payload.user)
+        commit('setUser', payload.user)
+
         console.log(deleted);
 
       } catch (error) {
