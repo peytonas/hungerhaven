@@ -188,7 +188,7 @@ export default {
       this.$store.dispatch("authenticate");
     },
     removeAllergy(allergy) {
-      this.$store.dispatch("removeAllergy", { allergy, user: this.newUser });
+      this.$store.dispatch("removeAllergy", { allergy, user: this.user });
     }
   },
   components: {}
