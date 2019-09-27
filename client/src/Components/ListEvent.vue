@@ -1,5 +1,5 @@
 <template>
-  <div class="listEvent">
+  <div class="listEvent" @click="findEventFromList(eventProp)">
     Pin: {{eventProp}}
     <br />
     <span v-if="event">Time: {{event.time}}</span>
@@ -27,7 +27,15 @@ export default {
       }
     }
   },
-  methods: {},
+  methods: {
+    findEventFromList(pin) {
+      if (this.event.hostId == this.$store.state.user._id) {
+        this.$router.push("/host/" + pin);
+      } else {
+        this.$router.push("/guest/" + pin);
+      }
+    }
+  },
   components: {},
   props: ["eventProp"]
 };
