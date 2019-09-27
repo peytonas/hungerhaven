@@ -70,7 +70,7 @@
           <br />
           <span v-for="allergy in user.allergies" :key="allergy">
             {{allergy}}
-            <span class="text-danger cursor" @click.prevent="removeAllergy">x</span>
+            <span class="text-danger cursor" @click.prevent="removeAllergy(allergy)">x</span>
           </span>
         </div>
         <div>
@@ -187,8 +187,8 @@ export default {
       this.$store.dispatch("editProfile", this.newUser);
       this.$store.dispatch("authenticate");
     },
-    removeAllergy() {
-      this.$store.dispatch("removeAllergy");
+    removeAllergy(allergy) {
+      this.$store.dispatch("removeAllergy", { allergy, user: this.newUser });
     }
   },
   components: {}

@@ -85,6 +85,17 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
+    async removeAllergy({ commit, dispatch }, payload) {
+      try {
+        let index = payload.user.allergies.indexOf(payload.allergy)
+        let deleted = payload.user.allergies.splice(index, 1)
+        api.put(`/user/${payload.user._id}`, deleted)
+        console.log(deleted);
+
+      } catch (error) {
+        console.error(error)
+      }
+    },
 
     async getEventInfo({ commit }, payload) {
       try {
