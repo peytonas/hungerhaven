@@ -11,7 +11,8 @@ let invites = new Schema({
   userId: { type: ObjectId, ref: 'User' },
   status: { type: String, enum: ['pending', 'accepted', 'declined'] },
   name: { type: String },
-  allergies: [{ type: String }]
+  allergies: [{ type: String }],
+  plusOnes: [{ type: Number }]
 })
 
 
