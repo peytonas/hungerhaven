@@ -130,6 +130,7 @@ export default {
       };
       if (msg == "accepted") {
         payload.allergies = this.user.allergies;
+        this.$store.dispatch("joinEvent", { pin: this.$store.state.event.pin });
       }
       this.$store.dispatch("setRSVP", payload);
       const toast = swal.mixin({

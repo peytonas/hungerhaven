@@ -52,7 +52,7 @@ export default class EventController {
   async create(req, res, next) {
     try {
       //NOTE the event id is accessable through req.body.uid, never trust the client to provide you this information
-      req.body.authorId = req.session.uid
+      req.body.hostId = req.session.uid
       let data = await _eventService.create(req.body)
       res.send(data)
     } catch (error) { next(error) }

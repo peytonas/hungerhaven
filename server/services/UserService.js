@@ -14,9 +14,10 @@ let _schema = new Schema({
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     hash: { type: String, required: true },
-    allergies: { type: Array, required: true || [] },
+    allergies: [{ type: String, default: '' }],
     address: { type: String, default: '' },
     phoneNumber: { type: String, default: '' },
+    events: [{ type: String, default: '' }]
 
 
 }, { timestamps: true })

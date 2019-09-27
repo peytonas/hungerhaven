@@ -12,6 +12,7 @@ export default class UserController {
             .get('', this.getAll)
             .get('/:id', this.getById)
             .post('', this.create)
+            .put('', this.joinEvent)
             .put('/:id', this.edit)
             .delete('/:id', this.delete)
     }
@@ -41,6 +42,23 @@ export default class UserController {
             let data = await _userService.create(req.body)
             res.send(data)
         } catch (error) { next(error) }
+    }
+
+    async joinEvent(req, res, next) {
+        try {
+            let user = await _userService.findById(req.session.uid)
+            // @ts-ignore
+            if (user.events.indexOf(req.body.pin) == -1) {
+                // @ts-ignore
+                user.events.push(req.body.pin)
+                await user.save()
+                res.send('added event to user array')
+            } else {
+                throw new Error('already in event')
+            }
+        } catch (error) {
+            next(error)
+        }
     }
 
     async edit(req, res, next) {

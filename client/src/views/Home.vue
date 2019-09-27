@@ -26,12 +26,12 @@
           <div class="card-header card-bg">My Events:</div>
           <ul class="list-group list-group-flush scroll">
             <!-- instead of 30 list items, this will be a v-for to populate each event the user is attending/hosting -->
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">examples</li>
-            <li class="list-group-item">of the</li>
-            <li class="list-group-item">scrollcard</li>
-            <li class="list-group-item">working</li>
+            <ListEvent
+              class="list-group-item"
+              v-for="event in user.events"
+              :eventProp="event"
+              :key="event"
+            />
           </ul>
         </div>
         <div class="row justify-content-center">
@@ -51,9 +51,10 @@
 <script>
 // @ is an alias to /src
 
+import ListEvent from "../Components/ListEvent.vue";
 export default {
   name: "home",
-  components: {},
+  components: { ListEvent },
   data() {
     return { pin: "" };
   },
@@ -77,6 +78,7 @@ export default {
     },
     goHost() {
       this.$store.dispatch("createEvent").then(res => {
+        this.$store.dispatch("joinEvent", { pin: this.$store.state.event.pin });
         this.$router.push("/host/" + this.$store.state.event.pin);
       });
     },
