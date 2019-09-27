@@ -9,7 +9,7 @@
       <h2>Welcome back, {{user.name}}!</h2>
     </div>
     <div class="row justify-content-center">
-      <form @submit="findEvent">
+      <form class="mb-2" @submit="findEvent">
         <label for="pin">Enter Event PIN:</label>
         <div class="input-group">
           <input v-model="pin" type="string" class="form-control" id="PIN" placeholder="ex:12345" />
@@ -18,9 +18,6 @@
           </div>
         </div>
       </form>
-    </div>
-    <div class="row justify-content-center">
-      <button class="home-button" @click="goHost()">Host an Event</button>
     </div>
     <div class="row justify-content-center">
       <div>
@@ -36,6 +33,9 @@
             <li class="list-group-item">scrollcard</li>
             <li class="list-group-item">working</li>
           </ul>
+        </div>
+        <div class="row justify-content-center">
+          <button class="home-button mt-2" @click="goHost()">Host an Event</button>
         </div>
       </div>
     </div>
