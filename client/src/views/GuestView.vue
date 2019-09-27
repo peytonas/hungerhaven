@@ -16,6 +16,10 @@
         <button class="home-button" @click="addSide">Sides</button>
         <button class="home-button" @click="addDrink">Drinks</button>
         <button class="home-button" @click="addDessert">Desserts</button>
+        <form class="form-group mt-2" @submit="addPlusOnes">
+          <input type="number" v-model="extras" class="form-control" placeholder="# of plus one's" />
+          <button class="home-button mt-2" type="submit">submit</button>
+        </form>
       </div>
     </div>
     <div class="row justify-content-center">
@@ -34,37 +38,41 @@
               <br />
               {{this.event.place}}
             </p>
+          </div>
+          <div class="row">
             <p class="card-text col-6">
               <span v-for="attendee in this.event.attendees">
                 {{attendee.name}}: {{attendee.status}}
                 <br />
               </span>
             </p>
-            <div class="dropdown">
-              <button
-                class="btn blue-grade dropdown-toggle"
-                id="menu1"
-                type="button"
-                data-toggle="dropdown"
-              >
-                Allergies
-                <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu blue-grade" role="menu" aria-labelledby="menu1">
-                <li
-                  class="d-flex justify-content-center text-center"
-                  role="presentation"
-                  v-for="allergy in this.allergies"
-                >• {{allergy}}</li>
-              </ul>
+            <div class="col-6">
+              <div class="dropdown">
+                <button
+                  class="btn blue-grade dropdown-toggle"
+                  id="menu1"
+                  type="button"
+                  data-toggle="dropdown"
+                >
+                  Allergies
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu blue-grade" role="menu" aria-labelledby="menu1">
+                  <li
+                    class="d-flex justify-content-center text-center"
+                    role="presentation"
+                    v-for="allergy in this.allergies"
+                  >• {{allergy}}</li>
+                </ul>
+              </div>
             </div>
-            <!-- <p class="card-text col-6">
+          </div>
+          <!-- <p class="card-text col-6">
               <span v-for="allergy in this.allergies">
                 {{allergy}}
                 <hr />
               </span>
-            </p>-->
-          </div>
+          </p>-->
         </div>
       </div>
       <div class="row">
@@ -79,7 +87,7 @@ import swal from "sweetalert2";
 export default {
   name: "guestView",
   data() {
-    return {};
+    return { extras: null };
   },
   mounted() {
     this.$store.dispatch("authenticate");
@@ -145,6 +153,14 @@ export default {
       if (msg == "declined") {
         this.goHome();
       }
+    },
+    addPlusOnes() {
+      debugger;
+      let index = this.event.attendees.findIndex(
+        attendee => attendee.userId == this.user._id
+      );
+      this.event.attendees[index].plusOnes = this.extras;
+      console.log(events.attendees);
     }
   },
   components: { mainCourseModal }
