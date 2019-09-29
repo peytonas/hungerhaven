@@ -27,46 +27,7 @@
         <!-- <h5>My Events</h5> -->
         <div class="card container-fluid justify-content-center" style="width: 18rem;">
           <div class="card-header card-bg">Your Potluck:</div>
-          <div class="card-body row">
-            <p class="card-text col-6">
-              Main Course: {{this.event.maincourse}}
-              <br />Sides:
-              <br />Drinks:
-            </p>
-            <p class="card-text col-6">
-              {{this.event.time}}
-              <br />
-              {{this.event.place}}
-            </p>
-          </div>
-          <div class="row">
-            <p class="card-text col-6">
-              <span v-for="attendee in this.event.attendees">
-                {{attendee.name}}: {{attendee.status}}
-                <br />
-              </span>
-            </p>
-            <div class="col-6">
-              <div class="dropdown">
-                <button
-                  class="btn blue-grade dropdown-toggle"
-                  id="menu1"
-                  type="button"
-                  data-toggle="dropdown"
-                >
-                  Allergies
-                  <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu blue-grade" role="menu" aria-labelledby="menu1">
-                  <li
-                    class="d-flex justify-content-center text-center"
-                    role="presentation"
-                    v-for="allergy in this.allergies"
-                  >• {{allergy}}</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <EventInfo />
           <!-- <p class="card-text col-6">
               <span v-for="allergy in this.allergies">
                 {{allergy}}
@@ -84,6 +45,7 @@
 <script>
 import mainCourseModal from "../Components/MainCourseModal";
 import swal from "sweetalert2";
+import EventInfo from "../Components/EventInfo";
 export default {
   name: "guestView",
   data() {
@@ -164,7 +126,7 @@ export default {
       console.log(events.attendees);
     }
   },
-  components: { mainCourseModal }
+  components: { mainCourseModal, EventInfo }
 };
 </script>
 <style>

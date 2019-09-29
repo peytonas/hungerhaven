@@ -17,7 +17,7 @@
                 class="form-control"
                 id="title"
                 placeholder="add a place..."
-                v-model="newPlace.title"
+                v-model="newPlace.place"
                 required
               />
             </div>
@@ -39,7 +39,11 @@ export default {
     };
   },
   methods: {
-    addPlace() {}
+    addPlace() {
+      this.newPlace.eventId = this.$store.state.event._id;
+      this.newPlace.pin = this.$store.state.event.pin;
+      this.$store.dispatch("addPlace", this.newPlace);
+    }
   },
   computed: {},
   components: {}

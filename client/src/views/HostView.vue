@@ -35,14 +35,8 @@
       <div class="mt-2">
         <div class="card" style="width: 18rem;">
           <div class="card-header card-bg">Your Potluck:</div>
-          <div class="card-body">
-            <h5 class="card-title">Event Data Goes Here</h5>
-            <p class="card-text">
-              Main Course: {{event.maincourse}}
-              <br />
-              Time: {{event.time}}
-            </p>
-          </div>
+          <EventInfo />
+          <!-- 9481618 -->
         </div>
       </div>
     </div>
@@ -58,6 +52,7 @@ import drinkModal from "../Components/DrinkModal";
 import dessertModal from "../Components/DessertModal";
 import timeModal from "../Components/TimeModal";
 import placeModal from "../Components/PlaceModal";
+import EventInfo from "../Components/EventInfo";
 
 export default {
   name: "hostView",
@@ -89,6 +84,18 @@ export default {
     },
     event() {
       return this.$store.state.event;
+    },
+    attendees() {
+      return this.$store.state.event.attendees;
+    },
+    allergies() {
+      let output = [];
+      for (let i = 0; i < this.attendees.length; i++) {
+        for (let j = 0; j < this.attendees[i].allergies.length; j++) {
+          output.push(this.attendees[i].allergies[j]);
+        }
+      }
+      return output;
     }
   },
   components: {
@@ -97,7 +104,8 @@ export default {
     drinkModal,
     dessertModal,
     timeModal,
-    placeModal
+    placeModal,
+    EventInfo
   }
 };
 </script>
