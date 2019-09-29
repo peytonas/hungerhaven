@@ -124,6 +124,7 @@ export default {
       );
       this.event.attendees[index].plusOnes = this.extras;
       console.log(events.attendees);
+      this.$store.dispatch();
     }
   },
   components: { mainCourseModal, EventInfo }
