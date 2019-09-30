@@ -11,7 +11,7 @@
         <div class="modal-body">
           <form @submit.prevent="addDessert()">
             <div class="form-group">
-              <label for="title">title</label>
+              <label for="title">Desserts:</label>
               <input
                 type="text"
                 class="form-control"

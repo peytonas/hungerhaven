@@ -11,7 +11,7 @@
         <div class="modal-body">
           <form @submit.prevent="addMainCourse()">
             <div class="form-group">
-              <label for="title">title</label>
+              <label for="title">Main Course:</label>
               <input
                 type="text"
                 class="form-control"

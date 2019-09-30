@@ -11,7 +11,7 @@
         <div class="modal-body">
           <form @submit.prevent="addDrink()">
             <div class="form-group">
-              <label for="title">title</label>
+              <label for="title">Drinks:</label>
               <input
                 type="text"
                 class="form-control"

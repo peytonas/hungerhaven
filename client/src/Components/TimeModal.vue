@@ -11,7 +11,7 @@
         <div class="modal-body">
           <form @submit.prevent="addTime()">
             <div class="form-group">
-              <label for="title">title</label>
+              <label for="title">Time:</label>
               <input
                 type="text"
                 class="form-control"
