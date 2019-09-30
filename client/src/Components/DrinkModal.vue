@@ -41,12 +41,12 @@ export default {
   methods: {
     addDrink() {
       this.event.drinks.push(this.newDrink);
-
       this.$store.dispatch("editEvent", {
         drinks: this.event.drinks,
         eventId: this.event._id,
         pin: this.event.pin
       });
+      this.newDrink = "";
     }
   },
   computed: {

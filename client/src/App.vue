@@ -1,8 +1,17 @@
 <template>
   <div id="app">
+    <map-elem :lat="43.5948973" :long="-116.2803016" />
     <router-view />
   </div>
 </template>
+
+<script>
+import MapElem from "@/Components/Map.vue";
+export default {
+  name: "app",
+  components: { MapElem }
+};
+</script>
 
 <style>
 #app {

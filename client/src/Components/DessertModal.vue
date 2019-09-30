@@ -41,12 +41,12 @@ export default {
   methods: {
     addDessert() {
       this.event.desserts.push(this.newDessert);
-
       this.$store.dispatch("editEvent", {
         desserts: this.event.desserts,
         eventId: this.event._id,
         pin: this.event.pin
       });
+      this.newDessert = "";
     }
   },
   computed: {

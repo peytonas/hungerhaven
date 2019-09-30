@@ -52,6 +52,7 @@ import drinkModal from "../Components/DrinkModal";
 import dessertModal from "../Components/DessertModal";
 import swal from "sweetalert2";
 import EventInfo from "../Components/EventInfo";
+import Map from "@/Components/Map.vue";
 export default {
   name: "guestView",
   data() {
@@ -136,6 +137,7 @@ export default {
       this.$store.dispatch("addPlusOnes", payload);
     }
   },
+<<<<<<< HEAD
   components: {
     mainCourseModal,
     sideModal,
@@ -143,6 +145,9 @@ export default {
     dessertModal,
     EventInfo
   }
+=======
+  components: { mainCourseModal, EventInfo, Map }
+>>>>>>> 0d8c07b1336261b35a830921b56417c24bc3865c
 };
 </script>
 <style>
