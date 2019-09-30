@@ -17,7 +17,7 @@
                 class="form-control"
                 id="title"
                 placeholder="add a drink..."
-                v-model="newDrink.title"
+                v-model="newDrink"
                 required
               />
             </div>
@@ -35,13 +35,25 @@ export default {
   props: [],
   data() {
     return {
-      newDrink: {}
+      newDrink: ""
     };
   },
   methods: {
-    addDrink() {}
+    addDrink() {
+      this.event.drinks.push(this.newDrink);
+
+      this.$store.dispatch("editEvent", {
+        drinks: this.event.drinks,
+        eventId: this.event._id,
+        pin: this.event.pin
+      });
+    }
   },
-  computed: {},
+  computed: {
+    event() {
+      return this.$store.state.event;
+    }
+  },
   components: {}
 };
 </script>

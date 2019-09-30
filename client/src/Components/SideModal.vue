@@ -17,7 +17,7 @@
                 class="form-control"
                 id="title"
                 placeholder="add a side..."
-                v-model="newSide.title"
+                v-model="newSide"
                 required
               />
             </div>
@@ -35,13 +35,25 @@ export default {
   props: [],
   data() {
     return {
-      newSide: {}
+      newSide: ""
     };
   },
   methods: {
-    addSide() {}
+    addSide() {
+      this.event.sides.push(this.newSide);
+      debugger;
+      this.$store.dispatch("editEvent", {
+        sides: this.event.sides,
+        eventId: this.event._id,
+        pin: this.event.pin
+      });
+    }
   },
-  computed: {},
+  computed: {
+    event() {
+      return this.$store.state.event;
+    }
+  },
   components: {}
 };
 </script>

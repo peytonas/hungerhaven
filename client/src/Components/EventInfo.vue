@@ -2,15 +2,36 @@
   <div class="eventInfo">
     <div class="card-body row">
       <p class="card-text col-6">
-        Main Course: {{this.event.maincourse}}
+        Main Course:
+        <br />
+        {{this.event.maincourse}}
+        <br />
         <br />Sides:
+        <br />
+        <span v-for="side in this.event.sides">
+          • {{side}}
+          <br />
+        </span>
         <br />Drinks:
+        <br />
+        <span v-for="drink in this.event.drinks">
+          • {{drink}}
+          <br />
+        </span>
+        <br />Desserts:
+        <br />
+        <span v-for="dessert in this.event.desserts">
+          • {{dessert}}
+          <br />
+        </span>
       </p>
       <p class="card-text col-6">
         Time:
+        <br />
         {{this.event.time}}
         <br />
-        Place:
+        <br />Place:
+        <br />
         {{this.event.place}}
       </p>
 

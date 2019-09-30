@@ -42,7 +42,7 @@ export default {
     addMainCourse() {
       this.newMainCourse.eventId = this.$store.state.event._id;
       this.newMainCourse.pin = this.$store.state.event.pin;
-      this.$store.dispatch("addMainCourse", this.newMainCourse);
+      this.$store.dispatch("editEvent", this.newMainCourse);
     }
   },
   computed: {},

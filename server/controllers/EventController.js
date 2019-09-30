@@ -17,7 +17,7 @@ export default class EventController {
       .post('/:id/join', this.joinEvent)
       .get('/:pin', this.getByPin)
       .put('/:eventId', this.edit)
-      .put("/:eventId/plusOnes", this.)
+      // .put("/:eventId/plusOnes", this.)
       .put('/:eventId/attendee', this.changeAttendeeStatus) // this allows a user to change thier own status
       .delete('/:id', this.delete)
   }

@@ -17,7 +17,7 @@
                 class="form-control"
                 id="title"
                 placeholder="add a main..."
-                v-model="newDessert.title"
+                v-model="newDessert"
                 required
               />
             </div>
@@ -35,13 +35,25 @@ export default {
   props: [],
   data() {
     return {
-      newDessert: {}
+      newDessert: ""
     };
   },
   methods: {
-    addDessert() {}
+    addDessert() {
+      this.event.desserts.push(this.newDessert);
+
+      this.$store.dispatch("editEvent", {
+        desserts: this.event.desserts,
+        eventId: this.event._id,
+        pin: this.event.pin
+      });
+    }
   },
-  computed: {},
+  computed: {
+    event() {
+      return this.$store.state.event;
+    }
+  },
   components: {}
 };
 </script>

@@ -64,15 +64,6 @@ export default {
   methods: {
     goHome() {
       this.$router.push("/home");
-    },
-    addSide() {
-      this.$router.push;
-    },
-    addDrink() {
-      this.$router.push;
-    },
-    addDessert() {
-      this.$router.push;
     }
   },
   data() {

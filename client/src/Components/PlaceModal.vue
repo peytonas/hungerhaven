@@ -42,7 +42,7 @@ export default {
     addPlace() {
       this.newPlace.eventId = this.$store.state.event._id;
       this.newPlace.pin = this.$store.state.event.pin;
-      this.$store.dispatch("addPlace", this.newPlace);
+      this.$store.dispatch("editEvent", this.newPlace);
     }
   },
   computed: {},
