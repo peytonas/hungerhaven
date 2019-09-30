@@ -46,6 +46,7 @@
 import mainCourseModal from "../Components/MainCourseModal";
 import swal from "sweetalert2";
 import EventInfo from "../Components/EventInfo";
+import Map from "@/Components/Map.vue";
 export default {
   name: "guestView",
   data() {
@@ -130,7 +131,7 @@ export default {
       this.$store.dispatch("addPlusOnes", payload);
     }
   },
-  components: { mainCourseModal, EventInfo }
+  components: { mainCourseModal, EventInfo, Map }
 };
 </script>
 <style>
