@@ -5,6 +5,7 @@ import { userInfo } from 'os';
 
 let _eventService = new EventService().repository
 
+import UserService from '../services/UserService'
 export default class EventController {
 
   constructor() {
@@ -19,7 +20,7 @@ export default class EventController {
       .put("/:eventId/plusOnes", this.addPlusOnes)
       .put('/:eventId', this.edit)
       .put('/:eventId/attendee', this.changeAttendeeStatus) // this allows a user to change thier own status
-      .delete('/:id', this.delete)
+      .delete('/:pin', this.delete)
   }
 
   async getAll(req, res, next) {
@@ -112,7 +113,12 @@ export default class EventController {
 
   async delete(req, res, next) {
     try {
-      await _eventService.findOneAndRemove({ _id: req.params.id })
+      await _eventService.findOneAndRemove({ pin: req.params.pin })
+      if (UserService.events.indexOf(req.params.pin) == -1) {
+        throw new Error("Invalid Event Pin")
+      } else {
+        (req.params.pin)
+      }
       res.send("deleted value")
     } catch (error) { next(error) }
 

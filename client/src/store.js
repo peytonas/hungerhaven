@@ -183,6 +183,14 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error)
       }
-    }
+    },
+    async cancelEvent({ commit, dispatch }, payload) {
+      try {
+        let event = await api.delete('/events/' + payload._id)
+        commit('setMyEvents', event.data)
+      } catch (error) {
+        console.error(error)
+      }
+    },
   }
 })

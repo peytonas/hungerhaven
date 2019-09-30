@@ -9,6 +9,7 @@
     </div>
     <div class="row justify-content-center">
       <h2>Event #{{event.pin}}</h2>
+      <button class="logout-button" @click.prevent="cancelEvent">&times;</button>
     </div>
     <div class="row justify-content-center">
       <p>What are you providing?</p>
@@ -46,6 +47,7 @@
   </div>
 </template>
 <script>
+import swal from "sweetalert2";
 import mainCourseModal from "../Components/MainCourseModal";
 import sideModal from "../Components/SideModal";
 import drinkModal from "../Components/DrinkModal";
@@ -64,6 +66,28 @@ export default {
   methods: {
     goHome() {
       this.$router.push("/home");
+    },
+    cancelEvent() {
+      this.$store.dispatch("cancelEvent", this.event);
+      swal
+        .fire({
+          title: "Are you sure?",
+          text: "People are relying on you for food and entertainment...",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, cancel the potluck."
+        })
+        .then(result => {
+          if (result.value) {
+            Swal.fire(
+              "Cancelled!",
+              "Your potluck has been cancelled.",
+              "success"
+            );
+          }
+        });
     }
   },
   data() {
