@@ -41,7 +41,6 @@ export default {
   methods: {
     addSide() {
       this.event.sides.push(this.newSide);
-      debugger;
       this.$store.dispatch("editEvent", {
         sides: this.event.sides,
         eventId: this.event._id,
