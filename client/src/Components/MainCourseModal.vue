@@ -43,6 +43,7 @@ export default {
       this.newMainCourse.eventId = this.$store.state.event._id;
       this.newMainCourse.pin = this.$store.state.event.pin;
       this.$store.dispatch("editEvent", this.newMainCourse);
+      this.newMainCourse = "";
     }
   },
   computed: {},

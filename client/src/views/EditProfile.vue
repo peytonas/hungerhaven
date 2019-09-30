@@ -165,6 +165,7 @@ export default {
       this.newUser.name = output;
       this.$store.dispatch("editProfile", this.newUser);
       this.$store.dispatch("authenticate");
+      this.name = "";
     },
     editAddress() {
       let name = this.newUser.address;
@@ -172,6 +173,7 @@ export default {
       this.newUser.address = output;
       this.$store.dispatch("editProfile", this.newUser);
       this.$store.dispatch("authenticate");
+      this.address = "";
     },
     editAllergies() {
       this.newUser.allergies.push(this.allergies);
@@ -179,6 +181,7 @@ export default {
       this.newUser.allergies = output;
       this.$store.dispatch("editProfile", this.newUser);
       this.$store.dispatch("authenticate");
+      this.allergies = "";
     },
     editPhoneNumber() {
       let name = this.newUser.phoneNumber;
@@ -186,6 +189,7 @@ export default {
       this.newUser.phoneNumber = output;
       this.$store.dispatch("editProfile", this.newUser);
       this.$store.dispatch("authenticate");
+      this.phoneNumber = "";
     },
     removeAllergy(allergy) {
       this.$store.dispatch("removeAllergy", { allergy, user: this.user });

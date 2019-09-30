@@ -46,6 +46,7 @@ export default {
         eventId: this.event._id,
         pin: this.event.pin
       });
+      this.newSide = "";
     }
   },
   computed: {

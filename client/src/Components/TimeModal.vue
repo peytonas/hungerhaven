@@ -43,6 +43,7 @@ export default {
       this.newTime.eventId = this.$store.state.event._id;
       this.newTime.pin = this.$store.state.event.pin;
       this.$store.dispatch("editEvent", this.newTime);
+      this.newTime = "";
     }
   },
   computed: {},
