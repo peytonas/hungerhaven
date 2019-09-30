@@ -118,8 +118,6 @@ export default {
       }
     },
     addPlusOnes() {
-      debugger;
-
       let index = this.event.attendees.findIndex(
         attendee => attendee.userId == this.user._id
       );

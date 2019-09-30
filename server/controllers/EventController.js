@@ -119,14 +119,11 @@ export default class EventController {
   }
   async addPlusOnes(req, res, next) {
     try {
-      debugger
       let event = await _eventService.findById(req.params.eventId)
       let attendee = event.attendees.find(a => a.userId == req.session.uid)
       attendee.plusOnes = req.body.plus
       console.log(attendee);
-
       await event.save()
-
       //res.send('Plus Ones Updated')
     } catch (error) { next(error) }
   }
