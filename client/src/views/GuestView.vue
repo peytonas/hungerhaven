@@ -119,12 +119,17 @@ export default {
     },
     addPlusOnes() {
       debugger;
+
       let index = this.event.attendees.findIndex(
         attendee => attendee.userId == this.user._id
       );
-      this.event.attendees[index].plusOnes = this.extras;
-      console.log(events.attendees);
-      this.$store.dispatch();
+      let plusOnes = this.event.attendees[index].plusOnes;
+      plusOnes = this.extras;
+      let payload = {
+        plus: plusOnes,
+        hostId: this.event.hostId
+      };
+      this.$store.dispatch("addPlusOnes", payload);
     }
   },
   components: { mainCourseModal, EventInfo }

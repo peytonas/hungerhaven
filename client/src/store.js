@@ -193,6 +193,7 @@ export default new Vuex.Store({
     },
     async addPlusOnes({ commit, dispatch }, payload) {
       try {
+        debugger
         let plusOnes = await api.put(`events/${this.state.event._id}/plusOnes`, payload)
       } catch (error) {
         console.error(error)
