@@ -13,14 +13,17 @@
     </div>
     <div class="row justify-content-around">
       <div>
-        <button class="home-button" @click="addSide">Sides</button>
-        <button class="home-button" @click="addDrink">Drinks</button>
-        <button class="home-button" @click="addDessert">Desserts</button>
+        <button class="home-button" data-toggle="modal" data-target="#sideModal">Sides</button>
+        <button class="home-button" data-toggle="modal" data-target="#drinkModal">Drinks</button>
+        <button class="home-button" data-toggle="modal" data-target="#dessertModal">Desserts</button>
         <form class="form-group mt-2" @submit="addPlusOnes">
           <input type="number" v-model="extras" class="form-control" placeholder="# of plus one's" />
           <button class="home-button mt-2" type="submit">submit</button>
         </form>
       </div>
+      <sideModal />
+      <drinkModal />
+      <dessertModal />
     </div>
     <div class="row justify-content-center">
       <div class="col-12 mt-2">
@@ -44,6 +47,9 @@
 </template>
 <script>
 import mainCourseModal from "../Components/MainCourseModal";
+import sideModal from "../Components/SideModal";
+import drinkModal from "../Components/DrinkModal";
+import dessertModal from "../Components/DessertModal";
 import swal from "sweetalert2";
 import EventInfo from "../Components/EventInfo";
 export default {
@@ -130,7 +136,13 @@ export default {
       this.$store.dispatch("addPlusOnes", payload);
     }
   },
-  components: { mainCourseModal, EventInfo }
+  components: {
+    mainCourseModal,
+    sideModal,
+    drinkModal,
+    dessertModal,
+    EventInfo
+  }
 };
 </script>
 <style>
