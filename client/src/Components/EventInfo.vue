@@ -60,7 +60,8 @@
 
       <p class="card-text col-6">
         <span v-for="attendee in this.event.attendees" :key="attendee.user">
-          {{attendee.name}}: {{attendee.status}}
+          <b>{{attendee.name}}:</b>
+          {{attendee.status}}
           <br />
         </span>
       </p>
