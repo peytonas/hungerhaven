@@ -3,15 +3,15 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">add plus one's</h5>
+          <h5 class="modal-title">add plus ones</h5>
           <button class="logout-button" data-dismiss="modal" aria-label="close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <form @submit.prevent="addplusOnes()">
+          <form>
             <div class="form-group">
-              <label for="title">Plus One's:</label>
+              <label for="title">Plus Ones:</label>
               <input
                 type="text"
                 class="form-control"
@@ -21,7 +21,11 @@
                 required
               />
             </div>
-            <button class="register-button text-dark">submit</button>
+            <button
+              class="register-button text-dark"
+              @click="addPlusOne()"
+              data-dismiss="modal"
+            >submit</button>
           </form>
         </div>
         <div class="modal-footer"></div>
@@ -40,13 +44,23 @@ export default {
   },
   methods: {
     addPlusOne() {
-      this.event.plusOnes.push(this.newPlusOne);
+      debugger;
+      let index = this.event.attendees.findIndex(
+        attendee => attendee.userId == this.$store.state.user._id
+      );
+      let plusOnes = this.event.attendees[index].plusOnes;
+      plusOnes = this.newPlusOne;
+      let payload = {
+        plus: plusOnes,
+        hostId: this.event.hostId
+      };
       this.$store.dispatch("editEvent", {
         plusOnes: this.event.plusOnes,
         eventId: this.event._id,
         pin: this.event.pin
       });
       this.newPlusOnes = "";
+      console.log(plusOnes);
     }
   },
   computed: {
