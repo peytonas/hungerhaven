@@ -159,12 +159,12 @@ export default new Vuex.Store({
       }
     },
     async setRSVP({ commit }, payload) {
-      let something = await api.put('/events/' + payload.eventId + "/attendee", payload)
+      let data = await api.put('/events/' + payload.eventId + "/attendee", payload)
     },
     async setPending({ commit }, payload) {
       try {
-        let dave = await api.post('/events/' + payload.eventId + '/join', payload)
-        console.log(dave)
+        let data = await api.post('/events/' + payload.eventId + '/join', payload)
+        console.log(data)
       } catch (error) { console.error(error) }
     },
     async editEvent({ commit, dispatch }, payload) {

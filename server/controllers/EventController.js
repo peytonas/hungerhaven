@@ -47,7 +47,8 @@ export default class EventController {
     try {
       let data = await _eventService.findOne({ pin: req.params.pin })
       if (!data) {
-        throw new Error("Invalid Id")
+        res.send("Invalid Id")
+        return
       }
       res.send(data)
     } catch (error) { next(error) }
@@ -72,6 +73,7 @@ export default class EventController {
       // @ts-ignore
       if (event.attendees.find(a => a.userId == req.session.uid)) {
         res.send("already attendee")
+        return
       }
 
       //NOTE Create the attendee as the person logged in
