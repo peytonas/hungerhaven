@@ -6,6 +6,8 @@ import { userInfo } from 'os';
 let _eventService = new EventService().repository
 
 import UserService from '../services/UserService'
+
+let _userService = new UserService().repository
 export default class EventController {
 
   constructor() {
@@ -114,10 +116,13 @@ export default class EventController {
   async delete(req, res, next) {
     try {
       await _eventService.findOneAndRemove({ pin: req.params.pin })
-      if (UserService.events.indexOf(req.params.pin) == -1) {
-        throw new Error("Invalid Event Pin")
-      } else {
-        (req.params.pin)
+      let users = await _userService.find({})
+      for (let user in users) {
+        let index = users[user].events.indexOf(req.params.pin.toString())
+        if (index != -1) {
+          users[user].events.splice(index, 1)
+          await users[user].save()
+        }
       }
       res.send("deleted value")
     } catch (error) { next(error) }
