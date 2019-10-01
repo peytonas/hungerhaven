@@ -9,7 +9,9 @@
     </div>
     <div class="row justify-content-center">
       <h2>Event #{{event.pin}}</h2>
-      <button class="logout-button" @click.prevent="cancelEvent">&times;</button>
+      <button class="logout-button-color" @click.prevent="cancelEvent">
+        <i class="fas fa-power-off"></i>
+      </button>
     </div>
     <div class="row justify-content-center">
       <p>What are you providing?</p>
@@ -216,6 +218,9 @@ export default {
 }
 .home-button:focus {
   outline: 0;
+}
+.logout-button-color {
+  color: #ff6242;
 }
 .logout-button {
   background-color: #ff6242;
