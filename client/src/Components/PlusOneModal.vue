@@ -44,7 +44,6 @@ export default {
   },
   methods: {
     addPlusOne() {
-      debugger;
       let index = this.event.attendees.findIndex(
         attendee => attendee.userId == this.$store.state.user._id
       );
