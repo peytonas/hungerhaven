@@ -1,6 +1,6 @@
 <template>
   <div class="map">
-    <div ref="mapElem" class="map-elem"></div>
+    <div v-show="lat != 0 && long != 0" ref="mapElem" class="map-elem"></div>
   </div>
 </template>
 
@@ -11,15 +11,23 @@ export default {
   props: {
     lat: {
       type: Number,
-      default: -34.397
+      default: 0
     },
     long: {
       type: Number,
-      default: 150.644
+      default: 0
     }
   },
   mounted() {
     this.initMap();
+  },
+  watch: {
+    lat: function(newLat) {
+      this.initMap();
+    },
+    long: function(newLong) {
+      this.initMap();
+    }
   },
   data() {
     return {

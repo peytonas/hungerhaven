@@ -9,7 +9,7 @@
       <h2>Welcome back, {{user.name}}!</h2>
     </div>
     <div class="row justify-content-center">
-      <form class="mb-2" @submit="findEvent">
+      <form class="mb-2" @submit.prevent="findEvent">
         <label for="pin">Enter Event PIN:</label>
         <div class="input-group">
           <input v-model="pin" type="string" class="form-control" id="PIN" placeholder="ex:12345" />
@@ -79,6 +79,13 @@ export default {
     goHost() {
       this.$store.dispatch("createEvent").then(res => {
         this.$store.dispatch("joinEvent", { pin: this.$store.state.event.pin });
+        let payload = {
+          place: this.$store.state.user.address,
+          eventId: this.$store.state.event._id,
+          pin: this.$store.state.event.pin
+        };
+        this.$store.dispatch("setAddress", payload);
+
         this.$router.push("/host/" + this.$store.state.event.pin);
       });
     },

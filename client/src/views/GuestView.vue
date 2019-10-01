@@ -54,7 +54,7 @@
       </div>
       <div class="row justify-content-center mt-2">
         <div class="col">
-          <map-elem :lat="43.5948973" :long="-116.2803016" />
+          <map-elem :lat="coords.lat" :long="coords.lng" />
         </div>
       </div>
       <div class="row justify-content-center mt-2">
@@ -88,6 +88,17 @@ export default {
     },
     event() {
       return this.$store.state.event;
+    },
+    address() {
+      let eventPlace = this.$store.state.event.place.replace(/ /g, "+");
+      return eventPlace;
+    },
+    coords() {
+      let geo = this.$store.state.coords.geometry;
+      if (geo) {
+        return this.$store.state.coords.geometry.location;
+      }
+      return {};
     },
     attendees() {
       return this.$store.state.event.attendees;

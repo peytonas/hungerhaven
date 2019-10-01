@@ -32,7 +32,7 @@
         <br />
         <br />Place:
         <br />
-        {{this.event.place}}
+        {{this.$store.state.event.place}}
       </p>
 
       <p class="card-text col-6">
