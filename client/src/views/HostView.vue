@@ -68,6 +68,12 @@ export default {
       this.$router.push("/home");
     },
     cancelEvent() {
+      const toast = swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000
+      });
       swal
         .fire({
           title: "Are you sure?",
@@ -80,11 +86,7 @@ export default {
         })
         .then(result => {
           if (result.value) {
-            swal.fire(
-              "Cancelled!",
-              "Your potluck has been cancelled.",
-              "success"
-            );
+            toast.fire("Cancelled Potluck!", "", "success");
             this.$store.dispatch("cancelEvent", this.event).then(res => {
               this.$router.push("/home");
             });
