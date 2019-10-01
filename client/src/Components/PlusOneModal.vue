@@ -1,25 +1,27 @@
 <template>
-  <div id="timeModal" class="modal fade" tabindex="-1" role="dialog">
+  <div id="plusOneModal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">add a time</h5>
-          <button class="logout-button" data-dismiss="modal">&times;</button>
+          <h5 class="modal-title">add plus one's</h5>
+          <button class="logout-button" data-dismiss="modal" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
         <div class="modal-body">
-          <form>
+          <form @submit.prevent="addplusOnes()">
             <div class="form-group">
-              <label for="title">Time:</label>
+              <label for="title">Plus One's:</label>
               <input
                 type="text"
                 class="form-control"
                 id="title"
-                placeholder="add a time..."
-                v-model="newTime.time"
+                placeholder="add a plus one..."
+                v-model="newPlusOne"
                 required
               />
             </div>
-            <button class="register-button text-dark" data-dismiss="modal" @click="addTime()">submit</button>
+            <button class="register-button text-dark">submit</button>
           </form>
         </div>
         <div class="modal-footer"></div>
@@ -29,22 +31,29 @@
 </template>
 <script>
 export default {
-  name: "timeModal",
+  name: "plusOneModal",
   props: [],
   data() {
     return {
-      newTime: {}
+      newPlusOne: ""
     };
   },
   methods: {
-    addTime() {
-      this.newTime.eventId = this.$store.state.event._id;
-      this.newTime.pin = this.$store.state.event.pin;
-      this.$store.dispatch("editEvent", this.newTime);
-      this.newTime = "";
+    addPlusOne() {
+      this.event.plusOnes.push(this.newPlusOne);
+      this.$store.dispatch("editEvent", {
+        plusOnes: this.event.plusOnes,
+        eventId: this.event._id,
+        pin: this.event.pin
+      });
+      this.newPlusOnes = "";
     }
   },
-  computed: {},
+  computed: {
+    event() {
+      return this.$store.state.event;
+    }
+  },
   components: {}
 };
 </script>

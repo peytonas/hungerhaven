@@ -1,25 +1,25 @@
 <template>
-  <div id="timeModal" class="modal fade" tabindex="-1" role="dialog">
+  <div id="reqSideModal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">add a time</h5>
+          <h5 class="modal-title">Request a side</h5>
           <button class="logout-button" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
           <form>
             <div class="form-group">
-              <label for="title">Time:</label>
+              <label for="title">Sides:</label>
               <input
                 type="text"
                 class="form-control"
                 id="title"
-                placeholder="add a time..."
-                v-model="newTime.time"
+                placeholder="add a side..."
+                v-model="newSide"
                 required
               />
             </div>
-            <button class="register-button text-dark" data-dismiss="modal" @click="addTime()">submit</button>
+            <button class="register-button text-dark" @click="reqSide()" data-dismiss="modal">submit</button>
           </form>
         </div>
         <div class="modal-footer"></div>
@@ -29,22 +29,29 @@
 </template>
 <script>
 export default {
-  name: "timeModal",
+  name: "reqSideModal",
   props: [],
   data() {
     return {
-      newTime: {}
+      newSide: ""
     };
   },
   methods: {
-    addTime() {
-      this.newTime.eventId = this.$store.state.event._id;
-      this.newTime.pin = this.$store.state.event.pin;
-      this.$store.dispatch("editEvent", this.newTime);
-      this.newTime = "";
+    reqSide() {
+      this.event.reqSides.push(this.newSide);
+      this.$store.dispatch("editEvent", {
+        reqSides: this.event.reqSides,
+        eventId: this.event._id,
+        pin: this.event.pin
+      });
+      this.newSide = "";
     }
   },
-  computed: {},
+  computed: {
+    event() {
+      return this.$store.state.event;
+    }
+  },
   components: {}
 };
 </script>

@@ -1,25 +1,29 @@
 <template>
-  <div id="timeModal" class="modal fade" tabindex="-1" role="dialog">
+  <div id="reqDrinkModal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">add a time</h5>
+          <h5 class="modal-title">Request a drink</h5>
           <button class="logout-button" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
           <form>
             <div class="form-group">
-              <label for="title">Time:</label>
+              <label for="title">Drinks:</label>
               <input
                 type="text"
                 class="form-control"
                 id="title"
-                placeholder="add a time..."
-                v-model="newTime.time"
+                placeholder="add a drink..."
+                v-model="newDrink"
                 required
               />
             </div>
-            <button class="register-button text-dark" data-dismiss="modal" @click="addTime()">submit</button>
+            <button
+              class="register-button text-dark"
+              @click="reqDrink()"
+              data-dismiss="modal"
+            >submit</button>
           </form>
         </div>
         <div class="modal-footer"></div>
@@ -29,22 +33,29 @@
 </template>
 <script>
 export default {
-  name: "timeModal",
+  name: "reqDrinkModal",
   props: [],
   data() {
     return {
-      newTime: {}
+      newDrink: ""
     };
   },
   methods: {
-    addTime() {
-      this.newTime.eventId = this.$store.state.event._id;
-      this.newTime.pin = this.$store.state.event.pin;
-      this.$store.dispatch("editEvent", this.newTime);
-      this.newTime = "";
+    reqDrink() {
+      this.event.reqDrinks.push(this.newDrink);
+      this.$store.dispatch("editEvent", {
+        reqDrinks: this.event.reqDrinks,
+        eventId: this.event._id,
+        pin: this.event.pin
+      });
+      this.newDrink = "";
     }
   },
-  computed: {},
+  computed: {
+    event() {
+      return this.$store.state.event;
+    }
+  },
   components: {}
 };
 </script>
