@@ -1,51 +1,70 @@
 <template>
   <div class="row justify-content-center">
-    <img
-      class="col-12 image"
-      alt="Hunger Haven Logo"
-      src="../assets/HH-Logo-Transparent-Color-Wings.png"
-    />
-    <div>
-      <h2>Event:{{this.event.pin}}</h2>
-      <h3>Would you like to attend this event?</h3>
-      <button class="register-button text-dark" @click="RSVP('accepted')">Yes</button>
-      <button class="logout-button" @click="RSVP('declined')">No</button>
-    </div>
-    <div class="row justify-content-around">
-      <div>
-        <button class="home-button" data-toggle="modal" data-target="#sideModal">Sides</button>
-        <button class="home-button" data-toggle="modal" data-target="#drinkModal">Drinks</button>
-        <button class="home-button" data-toggle="modal" data-target="#dessertModal">Desserts</button>
-        <form class="form-group mt-2" @submit="addPlusOnes">
-          <input type="number" v-model="extras" class="form-control" placeholder="# of plus one's" />
-          <button class="home-button mt-2" type="submit">submit</button>
-        </form>
+    <div class="col">
+      <div class="row justify-content-center">
+        <img
+          class="col-12 image"
+          alt="Hunger Haven Logo"
+          src="../assets/HH-Logo-Transparent-Color-Wings.png"
+        />
+        <div class="col">
+          <h2>Event:{{this.event.pin}}</h2>
+          <h3>Would you like to attend this event?</h3>
+          <button class="register-button text-dark" @click="RSVP('accepted')">Yes</button>
+          <button class="logout-button" @click="RSVP('declined')">No</button>
+        </div>
+      </div>
+      <div class="row justify-content-around">
+        <div class="col">
+          <button class="home-button" data-toggle="modal" data-target="#sideModal">Sides</button>
+          <button class="home-button" data-toggle="modal" data-target="#drinkModal">Drinks</button>
+          <button class="home-button" data-toggle="modal" data-target="#dessertModal">Desserts</button>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-6">
+          <form class="form-group mt-2" @submit="addPlusOnes">
+            <input
+              type="number"
+              v-model="extras"
+              class="form-control align-self-center text-center"
+              placeholder="# of plus one's..."
+            />
+            <button class="home-button mt-2" type="submit">submit</button>
+          </form>
+        </div>
       </div>
       <sideModal />
       <drinkModal />
       <dessertModal />
-    </div>
-    <div class="row justify-content-center">
-      <div class="col-12 mt-2">
-        <!-- <h5>My Events</h5> -->
-        <div class="card container-fluid justify-content-center" style="width: 18rem;">
-          <div class="card-header card-bg">Your Potluck:</div>
-          <EventInfo />
-          <!-- <p class="card-text col-6">
+      <div class="row justify-content-center">
+        <div class="col-12 mt-2">
+          <!-- <h5>My Events</h5> -->
+          <div class="card container-fluid justify-content-center" style="width: 18rem;">
+            <div class="card-header card-bg">Your Potluck:</div>
+            <EventInfo />
+            <!-- <p class="card-text col-6">
               <span v-for="allergy in this.allergies">
                 {{allergy}}
                 <hr />
               </span>
-          </p>-->
+            </p>-->
+          </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row justify-content-center mt-2">
+        <div class="col">
+          <map-elem :lat="43.5948973" :long="-116.2803016" />
+        </div>
+      </div>
+      <div class="row justify-content-center mt-2">
         <button class="logout-button" @click="goHome">Go Home</button>
       </div>
     </div>
   </div>
 </template>
 <script>
+import MapElem from "@/Components/Map.vue";
 import mainCourseModal from "../Components/MainCourseModal";
 import sideModal from "../Components/SideModal";
 import drinkModal from "../Components/DrinkModal";
@@ -114,7 +133,7 @@ export default {
         toast: true,
         position: "top-end",
         showConfirmButton: false,
-        timer: 500
+        timer: 1000
       });
       toast.fire({
         type: "success",
@@ -142,7 +161,8 @@ export default {
     sideModal,
     drinkModal,
     dessertModal,
-    EventInfo
+    EventInfo,
+    MapElem
   }
 };
 </script>

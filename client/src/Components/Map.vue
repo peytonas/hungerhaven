@@ -1,6 +1,5 @@
 <template>
   <div class="map">
-    farts
     <div ref="mapElem" class="map-elem"></div>
   </div>
 </template>
