@@ -100,6 +100,7 @@ export default {
           }
         });
     },
+    //SECTION Requested Items
     async reqSide() {
       const sideSwal = swal.mixin({
         title: "Enter a side to request",
@@ -176,6 +177,7 @@ export default {
         });
       }
     }
+    //!SECTION
   },
   data() {
     return {};

@@ -9,7 +9,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form @submit.prevent="addDessert()">
+          <form>
             <div class="form-group">
               <label for="title">Desserts:</label>
               <input
@@ -21,7 +21,11 @@
                 required
               />
             </div>
-            <button class="register-button text-dark">submit</button>
+            <button
+              class="register-button text-dark"
+              data-dismiss="modal"
+              @click="addDessert()"
+            >submit</button>
           </form>
         </div>
         <div class="modal-footer"></div>

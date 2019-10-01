@@ -9,7 +9,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form @submit.prevent="addPlace()">
+          <form>
             <div class="form-group">
               <label for="title">Location:</label>
               <input
@@ -21,7 +21,7 @@
                 required
               />
             </div>
-            <button class="home-button">submit</button>
+            <button class="home-button" data-dismiss="modal" @click="addPlace()">submit</button>
           </form>
         </div>
         <div class="modal-footer"></div>
