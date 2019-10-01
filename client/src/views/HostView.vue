@@ -85,8 +85,9 @@ export default {
               "Your potluck has been cancelled.",
               "success"
             );
-            this.$store.dispatch("cancelEvent", this.event);
-            this.$router.push("/home");
+            this.$store.dispatch("cancelEvent", this.event).then(res => {
+              this.$router.push("/home");
+            });
           }
         });
     }
