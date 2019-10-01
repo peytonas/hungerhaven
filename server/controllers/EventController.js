@@ -70,7 +70,9 @@ export default class EventController {
 
       //NOTE if the user is already in the list throw error
       // @ts-ignore
-      if (event.attendees.find(a => a.userId == req.session.uid)) { throw new Error("already attendee") }
+      if (event.attendees.find(a => a.userId == req.session.uid)) {
+        res.send("already attendee")
+      }
 
       //NOTE Create the attendee as the person logged in
       let a = { userId: req.session.uid, status: "pending", name: req.body.name, allergies: req.body.allergies }
