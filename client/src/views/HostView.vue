@@ -8,6 +8,9 @@
       />
     </div>
     <div class="row justify-content-center">
+      <audio id="oof">
+        <source src="../assets/roblox-oof.mp3" type="audio/mpeg" />
+      </audio>
       <h2>Event #{{event.pin}}</h2>
       <span class="logout-button-color" @click.prevent="cancelEvent">&times;</span>
     </div>
@@ -71,6 +74,7 @@ export default {
       this.$router.push("/home");
     },
     cancelEvent() {
+      let roblox = document.getElementById("oof");
       const toast = swal.mixin({
         toast: true,
         position: "top-end",
@@ -90,13 +94,13 @@ export default {
         .then(result => {
           if (result.value) {
             //put the sound below
-            toast.fire("Here's a sound!", "a", "info");
+            roblox.play();
             setTimeout(() => {
               toast.fire("Cancelled Potluck!", "", "success");
               this.$store.dispatch("cancelEvent", this.event).then(res => {
                 this.$router.push("/home");
               });
-            }, 3000);
+            }, 500);
           }
         });
     },
