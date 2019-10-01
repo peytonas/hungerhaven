@@ -9,34 +9,31 @@
         />
         <div class="col">
           <h2>Event:{{this.event.pin}}</h2>
-          <h3>Would you like to attend this event?</h3>
-          <button class="register-button text-dark" @click="RSVP('accepted')">Yes</button>
-          <button class="logout-button" @click="RSVP('declined')">No</button>
+          <h5>Would you like to attend this event?</h5>
+          <div class="row justify-content-center">
+            <button class="register-button text-dark" @click="RSVP('accepted')">Yes</button>
+            <button class="logout-button" @click="RSVP('declined')">No</button>
+          </div>
         </div>
       </div>
       <div class="row justify-content-around">
-        <div class="col">
+        <div class="col-2">
           <button class="home-button" data-toggle="modal" data-target="#sideModal">Sides</button>
+        </div>
+        <div class="col-2">
           <button class="home-button" data-toggle="modal" data-target="#drinkModal">Drinks</button>
+        </div>
+        <div class="col-2">
           <button class="home-button" data-toggle="modal" data-target="#dessertModal">Desserts</button>
         </div>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-6">
-          <form class="form-group mt-2" @submit="addPlusOnes">
-            <input
-              type="number"
-              v-model="extras"
-              class="form-control align-self-center text-center"
-              placeholder="# of plus one's..."
-            />
-            <button class="home-button mt-2" type="submit">submit</button>
-          </form>
+        <div class="col-2">
+          <button class="home-button" data-toggle="modal" data-target="#plusOneModal">+1's</button>
         </div>
       </div>
       <sideModal />
       <drinkModal />
       <dessertModal />
+      <plusOneModal />
       <div class="row justify-content-center">
         <div class="col-12 mt-2">
           <!-- <h5>My Events</h5> -->
@@ -66,6 +63,7 @@
 <script>
 import MapElem from "@/Components/Map.vue";
 import mainCourseModal from "../Components/MainCourseModal";
+import plusOneModal from "../Components/PlusOneModal";
 import sideModal from "../Components/SideModal";
 import drinkModal from "../Components/DrinkModal";
 import dessertModal from "../Components/DessertModal";
@@ -173,7 +171,8 @@ export default {
     drinkModal,
     dessertModal,
     EventInfo,
-    MapElem
+    MapElem,
+    plusOneModal
   }
 };
 </script>
@@ -204,7 +203,7 @@ export default {
   background-color: #016fff;
   border: none;
   border-radius: 25px;
-  min-width: 100px;
+  min-width: 30px;
   color: white;
   padding: 8px 16px;
   text-align: center;
