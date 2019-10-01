@@ -9,7 +9,7 @@
     </div>
     <div class="row justify-content-center">
       <h2>Event #{{event.pin}}</h2>
-      <button class="logout-button-color" @click.prevent="cancelEvent">&times;</button>
+      <span class="logout-button-color" @click.prevent="cancelEvent">&times;</span>
     </div>
     <div class="row justify-content-center">
       <p>What are you providing?</p>
