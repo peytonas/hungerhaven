@@ -14,12 +14,18 @@ let api = axios.create({
   withCredentials: true
 })
 
+let googleApi = axios.create({
+  baseURL: 'https://maps.googleapis.com/maps/api/geocode/',
+  timeout: 3000
+})
+
 export default new Vuex.Store({
   state: {
     user: {},
     events: [],
     event: {},
-    pending: []
+    pending: [],
+    coords: {}
   },
   mutations: {
     setUser(state, payload) {
@@ -37,6 +43,9 @@ export default new Vuex.Store({
     setMyEvents(state, payload) {
       state.events.push(payload)
     },
+    setCoords(state, payload) {
+      state.coords = payload
+    }
   },
   actions: {
 
@@ -102,10 +111,11 @@ export default new Vuex.Store({
       }
     },
 
-    async getEventInfo({ commit }, payload) {
+    async getEventInfo({ commit, dispatch, state }, payload) {
       try {
         let event = await api.get('/events/' + payload.pin)
         commit('setEvent', event.data)
+        dispatch('getCoords', state.event.place.replace(/ /g, "+"))
       } catch (error) {
         console.error(error)
       }
@@ -165,6 +175,23 @@ export default new Vuex.Store({
         let data = await api.put('/user', payload)
       } catch (error) {
         console.error(error)
+      }
+    },
+    async setAddress({ commit, dispatch }, payload) {
+      try {
+        let data = await api.put(`/events/${payload.eventId}`, payload)
+        dispatch('getEventInfo', payload)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async getCoords({ commit, dispatch }, payload) {
+      try {
+        let dmoney = await googleApi.get(`json?address=${payload}&key=AIzaSyAAYXjnMSg4R7_uURpraaqY2ljK5F7M08k`)
+        debugger
+        commit('setCoords', dmoney.data.results[0])
+      } catch (error) {
+
       }
     },
 

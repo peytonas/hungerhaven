@@ -46,6 +46,10 @@ export default new Router({
         // @ts-ignore
         return import(/* webpackChunkName: "edit" */ './views/GuestView.vue')
       }
+    },
+    {
+      path: "*",
+      redirect: '/home'
     }
   ]
 })
