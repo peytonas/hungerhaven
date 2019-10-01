@@ -137,7 +137,6 @@ export default {
       this.$store.dispatch("addPlusOnes", payload);
     }
   },
-<<<<<<< HEAD
   components: {
     mainCourseModal,
     sideModal,
@@ -145,9 +144,6 @@ export default {
     dessertModal,
     EventInfo
   }
-=======
-  components: { mainCourseModal, EventInfo, Map }
->>>>>>> 0d8c07b1336261b35a830921b56417c24bc3865c
 };
 </script>
 <style>
