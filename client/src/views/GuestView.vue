@@ -27,7 +27,7 @@
           <button class="home-button" data-toggle="modal" data-target="#dessertModal">Desserts</button>
         </div>
         <div class="col-2">
-          <button class="home-button" data-toggle="modal" data-target="#plusOneModal">+1's</button>
+          <button class="home-button" data-toggle="modal" data-target="#plusOneModal">+1s</button>
         </div>
       </div>
       <sideModal />
