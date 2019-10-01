@@ -9,9 +9,7 @@
     </div>
     <div class="row justify-content-center">
       <h2>Event #{{event.pin}}</h2>
-      <button class="logout-button-color" @click.prevent="cancelEvent">
-        <i class="fas fa-power-off"></i>
-      </button>
+      <button class="logout-button-color" @click.prevent="cancelEvent">&times;</button>
     </div>
     <div class="row justify-content-center">
       <p>What are you providing?</p>
