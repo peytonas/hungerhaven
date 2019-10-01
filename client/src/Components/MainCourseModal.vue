@@ -17,7 +17,7 @@
                 class="form-control"
                 id="title"
                 placeholder="add a main..."
-                v-model="newMainCourse.maincourse"
+                v-model="newMainCourse"
                 required
               />
             </div>
@@ -35,14 +35,18 @@ export default {
   props: [],
   data() {
     return {
-      newMainCourse: {}
+      newMainCourse: ""
     };
   },
   methods: {
     addMainCourse() {
-      this.newMainCourse.eventId = this.$store.state.event._id;
-      this.newMainCourse.pin = this.$store.state.event.pin;
-      this.$store.dispatch("editEvent", this.newMainCourse);
+      let payload = {
+        eventId: this.$store.state.event._id,
+        pin: this.$store.state.event.pin,
+        maincourse: this.newMainCourse
+      };
+
+      this.$store.dispatch("editEvent", payload);
       this.newMainCourse = "";
     }
   },

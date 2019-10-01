@@ -97,7 +97,7 @@ export default {
         });
     },
     async reqSide() {
-      let side = await swal.fire({
+      const sideSwal = swal.mixin({
         title: "Enter a side to request",
         input: "text",
         showCancelButton: true,
@@ -107,6 +107,22 @@ export default {
           }
         }
       });
+      if (this.event.reqSides) {
+        let sidesList = "You have requested: ";
+        for (let side in this.event.reqSides) {
+          if (side == 0) {
+            sidesList += this.event.reqSides[side];
+          } else {
+            sidesList += ", " + this.event.reqSides[side];
+          }
+        }
+        console.log(sidesList);
+
+        // sideSwal.update({
+        //   text: sidesList
+        // });
+      }
+      let side = await sideSwal.fire();
       if (side.value) {
         this.event.reqSides.push(side.value);
         this.$store.dispatch("editEvent", {
