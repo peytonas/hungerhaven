@@ -30,6 +30,9 @@
       <div class="col-4">
         <button class="home-button" data-toggle="modal" data-target="#timeModal">Time</button>
         <button class="home-button" data-toggle="modal" data-target="#placeModal">Place</button>
+        <button class="home-button" @click="reqSide">Request Side</button>
+        <button class="home-button" @click="reqDrink">Request Drink</button>
+        <button class="home-button" @click="reqDessert">Request Dessert</button>
       </div>
     </div>
     <div class="row justify-content-center">
@@ -92,6 +95,66 @@ export default {
             });
           }
         });
+    },
+    async reqSide() {
+      let side = await swal.fire({
+        title: "Enter a side to request",
+        input: "text",
+        showCancelButton: true,
+        inputValidator: value => {
+          if (!value) {
+            return "You need to write something!";
+          }
+        }
+      });
+      if (side.value) {
+        this.event.reqSides.push(side.value);
+        this.$store.dispatch("editEvent", {
+          eventId: this.event._id,
+          pin: this.event.pin,
+          reqSides: this.event.reqSides
+        });
+      }
+    },
+    async reqDrink() {
+      let drink = await swal.fire({
+        title: "Enter a drink to request",
+        input: "text",
+        showCancelButton: true,
+        inputValidator: value => {
+          if (!value) {
+            return "You need to write something!";
+          }
+        }
+      });
+      if (drink.value) {
+        this.event.reqDrinks.push(drink.value);
+        this.$store.dispatch("editEvent", {
+          eventId: this.event._id,
+          pin: this.event.pin,
+          reqDrinks: this.event.reqDrinks
+        });
+      }
+    },
+    async reqDessert() {
+      let dessert = await swal.fire({
+        title: "Enter a dessert to request",
+        input: "text",
+        showCancelButton: true,
+        inputValidator: value => {
+          if (!value) {
+            return "You need to write something!";
+          }
+        }
+      });
+      if (dessert.value) {
+        this.event.reqDesserts.push(dessert.value);
+        this.$store.dispatch("editEvent", {
+          eventId: this.event._id,
+          pin: this.event.pin,
+          reqDesserts: this.event.reqDesserts
+        });
+      }
     }
   },
   data() {

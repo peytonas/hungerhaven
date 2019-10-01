@@ -153,8 +153,7 @@ export default new Vuex.Store({
     },
     async editEvent({ commit, dispatch }, payload) {
       try {
-
-        let mainCourse = await api.put('/events/' + payload.eventId, payload)
+        await api.put('/events/' + payload.eventId, payload)
         dispatch('getEventInfo', payload)
       } catch (error) {
         console.error(error)

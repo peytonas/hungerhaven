@@ -3,7 +3,6 @@
     <div class="card-body row">
       <p class="card-text col-6">
         Main Course:
-        <br />
         {{this.event.maincourse}}
         <br />
         <br />Sides:
@@ -27,12 +26,29 @@
       </p>
       <p class="card-text col-6">
         Time:
-        <br />
         {{this.event.time}}
         <br />
         <br />Place:
         <br />
         {{this.event.place}}
+        <br />Host's Requested Sides:
+        <br />
+        <span v-for="side in this.event.reqSides">
+          • {{side}}
+          <br />
+        </span>
+        <br />Host's Requested Drinks:
+        <br />
+        <span v-for="drink in this.event.reqDrinks">
+          • {{drink}}
+          <br />
+        </span>
+        <br />Host's Requested Desserts:
+        <br />
+        <span v-for="dessert in this.event.reqDesserts">
+          • {{dessert}}
+          <br />
+        </span>
       </p>
 
       <p class="card-text col-6">
