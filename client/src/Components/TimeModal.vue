@@ -9,7 +9,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form @submit.prevent="addTime()">
+          <form>
             <div class="form-group">
               <label for="title">Time:</label>
               <input
@@ -21,7 +21,7 @@
                 required
               />
             </div>
-            <button class="register-button text-dark">submit</button>
+            <button class="register-button text-dark" data-dismiss="modal" @click="addTime()">submit</button>
           </form>
         </div>
         <div class="modal-footer"></div>
