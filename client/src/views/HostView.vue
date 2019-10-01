@@ -68,7 +68,6 @@ export default {
       this.$router.push("/home");
     },
     cancelEvent() {
-      this.$store.dispatch("cancelEvent", this.event);
       swal
         .fire({
           title: "Are you sure?",
@@ -81,11 +80,13 @@ export default {
         })
         .then(result => {
           if (result.value) {
-            Swal.fire(
+            swal.fire(
               "Cancelled!",
               "Your potluck has been cancelled.",
               "success"
             );
+            this.$store.dispatch("cancelEvent", this.event);
+            this.$router.push("/home");
           }
         });
     }

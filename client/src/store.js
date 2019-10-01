@@ -186,8 +186,7 @@ export default new Vuex.Store({
     },
     async cancelEvent({ commit, dispatch }, payload) {
       try {
-        let event = await api.delete('/events/' + payload._id)
-        commit('setMyEvents', event.data)
+        let event = await api.delete('/events/' + payload.pin)
       } catch (error) {
         console.error(error)
       }
