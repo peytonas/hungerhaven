@@ -104,8 +104,7 @@ export default {
       return this.$store.state.event.attendees;
     },
     allergies() {
-      let attenders = this.attendees;
-      if (attenders) {
+      if (this.attendees) {
         let output = [];
         for (let i = 0; i < this.attendees.length; i++) {
           for (let j = 0; j < this.attendees[i].allergies.length; j++) {

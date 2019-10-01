@@ -115,7 +115,9 @@ export default new Vuex.Store({
       try {
         let event = await api.get('/events/' + payload.pin)
         commit('setEvent', event.data)
-        dispatch('getCoords', state.event.place.replace(/ /g, "+"))
+        if (state.event.place) {
+          dispatch('getCoords', state.event.place.replace(/ /g, "+"))
+        }
       } catch (error) {
         console.error(error)
       }
