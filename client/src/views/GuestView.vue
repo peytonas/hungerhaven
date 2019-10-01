@@ -94,8 +94,10 @@ export default {
       return this.$store.state.event;
     },
     address() {
-      let eventPlace = this.$store.state.event.place.replace(/ /g, "+");
-      return eventPlace;
+      if (this.$store.state.event.place) {
+        let eventPlace = this.$store.state.event.place.replace(/ /g, "+");
+        return eventPlace;
+      }
     },
     coords() {
       let geo = this.$store.state.coords.geometry;
