@@ -89,6 +89,7 @@ export default new Vuex.Store({
 
     //!SECTION 
 
+    //SECTION -- PROFILE/ALLERGIES --
     async editProfile({ commit, dispatch }, payload) {
       try {
         let newInfo = await api.put(`/user/${payload._id}`, payload)
@@ -110,12 +111,16 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
+    //!SECTION 
 
+    //SECTION -- MAKE/GET/EDIT/DELETE EVENTS --
     async getEventInfo({ commit, dispatch, state }, payload) {
       try {
         let event = await api.get('/events/' + payload.pin)
         commit('setEvent', event.data)
-        dispatch('getCoords', state.event.place.replace(/ /g, "+"))
+        if (state.event.place) {
+          dispatch('getCoords', state.event.place.replace(/ /g, "+"))
+        }
       } catch (error) {
         console.error(error)
       }
@@ -153,14 +158,6 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
-    async setRSVP({ commit }, payload) {
-      let something = await api.put('/events/' + payload.eventId + "/attendee", payload)
-    },
-    async setPending({ commit }, payload) {
-      try {
-        let dave = await api.post('/events/' + payload.eventId + '/join', payload)
-      } catch (error) { console.error(error) }
-    },
     async editEvent({ commit, dispatch }, payload) {
       try {
         await api.put('/events/' + payload.eventId, payload)
@@ -168,6 +165,32 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error)
       }
+    },
+    async getEventForList({ commit }, payload) {
+      try {
+        let event = await api.get('/events/' + payload.pin)
+        commit('setMyEvents', event.data)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async cancelEvent({ commit, dispatch }, payload) {
+      try {
+        let event = await api.delete('/events/' + payload.pin)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    //!SECTION 
+
+    //SECTION -- RSVP THINGS --
+    async setRSVP({ commit }, payload) {
+      let something = await api.put('/events/' + payload.eventId + "/attendee", payload)
+    },
+    async setPending({ commit }, payload) {
+      try {
+        let dave = await api.post('/events/' + payload.eventId + '/join', payload)
+      } catch (error) { console.error(error) }
     },
 
     async joinEvent({ commit, dispatch }, payload) {
@@ -177,6 +200,16 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
+    async addPlusOnes({ commit, dispatch }, payload) {
+      try {
+        let plusOnes = await api.put(`events/${this.state.event._id}/plusOnes`, payload)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    //!SECTION 
+
+    //SECTION -- MAP LOCATIONS --
     async setAddress({ commit, dispatch }, payload) {
       try {
         let data = await api.put(`/events/${payload.eventId}`, payload)
@@ -193,28 +226,7 @@ export default new Vuex.Store({
 
       }
     },
+    //!SECTION 
 
-    async getEventForList({ commit }, payload) {
-      try {
-        let event = await api.get('/events/' + payload.pin)
-        commit('setMyEvents', event.data)
-      } catch (error) {
-        console.error(error)
-      }
-    },
-    async addPlusOnes({ commit, dispatch }, payload) {
-      try {
-        let plusOnes = await api.put(`events/${this.state.event._id}/plusOnes`, payload)
-      } catch (error) {
-        console.error(error)
-      }
-    },
-    async cancelEvent({ commit, dispatch }, payload) {
-      try {
-        let event = await api.delete('/events/' + payload.pin)
-      } catch (error) {
-        console.error(error)
-      }
-    },
   }
 })

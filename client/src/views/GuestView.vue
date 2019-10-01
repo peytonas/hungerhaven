@@ -50,9 +50,9 @@
         </div>
       </div>
       <div class="row justify-content-center mt-2">
-        <div class="col">
+        <a :href="`https://www.google.com/maps/search/${this.address}`" class="col">
           <map-elem :lat="coords.lat" :long="coords.lng" />
-        </div>
+        </a>
       </div>
       <div class="row justify-content-center mt-2">
         <button class="logout-button" @click="goHome">Go Home</button>
@@ -88,8 +88,10 @@ export default {
       return this.$store.state.event;
     },
     address() {
-      let eventPlace = this.$store.state.event.place.replace(/ /g, "+");
-      return eventPlace;
+      if (this.$store.state.event.place) {
+        let eventPlace = this.$store.state.event.place.replace(/ /g, "+");
+        return eventPlace;
+      }
     },
     coords() {
       let geo = this.$store.state.coords.geometry;

@@ -4,12 +4,10 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">add a place</h5>
-          <button class="logout-button" data-dismiss="modal" aria-label="close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <button class="logout-button" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <form @submit.prevent="addPlace()">
+          <form>
             <div class="form-group">
               <label for="title">Location:</label>
               <input
@@ -21,7 +19,7 @@
                 required
               />
             </div>
-            <button class="home-button">submit</button>
+            <button class="home-button" data-dismiss="modal" @click="addPlace()">submit</button>
           </form>
         </div>
         <div class="modal-footer"></div>

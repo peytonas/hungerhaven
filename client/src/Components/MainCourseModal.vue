@@ -4,12 +4,10 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">add a main course</h5>
-          <button class="logout-button" data-dismiss="modal" aria-label="close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <button class="logout-button" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <form @submit.prevent="addMainCourse()">
+          <form>
             <div class="form-group">
               <label for="title">Main Course:</label>
               <input
@@ -21,7 +19,11 @@
                 required
               />
             </div>
-            <button class="register-button text-dark">submit</button>
+            <button
+              class="register-button text-dark"
+              data-dismiss="modal"
+              @click="addMainCourse()"
+            >submit</button>
           </form>
         </div>
         <div class="modal-footer"></div>
