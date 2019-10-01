@@ -39,7 +39,7 @@ export default {
     initMap() {
       this.map = new google.maps.Map(this.$refs.mapElem, {
         center: { lat: this.lat, lng: this.long },
-        zoom: 8
+        zoom: 14
       });
     }
   },
