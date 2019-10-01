@@ -41,6 +41,12 @@ export default {
         center: { lat: this.lat, lng: this.long },
         zoom: 14
       });
+      let myLatLng = { lat: this.lat, lng: this.long };
+      this.marker = new google.maps.Marker({
+        position: myLatLng,
+        map: this.map,
+        title: "CHEESe"
+      });
     }
   },
   components: {}

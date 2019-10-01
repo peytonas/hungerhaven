@@ -104,13 +104,17 @@ export default {
       return this.$store.state.event.attendees;
     },
     allergies() {
-      let output = [];
-      for (let i = 0; i < this.attendees.length; i++) {
-        for (let j = 0; j < this.attendees[i].allergies.length; j++) {
-          output.push(this.attendees[i].allergies[j]);
+      let attenders = this.attendees;
+      if (attenders) {
+        let output = [];
+        for (let i = 0; i < this.attendees.length; i++) {
+          for (let j = 0; j < this.attendees[i].allergies.length; j++) {
+            output.push(this.attendees[i].allergies[j]);
+          }
         }
+        return output;
       }
-      return output;
+      return {};
     }
   },
   methods: {},
