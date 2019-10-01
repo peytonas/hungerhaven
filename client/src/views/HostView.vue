@@ -30,12 +30,19 @@
       <dessertModal />
       <timeModal />
       <placeModal />
+      <reqSideModal />
+      <reqDrinkModal />
+      <reqDessertModal />
       <div class="col-4">
         <button class="home-button" data-toggle="modal" data-target="#timeModal">Time</button>
         <button class="home-button" data-toggle="modal" data-target="#placeModal">Place</button>
-        <button class="home-button" @click="reqSide">Request Side</button>
-        <button class="home-button" @click="reqDrink">Request Drink</button>
-        <button class="home-button" @click="reqDessert">Request Dessert</button>
+        <button class="home-button" data-toggle="modal" data-target="#reqSideModal">Request Side</button>
+        <button class="home-button" data-toggle="modal" data-target="#reqDrinkModal">Request Drink</button>
+        <button
+          class="home-button"
+          data-toggle="modal"
+          data-target="#reqDessertModal"
+        >Request Dessert</button>
       </div>
     </div>
     <div class="row justify-content-center">
@@ -61,6 +68,9 @@ import dessertModal from "../Components/DessertModal";
 import timeModal from "../Components/TimeModal";
 import placeModal from "../Components/PlaceModal";
 import EventInfo from "../Components/EventInfo";
+import reqSideModal from "../Components/ReqSideModal";
+import reqDrinkModal from "../Components/ReqDrinkModal";
+import reqDessertModal from "../Components/ReqDessertModal";
 
 export default {
   name: "hostView",
@@ -103,85 +113,7 @@ export default {
             }, 500);
           }
         });
-    },
-    //SECTION Requested Items
-    async reqSide() {
-      const sideSwal = swal.mixin({
-        title: "Enter a side to request",
-        input: "text",
-        showCancelButton: true,
-        inputValidator: value => {
-          if (!value) {
-            return "You need to write something!";
-          }
-        }
-      });
-      if (this.event.reqSides) {
-        let sidesList = "You have requested: ";
-        for (let side in this.event.reqSides) {
-          if (side == 0) {
-            sidesList += this.event.reqSides[side];
-          } else {
-            sidesList += ", " + this.event.reqSides[side];
-          }
-        }
-        console.log(sidesList);
-
-        // sideSwal.update({
-        //   text: sidesList
-        // });
-      }
-      let side = await sideSwal.fire();
-      if (side.value) {
-        this.event.reqSides.push(side.value);
-        this.$store.dispatch("editEvent", {
-          eventId: this.event._id,
-          pin: this.event.pin,
-          reqSides: this.event.reqSides
-        });
-      }
-    },
-    async reqDrink() {
-      let drink = await swal.fire({
-        title: "Enter a drink to request",
-        input: "text",
-        showCancelButton: true,
-        inputValidator: value => {
-          if (!value) {
-            return "You need to write something!";
-          }
-        }
-      });
-      if (drink.value) {
-        this.event.reqDrinks.push(drink.value);
-        this.$store.dispatch("editEvent", {
-          eventId: this.event._id,
-          pin: this.event.pin,
-          reqDrinks: this.event.reqDrinks
-        });
-      }
-    },
-    async reqDessert() {
-      let dessert = await swal.fire({
-        title: "Enter a dessert to request",
-        input: "text",
-        showCancelButton: true,
-        inputValidator: value => {
-          if (!value) {
-            return "You need to write something!";
-          }
-        }
-      });
-      if (dessert.value) {
-        this.event.reqDesserts.push(dessert.value);
-        this.$store.dispatch("editEvent", {
-          eventId: this.event._id,
-          pin: this.event.pin,
-          reqDesserts: this.event.reqDesserts
-        });
-      }
     }
-    //!SECTION
   },
   data() {
     return {};
@@ -213,7 +145,10 @@ export default {
     dessertModal,
     timeModal,
     placeModal,
-    EventInfo
+    EventInfo,
+    reqSideModal,
+    reqDrinkModal,
+    reqDessertModal
   }
 };
 </script>
