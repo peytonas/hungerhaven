@@ -53,11 +53,7 @@
         </div>
       </div>
       <div class="row justify-content-center mt-2">
-        <a
-          :href="`https://www.google.com/maps/search/${this.address}`"
-          class="col"
-          @click="routeToGmaps"
-        >
+        <a :href="`https://www.google.com/maps/search/${this.address}`" class="col">
           <map-elem :lat="coords.lat" :long="coords.lng" />
         </a>
       </div>
@@ -171,9 +167,6 @@ export default {
         hostId: this.event.hostId
       };
       this.$store.dispatch("addPlusOnes", payload);
-    },
-    routeToGmaps() {
-      this.$route(`/https://www.google.com/maps/seearch/${this.address}`);
     }
   },
   components: {
