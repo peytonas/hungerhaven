@@ -89,10 +89,14 @@ export default {
         })
         .then(result => {
           if (result.value) {
-            toast.fire("Cancelled Potluck!", "", "success");
-            this.$store.dispatch("cancelEvent", this.event).then(res => {
-              this.$router.push("/home");
-            });
+            //put the sound below
+            toast.fire("Here's a sound!", "a", "info");
+            setTimeout(() => {
+              toast.fire("Cancelled Potluck!", "", "success");
+              this.$store.dispatch("cancelEvent", this.event).then(res => {
+                this.$router.push("/home");
+              });
+            }, 3000);
           }
         });
     },
