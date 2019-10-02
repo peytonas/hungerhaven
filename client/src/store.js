@@ -174,7 +174,6 @@ export default new Vuex.Store({
     async getCoords({ commit, dispatch }, payload) {
       try {
         let dmoney = await googleApi.get(`json?address=${payload}&key=AIzaSyAAYXjnMSg4R7_uURpraaqY2ljK5F7M08k`)
-        debugger
         commit('setCoords', dmoney.data.results[0])
       } catch (error) {
 
