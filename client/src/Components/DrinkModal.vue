@@ -26,7 +26,16 @@
             >submit</button>
           </form>
         </div>
-        <div class="modal-footer"></div>
+        <div class="modal-footer text-left">
+          <p>
+            The host has requested these drinks:
+            <br />
+            <span v-for="drink in event.reqDrinks" :key="drink" @click="addDrinkFromReq(drink)">
+              • {{drink}}
+              <br />
+            </span>
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -49,6 +58,17 @@ export default {
         pin: this.event.pin
       });
       this.newDrink = "";
+    },
+    addDrinkFromReq(req) {
+      this.event.drinks.push(req);
+      let index = this.event.reqDrinks.indexOf(req);
+      this.event.reqDrinks.splice(index, 1);
+      this.$store.dispatch("editEvent", {
+        drinks: this.event.drinks,
+        reqDrinks: this.event.reqDrinks,
+        eventId: this.event._id,
+        pin: this.event.pin
+      });
     }
   },
   computed: {
