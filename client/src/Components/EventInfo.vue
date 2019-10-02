@@ -8,23 +8,29 @@
         <br />
         <b>Sides:</b>
         <br />
-        <span v-for="side in this.event.sides">
-          • {{side}}
-          <br />
+        <span v-for="user in this.attendees">
+          <span v-if="user.status == 'accepted'" v-for="side in user.sides">
+            • {{side}}
+            <br />
+          </span>
         </span>
         <br />
         <b>Drinks:</b>
         <br />
-        <span v-for="drink in this.event.drinks">
-          • {{drink}}
-          <br />
+        <span v-for="user in this.attendees">
+          <span v-if="user.status == 'accepted'" v-for="drink in user.drinks">
+            • {{drink}}
+            <br />
+          </span>
         </span>
         <br />
         <b>Desserts:</b>
         <br />
-        <span v-for="dessert in this.event.desserts">
-          • {{dessert}}
-          <br />
+        <span v-for="user in this.attendees">
+          <span v-if="user.status == 'accepted'" v-for="dessert in user.desserts">
+            • {{dessert}}
+            <br />
+          </span>
         </span>
       </p>
       <p class="card-text col-6">
@@ -115,9 +121,17 @@ export default {
         return output;
       }
       return {};
+    },
+    attendee() {
+      for (let user in this.event.attendees) {
+        if (this.event.attendees[user].userId == this.$store.state.user._id) {
+          return this.event.attendees[user];
+        }
+      }
     }
   },
   methods: {},
+  mounted() {},
   components: {}
 };
 </script>

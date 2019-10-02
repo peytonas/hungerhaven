@@ -56,10 +56,17 @@ export default {
   methods: {
     addDessert() {
       this.event.desserts.push(this.newDessert);
+      this.attendee.desserts.push(this.newDessert);
       this.$store.dispatch("editEvent", {
         desserts: this.event.desserts,
         eventId: this.event._id,
         pin: this.event.pin
+      });
+      this.$store.dispatch("bringingThings", {
+        sides: this.attendee.sides,
+        drinks: this.attendee.drinks,
+        desserts: this.attendee.desserts,
+        eventId: this.event._id
       });
       this.newDessert = "";
     },
@@ -67,17 +74,31 @@ export default {
       this.event.desserts.push(req);
       let index = this.event.reqDesserts.indexOf(req);
       this.event.reqDesserts.splice(index, 1);
+      this.attendee.desserts.push(req);
       this.$store.dispatch("editEvent", {
         desserts: this.event.desserts,
         reqDesserts: this.event.reqDesserts,
         eventId: this.event._id,
         pin: this.event.pin
       });
+      this.$store.dispatch("bringingThings", {
+        sides: this.event.sides,
+        drinks: this.attendee.drinks,
+        desserts: this.attendee.desserts,
+        eventId: this.event._id
+      });
     }
   },
   computed: {
     event() {
       return this.$store.state.event;
+    },
+    attendee() {
+      for (let user in this.event.attendees) {
+        if (this.event.attendees[user].userId == this.$store.state.user._id) {
+          return this.event.attendees[user];
+        }
+      }
     }
   },
   components: {}
