@@ -25,7 +25,7 @@
         <button class="home-button" data-toggle="modal" data-target="#dessertModal">Desserts</button>
       </div>
       <mainCourseModal />
-      <sideModal />
+      <sideModal :takenSides="takenSides" />
       <drinkModal />
       <dessertModal />
       <timeModal />
@@ -76,7 +76,13 @@ export default {
   name: "hostView",
   mounted() {
     this.$store.dispatch("authenticate");
-    this.$store.dispatch("getEventInfo", this.$route.params);
+    this.$store.dispatch("getEventInfo", this.$route.params).then(res => {
+      this.event.attendees.forEach(user => {
+        user.sides.forEach(side => {
+          this.takenSides.push(side);
+        });
+      });
+    });
   },
   props: [],
   methods: {
@@ -116,7 +122,9 @@ export default {
     }
   },
   data() {
-    return {};
+    return {
+      takenSides: []
+    };
   },
   computed: {
     user() {

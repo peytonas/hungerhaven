@@ -30,7 +30,7 @@
           <button class="home-button" data-toggle="modal" data-target="#plusOneModal">+1s</button>
         </div>
       </div>
-      <sideModal />
+      <sideModal :takenSides="takenSides" />
       <drinkModal />
       <dessertModal />
       <plusOneModal />
@@ -66,13 +66,19 @@ import Map from "@/Components/Map.vue";
 export default {
   name: "guestView",
   data() {
-    return { extras: null };
+    return { extras: 0, takenSides: [] };
   },
   mounted() {
     this.$store.dispatch("authenticate");
-    this.$store.dispatch("getEventInfo", this.$route.params);
+    this.$store.dispatch("getEventInfo", this.$route.params).then(res => {
+      this.event.attendees.forEach(user => {
+        user.sides.forEach(side => {
+          this.takenSides.push(side);
+        });
+      });
+    });
   },
-  props: ["hostProp"],
+  props: [],
   computed: {
     user() {
       return this.$store.state.user;
