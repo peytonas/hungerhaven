@@ -46,7 +46,7 @@
         placeholder="password"
         v-model="newUser.password"
       />
-      <button class="register-button text-dark mb-2" type="submit">Register</button>
+      <button class="register-button mb-2" type="submit">Register</button>
     </form>
     <div class="col-12 text-center">
       <div class="action" @click="loginForm = !loginForm">
