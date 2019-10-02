@@ -26,8 +26,8 @@
       </div>
       <mainCourseModal />
       <sideModal :takenSides="takenSides" />
-      <drinkModal />
-      <dessertModal />
+      <drinkModal :takenDrinks="takenDrinks" />
+      <dessertModal :takenDesserts="takenDesserts" />
       <timeModal />
       <placeModal />
       <reqSideModal />
@@ -82,6 +82,16 @@ export default {
           this.takenSides.push(side);
         });
       });
+      this.event.attendees.forEach(user => {
+        user.drinks.forEach(drink => {
+          this.takenDrinks.push(drink);
+        });
+      });
+      this.event.attendees.forEach(user => {
+        user.desserts.forEach(dessert => {
+          this.takenDesserts.push(dessert);
+        });
+      });
     });
   },
   props: [],
@@ -123,7 +133,9 @@ export default {
   },
   data() {
     return {
-      takenSides: []
+      takenSides: [],
+      takenDesserts: [],
+      takenDrinks: []
     };
   },
   computed: {

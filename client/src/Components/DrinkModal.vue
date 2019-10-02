@@ -31,8 +31,10 @@
             The host has requested these drinks:
             <br />
             <span v-for="drink in event.reqDrinks" :key="drink" @click="addDrinkFromReq(drink)">
-              • {{drink}}
-              <br />
+              <span v-if="takenDrinks.indexOf(drink) == -1">
+                • {{drink}}
+                <br />
+              </span>
             </span>
           </p>
         </div>
@@ -43,7 +45,7 @@
 <script>
 export default {
   name: "drinkModal",
-  props: [],
+  props: ["takenDrinks"],
   data() {
     return {
       newDrink: ""

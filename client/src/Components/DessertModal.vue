@@ -35,7 +35,10 @@
               :key="dessert"
               @click="addDessertFromReq(dessert)"
             >
-              • {{dessert}}
+              <span v-if="takenDesserts.indexOf(dessert) == -1">
+                • {{dessert}}
+                <br />
+              </span>
               <br />
             </span>
           </p>

@@ -31,8 +31,8 @@
         </div>
       </div>
       <sideModal :takenSides="takenSides" />
-      <drinkModal />
-      <dessertModal />
+      <drinkModal :takenDrinks="takenDrinks" />
+      <dessertModal :takenDesserts="takenDesserts" />
       <plusOneModal />
       <div class="row justify-content-center">
         <div class="col-12 mt-2">
@@ -73,7 +73,7 @@ import Map from "@/Components/Map.vue";
 export default {
   name: "guestView",
   data() {
-    return { extras: 0, takenSides: [] };
+    return { extras: 0, takenSides: [], takenDrinks: [], takenDesserts: [] };
   },
   mounted() {
     this.$store.dispatch("authenticate");
@@ -81,6 +81,16 @@ export default {
       this.event.attendees.forEach(user => {
         user.sides.forEach(side => {
           this.takenSides.push(side);
+        });
+      });
+      this.event.attendees.forEach(user => {
+        user.drinks.forEach(drink => {
+          this.takenDrinks.push(drink);
+        });
+      });
+      this.event.attendees.forEach(user => {
+        user.desserts.forEach(dessert => {
+          this.takenDesserts.push(dessert);
         });
       });
     });
