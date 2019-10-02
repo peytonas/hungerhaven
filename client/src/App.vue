@@ -78,6 +78,9 @@ export default {
 .logout-button:focus {
   outline: 0;
 }
+.logout-button-color {
+  color: #05668d;
+}
 .home-button {
   background-color: #02c39a;
   border: none;
