@@ -27,8 +27,10 @@
             The host has requested these sides:
             <br />
             <span v-for="side in event.reqSides" :key="side" @click="addSideFromReq(side)">
-              • {{side}}
-              <br />
+              <span v-if="takenSides.indexOf(side) == -1">
+                • {{side}}
+                <br />
+              </span>
             </span>
           </p>
         </div>
@@ -39,7 +41,7 @@
 <script>
 export default {
   name: "sideModal",
-  props: [],
+  props: ["takenSides"],
   data() {
     return {
       newSide: ""
@@ -93,6 +95,7 @@ export default {
       }
     }
   },
+  mounted() {},
   components: {}
 };
 </script>
