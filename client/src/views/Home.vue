@@ -40,7 +40,7 @@
       </div>
     </div>
     <div class="row justify-content-center">
-      <button class="register-button text-dark" @click="goEdit()">Edit Your Profile</button>
+      <button class="register-button" @click="goEdit()">Edit Your Profile</button>
     </div>
     <div class="row justify-content-center">
       <button class="logout-button" @click="logout">Logout</button>
