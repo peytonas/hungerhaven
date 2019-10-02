@@ -6,6 +6,7 @@ import { userInfo } from 'os';
 let _eventService = new EventService().repository
 
 import UserService from '../services/UserService'
+import { exists } from 'fs';
 
 let _userService = new UserService().repository
 export default class EventController {
@@ -21,7 +22,8 @@ export default class EventController {
       .get('/:pin', this.getByPin)
       .put("/:eventId/plusOnes", this.addPlusOnes)
       .put('/:eventId', this.edit)
-      .put('/:eventId/attendee', this.changeAttendeeStatus) // this allows a user to change thier own status
+      .put('/:eventId/attendee', this.changeAttendeeStatus)
+      .put('/:eventId/bringing', this.bringingThings) // this allows a user to change thier own status
       .delete('/:pin', this.delete)
   }
 
@@ -114,6 +116,25 @@ export default class EventController {
       await event.save()
       res.send('Added updated')
     } catch (error) { next(error) }
+  }
+
+  async bringingThings(req, res, next) {
+    try {
+      let event = await _eventService.findById(req.params.eventId)
+      if (!event) { throw new Error('How?') }
+      let attendee = event.attendees.find(a => a.userId == req.session.uid)
+      if (!attendee) { throw new Error('you dont exist, bro') }
+      attendee.sides = req.body.sides
+      attendee.drinks = req.body.drinks
+      attendee.desserts = req.body.desserts
+
+      await event.save()
+      console.log("fake");
+
+      res.send("you're bringing that now")
+    } catch (error) {
+      next(error)
+    }
   }
 
   async delete(req, res, next) {
