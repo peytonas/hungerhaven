@@ -152,7 +152,6 @@ export default new Vuex.Store({
 
     async editEvent({ commit, dispatch }, payload) {
       try {
-
         let mainCourse = await api.put('/events/' + payload.eventId, payload)
         dispatch('getEventInfo', payload)
       } catch (error) {
@@ -175,7 +174,7 @@ export default new Vuex.Store({
     },
     async setPending({ commit }, payload) {
       try {
-        let dave = await api.post('/events/' + payload.eventId + '/join', payload)
+        let data = await api.post('/events/' + payload.eventId + '/join', payload)
       } catch (error) { console.error(error) }
     },
 
@@ -188,6 +187,8 @@ export default new Vuex.Store({
     },
     async addPlusOnes({ commit, dispatch }, payload) {
       try {
+        let dmoney = await googleApi.get(`json?address=${payload}&key=AIzaSyAAYXjnMSg4R7_uURpraaqY2ljK5F7M08k`)
+        commit('setCoords', dmoney.data.results[0])
         let plusOnes = await api.put(`events/${this.state.event._id}/plusOnes`, payload)
       } catch (error) {
         console.error(error)
