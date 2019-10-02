@@ -19,7 +19,7 @@
                 required
               />
             </div>
-            <button class="register-button text-dark" @click="addSide()" data-dismiss="modal">submit</button>
+            <button class="register-button" @click="addSide()" data-dismiss="modal">submit</button>
           </form>
         </div>
         <div class="modal-footer text-left">

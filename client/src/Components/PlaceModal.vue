@@ -19,11 +19,7 @@
                 required
               />
             </div>
-            <button
-              class="register-button text-dark"
-              data-dismiss="modal"
-              @click="addPlace()"
-            >submit</button>
+            <button class="register-button" data-dismiss="modal" @click="addPlace()">submit</button>
           </form>
         </div>
         <div class="modal-footer"></div>

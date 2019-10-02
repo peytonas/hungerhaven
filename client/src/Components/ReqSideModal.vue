@@ -19,7 +19,7 @@
                 required
               />
             </div>
-            <button class="register-button text-dark" @click="reqSide()" data-dismiss="modal">submit</button>
+            <button class="register-button" @click="reqSide()" data-dismiss="modal">submit</button>
           </form>
         </div>
         <div class="modal-footer"></div>

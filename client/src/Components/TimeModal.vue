@@ -139,7 +139,7 @@
               </li>
             </ul>
           </div>
-          <button class="register-button text-dark" data-dismiss="modal" @click="addTime()">submit</button>
+          <button class="register-button" data-dismiss="modal" @click="addTime()">submit</button>
           <!-- !SECTION -->
         </form>
       </div>

@@ -19,11 +19,7 @@
                 required
               />
             </div>
-            <button
-              class="register-button text-dark"
-              @click="addDrink()"
-              data-dismiss="modal"
-            >submit</button>
+            <button class="register-button" @click="addDrink()" data-dismiss="modal">submit</button>
           </form>
         </div>
         <div class="modal-footer text-left">

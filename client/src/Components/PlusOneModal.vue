@@ -21,11 +21,7 @@
                 required
               />
             </div>
-            <button
-              class="register-button text-dark"
-              @click="addPlusOne()"
-              data-dismiss="modal"
-            >submit</button>
+            <button class="register-button" @click="addPlusOne()" data-dismiss="modal">submit</button>
           </form>
         </div>
         <div class="modal-footer"></div>
