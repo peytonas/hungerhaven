@@ -12,7 +12,7 @@
         <source src="../assets/roblox-oof.mp3" type="audio/mpeg" />
       </audio>
       <h2>Event #{{event.pin}}</h2>
-      <span class="logout-button-color" @click.prevent="cancelEvent">&times;</span>
+      <span class="logout-button-color cursor" @click.prevent="cancelEvent">&times;</span>
     </div>
     <div class="row justify-content-center">
       <p>What are you providing?</p>
@@ -153,6 +153,9 @@ export default {
 };
 </script>
 <style>
+.cursor {
+  cursor: pointer;
+}
 .home-button {
   background-color: #016fff;
   border: none;
