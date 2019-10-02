@@ -89,7 +89,6 @@ export default new Vuex.Store({
 
     //!SECTION 
 
-    //SECTION -- PROFILE/ALLERGIES --
     async editProfile({ commit, dispatch }, payload) {
       try {
         let newInfo = await api.put(`/user/${payload._id}`, payload)
@@ -111,16 +110,12 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
-    //!SECTION 
 
-    //SECTION -- MAKE/GET/EDIT/DELETE EVENTS --
     async getEventInfo({ commit, dispatch, state }, payload) {
       try {
         let event = await api.get('/events/' + payload.pin)
         commit('setEvent', event.data)
-        if (state.event.place) {
-          dispatch('getCoords', state.event.place.replace(/ /g, "+"))
-        }
+        dispatch('getCoords', state.event.place.replace(/ /g, "+"))
       } catch (error) {
         console.error(error)
       }
@@ -128,29 +123,14 @@ export default new Vuex.Store({
     async createEvent({ commit, dispatch }) {
       try {
         let pin = Math.floor(Math.random() * 9999999)
+        let pinString = pin.toString()
         let output
-        switch (pin.toString().length) {
-          case 7:
-            output = pin;
-            break;
-          case 6:
-            output = '0' + pin;
-            break;
-          case 5:
-            output = '00' + pin;
-            break;
-          case 4:
-            output = '000' + pin;
-            break;
-          case 3:
-            output = '0000' + pin;
-            break;
-          case 2:
-            output = '00000' + pin;
-            break;
-          case 1:
-            output = '000000' + pin;
-            break;
+        for (let i = 0; i < 7; i++) {
+          if (pinString.length == 7) {
+            output = pinString
+          } else if (pinString.length < 7) {
+            pinString = "0" + pinString
+          }
         }
         let newEvent = await api.post(`/events`, { pin: output })
         commit('setEvent', newEvent.data)
@@ -158,32 +138,6 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
-    async editEvent({ commit, dispatch }, payload) {
-      try {
-        await api.put('/events/' + payload.eventId, payload)
-        dispatch('getEventInfo', payload)
-      } catch (error) {
-        console.error(error)
-      }
-    },
-    async getEventForList({ commit }, payload) {
-      try {
-        let event = await api.get('/events/' + payload.pin)
-        commit('setMyEvents', event.data)
-      } catch (error) {
-        console.error(error)
-      }
-    },
-    async cancelEvent({ commit, dispatch }, payload) {
-      try {
-        let event = await api.delete('/events/' + payload.pin)
-      } catch (error) {
-        console.error(error)
-      }
-    },
-    //!SECTION 
-
-    //SECTION -- RSVP THINGS --
     async setRSVP({ commit }, payload) {
       let something = await api.put('/events/' + payload.eventId + "/attendee", payload)
     },
@@ -191,6 +145,15 @@ export default new Vuex.Store({
       try {
         let dave = await api.post('/events/' + payload.eventId + '/join', payload)
       } catch (error) { console.error(error) }
+    },
+    async editEvent({ commit, dispatch }, payload) {
+      try {
+
+        let mainCourse = await api.put('/events/' + payload.eventId, payload)
+        dispatch('getEventInfo', payload)
+      } catch (error) {
+        console.error(error)
+      }
     },
 
     async joinEvent({ commit, dispatch }, payload) {
@@ -200,16 +163,6 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
-    async addPlusOnes({ commit, dispatch }, payload) {
-      try {
-        let plusOnes = await api.put(`events/${this.state.event._id}/plusOnes`, payload)
-      } catch (error) {
-        console.error(error)
-      }
-    },
-    //!SECTION 
-
-    //SECTION -- MAP LOCATIONS --
     async setAddress({ commit, dispatch }, payload) {
       try {
         let data = await api.put(`/events/${payload.eventId}`, payload)
@@ -221,12 +174,34 @@ export default new Vuex.Store({
     async getCoords({ commit, dispatch }, payload) {
       try {
         let dmoney = await googleApi.get(`json?address=${payload}&key=AIzaSyAAYXjnMSg4R7_uURpraaqY2ljK5F7M08k`)
+        debugger
         commit('setCoords', dmoney.data.results[0])
       } catch (error) {
 
       }
     },
-    //!SECTION 
 
+    async getEventForList({ commit }, payload) {
+      try {
+        let event = await api.get('/events/' + payload.pin)
+        commit('setMyEvents', event.data)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async addPlusOnes({ commit, dispatch }, payload) {
+      try {
+        let plusOnes = await api.put(`events/${this.state.event._id}/plusOnes`, payload)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async cancelEvent({ commit, dispatch }, payload) {
+      try {
+        let event = await api.delete('/events/' + payload.pin)
+      } catch (error) {
+        console.error(error)
+      }
+    },
   }
 })
