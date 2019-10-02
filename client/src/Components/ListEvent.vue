@@ -2,7 +2,13 @@
   <div class="listEvent" @click="findEventFromList(eventProp)">
     Pin: {{eventProp}}
     <br />
-    <span v-if="event">Time: {{event.time}}</span>
+    <span v-if="event">
+      Time:
+      <br />
+      {{this.event.month}}/{{this.event.day}}/{{this.event.year}}
+      <br />
+      {{event.hours}}:{{event.minutes}} {{event.ampm}}
+    </span>
     <br />
     <span v-if="event">Place: {{event.place}}</span>
   </div>
