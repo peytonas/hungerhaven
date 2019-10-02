@@ -30,22 +30,15 @@
           <button class="home-button" data-toggle="modal" data-target="#plusOneModal">+1s</button>
         </div>
       </div>
-      <sideModal />
-      <drinkModal />
-      <dessertModal />
+      <sideModal :takenSides="takenSides" />
+      <drinkModal :takenDrinks="takenDrinks" />
+      <dessertModal :takenDesserts="takenDesserts" />
       <plusOneModal />
       <div class="row justify-content-center">
         <div class="col-12 mt-2">
-          <!-- <h5>My Events</h5> -->
           <div class="card container-fluid justify-content-center" style="width: 18rem;">
             <div class="card-header card-bg">Your Potluck:</div>
             <EventInfo />
-            <!-- <p class="card-text col-6">
-              <span v-for="allergy in this.allergies">
-                {{allergy}}
-                <hr />
-              </span>
-            </p>-->
           </div>
         </div>
       </div>
@@ -73,13 +66,29 @@ import Map from "@/Components/Map.vue";
 export default {
   name: "guestView",
   data() {
-    return { extras: null };
+    return { extras: 0, takenSides: [], takenDrinks: [], takenDesserts: [] };
   },
   mounted() {
     this.$store.dispatch("authenticate");
-    this.$store.dispatch("getEventInfo", this.$route.params);
+    this.$store.dispatch("getEventInfo", this.$route.params).then(res => {
+      this.event.attendees.forEach(user => {
+        user.sides.forEach(side => {
+          this.takenSides.push(side);
+        });
+      });
+      this.event.attendees.forEach(user => {
+        user.drinks.forEach(drink => {
+          this.takenDrinks.push(drink);
+        });
+      });
+      this.event.attendees.forEach(user => {
+        user.desserts.forEach(dessert => {
+          this.takenDesserts.push(dessert);
+        });
+      });
+    });
   },
-  props: ["hostProp"],
+  props: [],
   computed: {
     user() {
       return this.$store.state.user;
