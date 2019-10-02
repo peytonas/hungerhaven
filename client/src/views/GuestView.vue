@@ -11,7 +11,7 @@
           <h2>Event:{{this.event.pin}}</h2>
           <h5>Would you like to attend this event?</h5>
           <div class="row justify-content-center">
-            <button class="register-button text-dark" @click="RSVP('accepted')">Yes</button>
+            <button class="register-button" @click="RSVP('accepted')">Yes</button>
             <button class="logout-button" @click="RSVP('declined')">No</button>
           </div>
         </div>
@@ -188,77 +188,6 @@ export default {
 };
 </script>
 <style>
-.register-button {
-  background-color: #ffe501;
-  border: none;
-  border-radius: 25px;
-  color: white;
-  padding: 8px 16px;
-  text-align: center;
-  font-size: 12px;
-  transition: 0.1s;
-  display: inline-block;
-  text-decoration: none;
-  cursor: pointer;
-}
-.register-button:hover {
-  background-color: #ffef5c;
-}
-.register-button:active {
-  background-color: #ffe501;
-}
-.register-button:focus {
-  outline: 0;
-}
-.home-button {
-  background-color: #016fff;
-  border: none;
-  border-radius: 25px;
-  min-width: 30px;
-  color: white;
-  padding: 8px 16px;
-  text-align: center;
-  font-size: 12px;
-  transition: 0.1s;
-  display: inline-block;
-  text-decoration: none;
-  cursor: pointer;
-  margin-top: 4px;
-  margin-bottom: 4px;
-}
-.home-button:hover {
-  background-color: #4595fe;
-}
-.home-button:active {
-  background-color: #016fff;
-}
-.home-button:focus {
-  outline: 0;
-}
-.logout-button {
-  background-color: #ff6242;
-  border: none;
-  border-radius: 25px;
-  color: white;
-  padding: 8px 16px;
-  text-align: center;
-  font-size: 12px;
-  transition: 0.1s;
-  display: inline-block;
-  text-decoration: none;
-  cursor: pointer;
-  margin-top: 4px;
-  margin-bottom: 4px;
-}
-.logout-button:hover {
-  background-color: #ff7256;
-}
-.logout-button:active {
-  background-color: #ff6242;
-}
-.logout-button:focus {
-  outline: 0;
-}
 .image {
   max-height: 100px;
   max-width: 185px;
