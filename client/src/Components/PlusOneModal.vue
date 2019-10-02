@@ -54,7 +54,6 @@ export default {
         hostId: this.event.hostId
       };
       this.$store.dispatch("editEvent", {
-        plusOnes: this.event.plusOnes,
         eventId: this.event._id,
         pin: this.event.pin
       });
