@@ -12,7 +12,10 @@ let invites = new Schema({
   status: { type: String, enum: ['pending', 'accepted', 'declined'] },
   name: { type: String },
   allergies: [{ type: String }],
-  plusOnes: { type: Number, default: 0 }
+  plusOnes: { type: Number, default: 0 },
+  sides: [{ type: String }],
+  drinks: [{ type: String }],
+  desserts: [{ type: String }]
 })
 
 

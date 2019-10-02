@@ -26,7 +26,20 @@
             >submit</button>
           </form>
         </div>
-        <div class="modal-footer"></div>
+        <div class="modal-footer text-left">
+          <p>
+            The host has requested these desserts:
+            <br />
+            <span
+              v-for="dessert in event.reqDesserts"
+              :key="dessert"
+              @click="addDessertFromReq(dessert)"
+            >
+              • {{dessert}}
+              <br />
+            </span>
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -49,6 +62,17 @@ export default {
         pin: this.event.pin
       });
       this.newDessert = "";
+    },
+    addDessertFromReq(req) {
+      this.event.desserts.push(req);
+      let index = this.event.reqDesserts.indexOf(req);
+      this.event.reqDesserts.splice(index, 1);
+      this.$store.dispatch("editEvent", {
+        desserts: this.event.desserts,
+        reqDesserts: this.event.reqDesserts,
+        eventId: this.event._id,
+        pin: this.event.pin
+      });
     }
   },
   computed: {

@@ -22,7 +22,16 @@
             <button class="register-button text-dark" @click="addSide()" data-dismiss="modal">submit</button>
           </form>
         </div>
-        <div class="modal-footer"></div>
+        <div class="modal-footer text-left">
+          <p>
+            The host has requested these sides:
+            <br />
+            <span v-for="side in event.reqSides" :key="side" @click="addSideFromReq(side)">
+              • {{side}}
+              <br />
+            </span>
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -45,6 +54,17 @@ export default {
         pin: this.event.pin
       });
       this.newSide = "";
+    },
+    addSideFromReq(req) {
+      this.event.sides.push(req);
+      let index = this.event.reqSides.indexOf(req);
+      this.event.reqSides.splice(index, 1);
+      this.$store.dispatch("editEvent", {
+        sides: this.event.sides,
+        reqSides: this.event.reqSides,
+        eventId: this.event._id,
+        pin: this.event.pin
+      });
     }
   },
   computed: {
