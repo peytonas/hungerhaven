@@ -12,7 +12,7 @@
         <source src="../assets/roblox-oof.mp3" type="audio/mpeg" />
       </audio>
       <h2>Event #{{event.pin}}</h2>
-      <span class="logout-button-color" @click.prevent="cancelEvent">&times;</span>
+      <span class="logout-button-color cursor" @click.prevent="cancelEvent">&times;</span>
     </div>
     <div class="row justify-content-center">
       <p>What are you providing?</p>
@@ -25,9 +25,9 @@
         <button class="home-button" data-toggle="modal" data-target="#dessertModal">Desserts</button>
       </div>
       <mainCourseModal />
-      <sideModal />
-      <drinkModal />
-      <dessertModal />
+      <sideModal :takenSides="takenSides" />
+      <drinkModal :takenDrinks="takenDrinks" />
+      <dessertModal :takenDesserts="takenDesserts" />
       <timeModal />
       <placeModal />
       <reqSideModal />
@@ -76,7 +76,23 @@ export default {
   name: "hostView",
   mounted() {
     this.$store.dispatch("authenticate");
-    this.$store.dispatch("getEventInfo", this.$route.params);
+    this.$store.dispatch("getEventInfo", this.$route.params).then(res => {
+      this.event.attendees.forEach(user => {
+        user.sides.forEach(side => {
+          this.takenSides.push(side);
+        });
+      });
+      this.event.attendees.forEach(user => {
+        user.drinks.forEach(drink => {
+          this.takenDrinks.push(drink);
+        });
+      });
+      this.event.attendees.forEach(user => {
+        user.desserts.forEach(dessert => {
+          this.takenDesserts.push(dessert);
+        });
+      });
+    });
   },
   props: [],
   methods: {
@@ -89,7 +105,7 @@ export default {
         toast: true,
         position: "top-end",
         showConfirmButton: false,
-        timer: 3000
+        timer: 2000
       });
       swal
         .fire({
@@ -116,7 +132,11 @@ export default {
     }
   },
   data() {
-    return {};
+    return {
+      takenSides: [],
+      takenDesserts: [],
+      takenDrinks: []
+    };
   },
   computed: {
     user() {
@@ -153,6 +173,9 @@ export default {
 };
 </script>
 <style>
+.cursor {
+  cursor: pointer;
+}
 .home-button {
   background-color: #016fff;
   border: none;

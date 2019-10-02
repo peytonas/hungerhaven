@@ -193,6 +193,13 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
+    async bringingThings({ commit, dispatch }, payload) {
+      try {
+        let data = await api.put('/events/' + payload.eventId + '/bringing', payload)
+      } catch (error) {
+        console.error(error)
+      }
+    },
 
     //!SECTION 
 

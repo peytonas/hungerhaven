@@ -31,8 +31,10 @@
             The host has requested these drinks:
             <br />
             <span v-for="drink in event.reqDrinks" :key="drink" @click="addDrinkFromReq(drink)">
-              • {{drink}}
-              <br />
+              <span v-if="takenDrinks.indexOf(drink) == -1">
+                • {{drink}}
+                <br />
+              </span>
             </span>
           </p>
         </div>
@@ -43,7 +45,7 @@
 <script>
 export default {
   name: "drinkModal",
-  props: [],
+  props: ["takenDrinks"],
   data() {
     return {
       newDrink: ""
@@ -52,10 +54,19 @@ export default {
   methods: {
     addDrink() {
       this.event.drinks.push(this.newDrink);
+      this.attendee.drinks.push(this.newDrink);
       this.$store.dispatch("editEvent", {
+        sides: this.event.sides,
         drinks: this.event.drinks,
+        desserts: this.event.desserts,
         eventId: this.event._id,
         pin: this.event.pin
+      });
+      this.$store.dispatch("bringingThings", {
+        sides: this.event.sides,
+        drinks: this.attendee.drinks,
+        desserts: this.attendee.desserts,
+        eventId: this.event._id
       });
       this.newDrink = "";
     },
@@ -63,17 +74,31 @@ export default {
       this.event.drinks.push(req);
       let index = this.event.reqDrinks.indexOf(req);
       this.event.reqDrinks.splice(index, 1);
+      this.attendee.drinks.push(req);
       this.$store.dispatch("editEvent", {
         drinks: this.event.drinks,
         reqDrinks: this.event.reqDrinks,
         eventId: this.event._id,
         pin: this.event.pin
       });
+      this.$store.dispatch("bringingThings", {
+        sides: this.event.sides,
+        drinks: this.attendee.drinks,
+        desserts: this.attendee.desserts,
+        eventId: this.event._id
+      });
     }
   },
   computed: {
     event() {
       return this.$store.state.event;
+    },
+    attendee() {
+      for (let user in this.event.attendees) {
+        if (this.event.attendees[user].userId == this.$store.state.user._id) {
+          return this.event.attendees[user];
+        }
+      }
     }
   },
   components: {}
