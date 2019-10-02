@@ -75,9 +75,8 @@ export default class EventController {
         res.send("already attendee")
         return
       }
-
       //NOTE Create the attendee as the person logged in
-      let a = { userId: req.session.uid, status: "pending", name: req.body.name, allergies: req.body.allergies }
+      let a = { userId: req.session.uid, status: "pending", name: req.body.name, allergies: req.body.allergies, plusOnes: 0 }
       //NOTE Add user to event
       // @ts-ignore
       event.attendees.push(a)
