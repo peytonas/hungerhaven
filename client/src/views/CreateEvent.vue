@@ -162,7 +162,10 @@ export default {
   name: "createEvent",
   data() {
     return {
-      newEvent: {}
+      newEvent: {
+        month: "",
+        ampm: ""
+      }
     };
   },
   computed: {},
@@ -174,27 +177,54 @@ export default {
       this.newEvent.ampm = ampm;
     },
     createEvent() {
+      const toast = swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000
+      });
       let pin = Math.floor(Math.random() * 9999999);
       let pinString = pin.toString();
       for (let i = pinString.length; i < 7; i++) {
         pinString = "0" + pinString;
       }
-      this.newEvent.pin = pinString;
-      this.$store.dispatch("createEvent", this.newEvent).then(res => {
-        swal.fire({
-          title: pinString,
-          text: "Your event's pin is above, give it to someone to invite them."
+      if (this.newEvent.month == "") {
+        toast.fire({
+          type: "error",
+          title: "Please enter a month"
         });
-        this.$store.dispatch("setPending", {
-          name: this.$store.state.user.name,
-          allergies: this.$store.state.user.allergies
+      } else if (this.newEvent.ampm == "") {
+        toast.fire({
+          type: "error",
+          title: "Please enter am or pm"
         });
-        this.$store.dispatch("setRSVP", {
-          status: "accepted"
+      } else {
+        this.newEvent.pin = pinString;
+        this.$store.dispatch("createEvent", this.newEvent).then(res => {
+          swal.fire({
+            title: pinString,
+            text:
+              "Your event's pin is above, give it to someone to invite them."
+          });
+          this.$store
+            .dispatch("setPending", {
+              name: this.$store.state.user.name,
+              allergies: this.$store.state.user.allergies,
+              eventId: this.$store.state.event._id
+            })
+            .then(res => {
+              this.$store
+                .dispatch("setRSVP", {
+                  status: "accepted",
+                  eventId: this.$store.state.event._id
+                })
+                .then(res => {
+                  this.$router.push("/host/" + this.newEvent.pin);
+                });
+            });
+          this.$store.dispatch("joinEvent", { pin: this.newEvent.pin });
         });
-        this.$store.dispatch("joinEvent", { pin: this.newEvent.pin });
-        this.$router.push("/host/" + this.newEvent.pin);
-      });
+      }
     }
   },
   components: {}
