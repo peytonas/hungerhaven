@@ -102,6 +102,19 @@ export default {
         return eventPlace;
       }
     },
+    time() {
+      let ampm = this.$store.state.event.ampm;
+      let hours = this.$store.state.event.hours;
+      let minutes = this.$store.state.event.minutes;
+      let month = this.$store.state.event.month;
+      let day = this.$store.state.event.day;
+      let year = this.$store.state.event.year;
+      if (ampm == "PM") {
+        hours += 12;
+      }
+      let EventDate = new Date(year, month - 1, day, hours, minutes);
+      let CurrentDate = new Date();
+    },
     coords() {
       let geo = this.$store.state.coords.geometry;
       if (geo) {
@@ -139,28 +152,56 @@ export default {
       console.log("no");
     },
     RSVP(msg) {
-      let payload = {
-        eventId: this.event._id,
-        status: msg,
-        allergies: []
-      };
-      if (msg == "accepted") {
-        payload.allergies = this.user.allergies;
-        this.$store.dispatch("joinEvent", { pin: this.$store.state.event.pin });
+      let ampm = this.$store.state.event.ampm;
+      let hours = this.$store.state.event.hours;
+      let minutes = this.$store.state.event.minutes;
+      let month = this.$store.state.event.month;
+      let day = this.$store.state.event.day;
+      let year = this.$store.state.event.year;
+      if (ampm == "PM") {
+        hours = parseInt(hours, 10);
+        hours += 12;
+        hours = hours.toString();
       }
-      this.$store.dispatch("setRSVP", payload);
-      const toast = swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 1000
-      });
-      toast.fire({
-        type: "success",
-        title: "Event " + msg
-      });
-      if (msg == "declined") {
-        this.goHome();
+      let EventDate = new Date(year, month - 1, day, hours, minutes);
+      let CurrentDate = new Date();
+      if (CurrentDate < EventDate) {
+        let payload = {
+          eventId: this.event._id,
+          status: msg,
+          allergies: []
+        };
+        if (msg == "accepted") {
+          payload.allergies = this.user.allergies;
+          this.$store.dispatch("joinEvent", {
+            pin: this.$store.state.event.pin
+          });
+        }
+        this.$store.dispatch("setRSVP", payload);
+        const toast = swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 1000
+        });
+        toast.fire({
+          type: "success",
+          title: "Event " + msg
+        });
+        if (msg == "declined") {
+          this.goHome();
+        }
+      } else {
+        const RSVPExpiredToast = swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000
+        });
+        RSVPExpiredToast.fire({
+          type: "warning",
+          title: "Event Expired"
+        });
       }
     },
     addPlusOnes() {
