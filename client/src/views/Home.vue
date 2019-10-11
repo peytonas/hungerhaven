@@ -77,17 +77,7 @@ export default {
       this.$router.push("/edit");
     },
     goHost() {
-      this.$store.dispatch("createEvent").then(res => {
-        this.$store.dispatch("joinEvent", { pin: this.$store.state.event.pin });
-        let payload = {
-          place: this.$store.state.user.address,
-          eventId: this.$store.state.event._id,
-          pin: this.$store.state.event.pin
-        };
-        this.$store.dispatch("setAddress", payload);
-
-        this.$router.push("/host/" + this.$store.state.event.pin);
-      });
+      this.$router.push("/create");
     },
     addListItem() {
       //every time a user joins or creates an event, a list-item is populated pulling that event's data, and pushing it to the user's profile based on user ID.

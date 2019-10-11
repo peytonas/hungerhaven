@@ -129,7 +129,6 @@ export default class EventController {
       attendee.desserts = req.body.desserts
 
       await event.save()
-      console.log("fake");
 
       res.send("you're bringing that now")
     } catch (error) {

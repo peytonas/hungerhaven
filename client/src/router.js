@@ -36,7 +36,7 @@ export default new Router({
       name: 'host',
       component: function () {
         // @ts-ignore
-        return import(/* webpackChunkName: "edit" */ './views/HostView.vue')
+        return import(/* webpackChunkName: "host" */ './views/HostView.vue')
       }
     },
     {
@@ -44,7 +44,15 @@ export default new Router({
       name: 'guest',
       component: function () {
         // @ts-ignore
-        return import(/* webpackChunkName: "edit" */ './views/GuestView.vue')
+        return import(/* webpackChunkName: "guest" */ './views/GuestView.vue')
+      }
+    },
+    {
+      path: '/create',
+      name: 'create',
+      component: function () {
+        // @ts-ignore
+        return import(/* webpackChunkName: "create" */ './views/CreateEvent.vue')
       }
     },
     {
