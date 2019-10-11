@@ -70,7 +70,10 @@
           <br />
           <span v-for="allergy in user.allergies" :key="allergy">
             {{allergy}}
-            <span class="text-danger cursor" @click.prevent="removeAllergy(allergy)">x</span>
+            <span
+              class="logout-button-color cursor"
+              @click.prevent="removeAllergy(allergy)"
+            >x</span>
           </span>
         </div>
         <div>

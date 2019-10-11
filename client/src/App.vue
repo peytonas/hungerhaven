@@ -31,10 +31,10 @@ export default {
   color: #42b983;
 }
 .register-button {
-  background-color: #028090;
+  background-color: #ffe8a0;
   border: none;
   border-radius: 25px;
-  color: white;
+  color: black;
   padding: 8px 16px;
   text-align: center;
   font-size: 12px;
@@ -46,46 +46,19 @@ export default {
   margin-bottom: 2px;
 }
 .register-button:hover {
-  background-color: #1290a0;
+  background-color: #fcd254;
 }
 .register-button:active {
-  background-color: #028090;
+  background-color: #fcd254;
 }
 .register-button:focus {
   outline: 0;
 }
-.logout-button {
-  background-color: #05668d;
-  border: none;
-  border-radius: 25px;
-  color: white;
-  padding: 8px 16px;
-  text-align: center;
-  font-size: 12px;
-  transition: 0.1s;
-  display: inline-block;
-  text-decoration: none;
-  cursor: pointer;
-  margin-top: 4px;
-  margin-bottom: 4px;
-}
-.logout-button:hover {
-  background-color: #15769d;
-}
-.logout-button:active {
-  background-color: #05668d;
-}
-.logout-button:focus {
-  outline: 0;
-}
-.logout-button-color {
-  color: #05668d;
-}
 .home-button {
-  background-color: #02c39a;
+  background-color: #fcd254;
   border: none;
   border-radius: 25px;
-  color: white;
+  color: black;
   padding: 8px 16px;
   text-align: center;
   font-size: 12px;
@@ -97,12 +70,39 @@ export default {
   margin-bottom: 4px;
 }
 .home-button:hover {
-  background-color: #1290a0;
+  background-color: #ffe8a0;
 }
 .home-button:active {
-  background-color: #028090;
+  background-color: #ffe8a0;
 }
 .home-button:focus {
+  outline: 0;
+}
+.logout-button-color {
+  color: black;
+}
+.logout-button {
+  background-color: #fcd254;
+  border: #fcd254;
+  border-radius: 25px;
+  color: black;
+  padding: 8px 16px;
+  text-align: center;
+  font-size: 12px;
+  transition: 0.1s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+.logout-button:hover {
+  background-color: #ffe8a0;
+}
+.logout-button:active {
+  background-color: #ffe8a0;
+}
+.logout-button:focus {
   outline: 0;
 }
 </style>

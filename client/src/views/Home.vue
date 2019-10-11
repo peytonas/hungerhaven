@@ -115,8 +115,8 @@ export default {
   overflow-y: auto;
 }
 .card-bg {
-  background-color: #05668d;
-  color: white;
+  background-color: #ffe8a0;
+  color: black;
 }
 </style>
 
