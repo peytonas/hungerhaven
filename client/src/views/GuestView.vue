@@ -210,6 +210,7 @@ export default {
       let index = this.event.attendees.findIndex(
         attendee => attendee.userId == this.user._id
       );
+      debugger;
       let plusOnes = this.event.attendees[index].plusOnes;
       plusOnes = this.extras;
       let payload = {

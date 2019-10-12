@@ -43,15 +43,11 @@ export default {
       let index = this.event.attendees.findIndex(
         attendee => attendee.userId == this.$store.state.user._id
       );
-      let plusOnes = this.event.attendees[index].plusOnes;
-      plusOnes = this.newPlusOne;
-      let payload = {
-        plus: plusOnes,
-        hostId: this.event.hostId
-      };
+      this.event.attendees[index].plusOnes = this.newPlusOne;
       this.$store.dispatch("editEvent", {
         eventId: this.event._id,
-        pin: this.event.pin
+        pin: this.event.pin,
+        attendees: this.event.attendees
       });
       this.newPlusOnes = "";
       console.log(plusOnes);
