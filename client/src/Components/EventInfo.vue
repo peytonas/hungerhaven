@@ -67,8 +67,11 @@
       </p>
 
       <p class="card-text col-6">
-        <span v-for="attendee in this.event.attendees" :key="attendee.user">
-          <b>{{attendee.name}}:</b>
+        <span v-for="attendee in this.event.attendees" :key="attendee.userId">
+          <div class="attendee-button" data-toggle="modal" data-target="#attendeeModal">
+            <b>{{attendee.name}}:</b>
+            <AttendeeModal :attendeeprop="attendee" />
+          </div>
           {{attendee.status}}
           <br />
         </span>
@@ -100,8 +103,10 @@
 
 
 <script>
+import AttendeeModal from "../Components/AttendeeModal";
 export default {
   name: "eventInfo",
+
   data() {
     return {};
   },
@@ -134,7 +139,9 @@ export default {
   },
   methods: {},
   mounted() {},
-  components: {}
+  components: {
+    AttendeeModal
+  }
 };
 </script>
 

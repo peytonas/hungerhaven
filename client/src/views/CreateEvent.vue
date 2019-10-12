@@ -210,13 +210,15 @@ export default {
             .dispatch("setPending", {
               name: this.$store.state.user.name,
               allergies: this.$store.state.user.allergies,
-              eventId: this.$store.state.event._id
+              eventId: this.$store.state.event._id,
+              phoneNumber: this.$store.state.user.phoneNumber
             })
             .then(res => {
               this.$store
                 .dispatch("setRSVP", {
                   status: "accepted",
-                  eventId: this.$store.state.event._id
+                  eventId: this.$store.state.event._id,
+                  allergies: this.$store.state.user.allergies
                 })
                 .then(res => {
                   this.$router.push("/host/" + this.newEvent.pin);
