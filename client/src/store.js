@@ -211,10 +211,7 @@ export default new Vuex.Store({
       } catch (error) {
 
       }
-    },
-
-
-
+    }
     //!SECTION 
 
   }
