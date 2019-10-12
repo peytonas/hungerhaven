@@ -36,7 +36,7 @@
       <p class="card-text col-6">
         <b>Time:</b>
         <br />
-        {{this.event.month}}/{{this.event.day}}/{{this.event.year}}
+        {{this.event.date}}
         <br />
         {{this.event.hours}}:{{this.event.minutes}} {{this.event.ampm}}
         <br />
@@ -95,6 +95,7 @@
               :key="allergy"
             >• {{allergy}}</li>
           </ul>
+          <button>Hi</button>
         </div>
       </div>
     </div>
@@ -103,12 +104,15 @@
 
 
 <script>
+import io from "socket.io-client";
 import AttendeeModal from "../Components/AttendeeModal";
 export default {
   name: "eventInfo",
 
   data() {
-    return {};
+    return {
+      socket: io("localhost:3001")
+    };
   },
   computed: {
     event() {
@@ -137,7 +141,11 @@ export default {
       }
     }
   },
-  methods: {},
+  methods: {
+    clickButton(e) {
+      e.preventDefault();
+    }
+  },
   mounted() {},
   components: {
     AttendeeModal

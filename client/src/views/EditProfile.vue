@@ -139,7 +139,12 @@
 export default {
   name: "editProfile",
   data() {
-    return { name: "", address: "", allergies: [], phoneNumber: "" };
+    return {
+      name: "",
+      address: "",
+      allergies: [],
+      phoneNumber: ""
+    };
   },
   mounted() {
     this.$store.dispatch("authenticate");
