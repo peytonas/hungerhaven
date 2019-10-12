@@ -52,7 +52,7 @@
       </div>
     </div>
   </div>
-</template>
+</template> 
 <script>
 import MapElem from "@/Components/Map.vue";
 import mainCourseModal from "../Components/MainCourseModal";
