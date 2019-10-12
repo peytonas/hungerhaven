@@ -95,7 +95,6 @@
               :key="allergy"
             >• {{allergy}}</li>
           </ul>
-          <button>Hi</button>
         </div>
       </div>
     </div>
