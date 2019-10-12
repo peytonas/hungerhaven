@@ -193,6 +193,19 @@ export default {
       for (let i = pinString.length; i < 7; i++) {
         pinString = "0" + pinString;
       }
+      let newStr = "";
+      let str = this.newEvent.hours;
+      let str1 = parseInt(str.slice(0, 2));
+      let str2 = parseInt(str.slice(3, 5));
+
+      if (str1 > 12) {
+        str1 -= 12;
+        newStr = str1.toString() + ":" + str2.toString() + " PM";
+        this.newEvent.hours = newStr;
+      } else {
+        this.newEvent.hours += " AM";
+      }
+
       this.newEvent.pin = pinString;
       this.$store.dispatch("createEvent", this.newEvent).then(res => {
         swal.fire({
