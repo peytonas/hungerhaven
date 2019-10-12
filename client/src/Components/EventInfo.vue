@@ -36,7 +36,7 @@
       <p class="card-text col-6">
         <b>Time:</b>
         <br />
-        {{this.event.month}}/{{this.event.day}}/{{this.event.year}}
+        {{this.event.date}}
         <br />
         {{this.event.hours}}:{{this.event.minutes}} {{this.event.ampm}}
         <br />
