@@ -103,12 +103,15 @@
 
 
 <script>
+import io from "socket.io-client";
 import AttendeeModal from "../Components/AttendeeModal";
 export default {
   name: "eventInfo",
 
   data() {
-    return {};
+    return {
+      socket: io("localhost:3001")
+    };
   },
   computed: {
     event() {
@@ -138,7 +141,16 @@ export default {
     }
   },
   methods: {},
-  mounted() {},
+  mounted() {
+    this.socket.on("MESSAGE", data => {
+      console.log("well hello there");
+
+      let currentAttendee = this.$store.state.event.attendees.find(
+        a => a._id == data.attendeeId
+      );
+      currentAttendee.sides.push(data.side);
+    });
+  },
   components: {
     AttendeeModal
   }

@@ -7,8 +7,49 @@ import DbContext from "./db/dbconfig"
 const port = process.env.PORT || 3000
 
 //NOTE next we need to create our server
-let server = express()
 
+let server = express()
+let app = server.listen(3001, function () {
+  console.log('server running on port 3001');
+});
+const io = require('socket.io')(app)
+
+io.on('connection', function (socket) {
+  socket.on('SEND_MESSAGE', function (data) {
+    console.log("Hi");
+    io.emit('MESSAGE', data)
+  })
+
+})
+// let webSocketServer = require('websocket').server;
+// let http = require('http');
+// let socketServer = http.createServer(function (request, response) {
+//   console.log("hi");
+//   response.writeHead(404);
+//   response.end();
+// });
+// server.listen(8080, function () {
+//   console.log("server is listening on port 8080")
+// });
+
+// let wsServer = new webSocketServer({
+//   httpServer: socketServer
+// })
+
+
+// wsServer.on('request', function (request) {
+//   let connection = request.accept('echo-protocol', request.origin);
+//   console.log("Connection accepted.");
+//   connection.on('message', function (message) {
+//     console.log('Received Message: ' + message.utf8Data);
+//     connection.sendUTF(message.utf8Data)
+
+//   });
+//   connection.on('close', function (reasonCode, description) {
+//     console.log('Peer ' + connection.remoteAddress + ' disconnected')
+//   })
+
+// })
 //NOTE Fire up database connection
 DbContext.connect()
 

@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import axios from 'axios'
 import router from './router'
 import AuthService from './AuthService'
+import { connection } from 'mongoose'
 
 Vue.use(Vuex)
 
@@ -161,6 +162,7 @@ export default new Vuex.Store({
 
     //SECTION -- RSVP --
     async setRSVP({ commit }, payload) {
+
       let something = await api.put('/events/' + payload.eventId + "/attendee", payload)
     },
     async setPending({ commit }, payload) {
@@ -211,10 +213,7 @@ export default new Vuex.Store({
       } catch (error) {
 
       }
-    },
-
-
-
+    }
     //!SECTION 
 
   }

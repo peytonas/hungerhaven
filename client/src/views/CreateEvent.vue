@@ -204,6 +204,7 @@ export default {
           allergies: this.$store.state.user.allergies
         });
         this.$store.dispatch("setRSVP", {
+          eventId: this.newEvent._id,
           status: "accepted"
         });
         this.$store.dispatch("joinEvent", { pin: this.newEvent.pin });
