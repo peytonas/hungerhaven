@@ -17,13 +17,13 @@
       </div>
       <div class="row justify-content-center">
         <div class="form-group">
-          <label for="title">Year:</label>
+          <label for="title">Date:</label>
           <input
             class="border-left text-center"
-            type="number"
+            type="date"
             min="2019"
             max="3030"
-            id="hours"
+            id="year"
             placeholder="2019"
             v-model="newEvent.year"
             required
@@ -32,7 +32,7 @@
         <!-- !SECTION -->
 
         <!-- SECTION Change Month -->
-        Month:
+        <!-- Month:
         <button
           class="btn home-button dropdown-toggle"
           id="menu2"
@@ -80,11 +80,11 @@
           <li role="presentation">
             <a role="menuitem" tabindex="-1" @click="changeMonth('12')">12</a>
           </li>
-        </ul>
+        </ul>-->
 
         <!-- !SECTION -->
         <!-- SECTION Change Day -->
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label for="title">Day:</label>
           <input
             class="border-left text-center"
@@ -96,17 +96,17 @@
             v-model="newEvent.day"
             required
           />
-        </div>
+        </div>-->
       </div>
       <!-- !SECTION -->
 
       <!-- SECTION Change Time -->
       <div class="row justify-content-center">
         <div class="form-group">
-          <label for="title">Hour:</label>
+          <label for="title">Time:</label>
           <input
             class="border-left text-center"
-            type="number"
+            type="time"
             min="1"
             max="12"
             id="hours"
@@ -115,7 +115,7 @@
             required
           />
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label for="title">Minutes:</label>
           <input
             class="border-left text-center"
@@ -146,7 +146,7 @@
               <a role="menuitem" tabindex="-1" @click="changeAMPM('PM')">PM</a>
             </li>
           </ul>
-        </div>
+        </div>-->
       </div>
       <!-- !SECTION  -->
       <!-- SECTION -->
