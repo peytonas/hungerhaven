@@ -64,7 +64,7 @@ export default {
         desserts: this.attendee.desserts,
         eventId: this.event._id
       });
-      this.socket.emit("SEND_MESSAGE", {
+      this.socket.emit("SEND_BRINGSIDE", {
         side: this.newSide,
         eventId: this.event._id,
         pin: this.event.pin,

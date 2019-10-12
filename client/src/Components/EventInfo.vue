@@ -142,13 +142,41 @@ export default {
   },
   methods: {},
   mounted() {
-    this.socket.on("MESSAGE", data => {
-      console.log("well hello there");
-
+    this.socket.on("BRINGSIDE", data => {
       let currentAttendee = this.$store.state.event.attendees.find(
         a => a._id == data.attendeeId
       );
       currentAttendee.sides.push(data.side);
+    });
+    this.socket.on("BRINGDRINK", data => {
+      let currentAttendee = this.$store.state.event.attendees.find(
+        a => a._id == data.attendeeId
+      );
+      currentAttendee.drinks.push(data.drink);
+    });
+    this.socket.on("BRINGDESSERT", data => {
+      let currentAttendee = this.$store.state.event.attendees.find(
+        a => a._id == data.attendeeId
+      );
+      currentAttendee.desserts.push(data.dessert);
+    });
+    this.socket.on("CHANGEMAINCOURSE", data => {
+      this.$store.state.maincourse = data.maincourse;
+    });
+    this.socket.on("CHANGETIME", data => {
+      this.$store.state.year = data.year;
+    });
+    this.socket.on("CHANGEPLACE", data => {
+      this.$store.state.place = data.place;
+    });
+    this.socket.on("REQSIDE", data => {
+      this.$store.state.event.reqSides.push(data.reqSide);
+    });
+    this.socket.on("REQDRINK", data => {
+      this.$store.state.event.reqDrinks.push(data.reqDrink);
+    });
+    this.socket.on("REQDESSERT", data => {
+      this.$store.state.event.reqDesserts.push(data.reqDessert);
     });
   },
   components: {
