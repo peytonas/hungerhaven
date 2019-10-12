@@ -161,13 +161,13 @@ export default {
       currentAttendee.desserts.push(data.dessert);
     });
     this.socket.on("CHANGEMAINCOURSE", data => {
-      this.$store.state.maincourse = data.maincourse;
+      this.$store.state.event.maincourse = data.maincourse;
     });
     this.socket.on("CHANGETIME", data => {
-      this.$store.state.year = data.year;
+      this.$store.state.event.year = data.newYear;
     });
     this.socket.on("CHANGEPLACE", data => {
-      this.$store.state.place = data.place;
+      this.$store.state.event.place = data.place;
     });
     this.socket.on("REQSIDE", data => {
       this.$store.state.event.reqSides.push(data.reqSide);

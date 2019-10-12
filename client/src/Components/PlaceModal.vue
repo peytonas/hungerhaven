@@ -44,9 +44,9 @@ export default {
       this.newPlace.pin = this.$store.state.event.pin;
       this.$store.dispatch("editEvent", this.newPlace);
       this.socket.emit("SEND_CHANGEPLACE", {
-        place: this.newPlace,
-        eventId: this.event._id,
-        pin: this.event.pin
+        newPlace: this.newPlace.place,
+        eventId: this.$store.state.event._id,
+        pin: this.$store.state.event.pin
       });
       this.newPlace = "";
     }

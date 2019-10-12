@@ -49,8 +49,8 @@ export default {
       this.$store.dispatch("editEvent", payload);
       this.socket.emit("SEND_CHANGEMAINCOURSE", {
         maincourse: this.newMainCourse,
-        eventId: this.event._id,
-        pin: this.event.pin
+        eventId: this.$store.state.event._id,
+        pin: this.$store.state.event.pin
       });
       this.newMainCourse = "";
     }
