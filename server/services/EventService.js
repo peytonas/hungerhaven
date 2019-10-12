@@ -15,7 +15,8 @@ let invites = new Schema({
   plusOnes: { type: Number, default: 0 },
   sides: [{ type: String }],
   drinks: [{ type: String }],
-  desserts: [{ type: String }]
+  desserts: [{ type: String }],
+  phoneNumber: { type: String }
 })
 
 

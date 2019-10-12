@@ -88,7 +88,8 @@ export default {
           this.$store.dispatch("setPending", {
             eventId: this.$store.state.event._id,
             name: this.user.name,
-            allergies: []
+            allergies: [],
+            phoneNumber: this.user.phoneNumber
           });
           this.$router.push("/guest/" + this.pin);
         } else {

@@ -68,6 +68,7 @@ export default {
   data() {
     return { extras: 0, takenSides: [], takenDrinks: [], takenDesserts: [] };
   },
+  props: [],
   mounted() {
     this.$store.dispatch("authenticate");
     this.$store.dispatch("getEventInfo", this.$route.params).then(res => {
@@ -88,7 +89,7 @@ export default {
       });
     });
   },
-  props: [],
+
   computed: {
     user() {
       return this.$store.state.user;
@@ -205,9 +206,11 @@ export default {
       }
     },
     addPlusOnes() {
+      debugger;
       let index = this.event.attendees.findIndex(
         attendee => attendee.userId == this.user._id
       );
+      debugger;
       let plusOnes = this.event.attendees[index].plusOnes;
       plusOnes = this.extras;
       let payload = {

@@ -36,7 +36,7 @@
       <p class="card-text col-6">
         <b>Time:</b>
         <br />
-        {{this.event.month}}/{{this.event.day}}/{{this.event.year}}
+        {{this.event.date}}
         <br />
         {{this.event.hours}}:{{this.event.minutes}} {{this.event.ampm}}
         <br />
@@ -67,8 +67,11 @@
       </p>
 
       <p class="card-text col-6">
-        <span v-for="attendee in this.event.attendees" :key="attendee.user">
-          <b>{{attendee.name}}:</b>
+        <span v-for="attendee in this.event.attendees" :key="attendee.userId">
+          <div class="attendee-button" data-toggle="modal" data-target="#attendeeModal">
+            <b>{{attendee.name}}:</b>
+            <AttendeeModal :attendeeprop="attendee" />
+          </div>
           {{attendee.status}}
           <br />
         </span>
@@ -102,8 +105,10 @@
 
 <script>
 import io from "socket.io-client";
+import AttendeeModal from "../Components/AttendeeModal";
 export default {
   name: "eventInfo",
+
   data() {
     return {
       socket: io("localhost:3001")
@@ -142,7 +147,9 @@ export default {
     }
   },
   mounted() {},
-  components: {}
+  components: {
+    AttendeeModal
+  }
 };
 </script>
 
