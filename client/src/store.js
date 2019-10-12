@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import axios from 'axios'
 import router from './router'
 import AuthService from './AuthService'
+import { connection } from 'mongoose'
 
 Vue.use(Vuex)
 

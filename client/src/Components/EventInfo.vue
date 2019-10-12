@@ -92,6 +92,7 @@
               :key="allergy"
             >• {{allergy}}</li>
           </ul>
+          <button>Hi</button>
         </div>
       </div>
     </div>
@@ -100,10 +101,13 @@
 
 
 <script>
+import io from "socket.io-client";
 export default {
   name: "eventInfo",
   data() {
-    return {};
+    return {
+      socket: io("localhost:3001")
+    };
   },
   computed: {
     event() {
@@ -132,7 +136,11 @@ export default {
       }
     }
   },
-  methods: {},
+  methods: {
+    clickButton(e) {
+      e.preventDefault();
+    }
+  },
   mounted() {},
   components: {}
 };
