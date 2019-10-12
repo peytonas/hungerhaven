@@ -160,6 +160,9 @@ export default {
         address: this.user.address,
         phoneNumber: this.user.phoneNumber,
         allergies: this.user.allergies
+        //for each event in user.events
+        //events.attendees find where attendee == this attendee
+        //make ^that  attendee == the edited attendee
       };
     }
   },
@@ -171,6 +174,7 @@ export default {
       let name = this.newUser.name;
       let output = this.name;
       this.newUser.name = output;
+      this.IDontKnowWhatToCallThis();
       this.$store.dispatch("editProfile", this.newUser);
       this.$store.dispatch("authenticate");
       this.name = "";

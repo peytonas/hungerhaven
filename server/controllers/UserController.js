@@ -1,8 +1,10 @@
 import express from 'express'
 import UserService from '../services/UserService';
 import { Authorize } from '../middleware/authorize.js'
+import EventService from '../services/EventService';
 
 let _userService = new UserService().repository
+let _eventService = new EventService().repository
 
 export default class UserController {
     constructor() {
@@ -65,6 +67,7 @@ export default class UserController {
         try {
             let data = await _userService.findOneAndUpdate({ _id: req.params.id, }, req.body, { new: true })
             if (data) {
+                await _eventService.updateMany({ attendees: { $elemMatch: { userId: req.session.uid } } }, { $set: { "attendees.$": req.body } })
                 return res.send(data)
             }
             throw new Error("invalid id")
