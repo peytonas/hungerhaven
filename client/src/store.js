@@ -162,6 +162,7 @@ export default new Vuex.Store({
 
     //SECTION -- RSVP --
     async setRSVP({ commit }, payload) {
+
       let something = await api.put('/events/' + payload.eventId + "/attendee", payload)
     },
     async setPending({ commit }, payload) {
