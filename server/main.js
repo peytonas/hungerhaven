@@ -15,7 +15,10 @@ let app = server.listen(3001, function () {
 const io = require('socket.io')(app)
 
 io.on('connection', function (socket) {
-  console.log(socket.id);
+  socket.on('SEND_MESSAGE', function (data) {
+    console.log("Hi");
+    io.emit('MESSAGE', data)
+  })
 
 })
 // let webSocketServer = require('websocket').server;

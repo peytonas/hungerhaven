@@ -140,12 +140,17 @@ export default {
       }
     }
   },
-  methods: {
-    clickButton(e) {
-      e.preventDefault();
-    }
+  methods: {},
+  mounted() {
+    this.socket.on("MESSAGE", data => {
+      console.log("well hello there");
+
+      let currentAttendee = this.$store.state.event.attendees.find(
+        a => a._id == data.attendeeId
+      );
+      currentAttendee.sides.push(data.side);
+    });
   },
-  mounted() {},
   components: {
     AttendeeModal
   }
