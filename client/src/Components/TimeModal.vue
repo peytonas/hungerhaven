@@ -9,10 +9,10 @@
         <form>
           <!-- SECTION Change year -->
           <div class="form-group">
-            <label for="title">Year:</label>
+            <label for="title">Date:</label>
             <input
-              class="border-left text-center"
-              type="number"
+              class="border-left text-center ml-2 mt-2"
+              type="date"
               min="2019"
               max="3030"
               id="hours"
@@ -25,7 +25,7 @@
 
           <!-- SECTION Change Month -->
 
-          <div class="modal-body">
+          <!-- <div class="modal-body">
             Month:
             <button
               class="btn btn-primary dropdown-toggle"
@@ -75,14 +75,14 @@
                 <a role="menuitem" tabindex="-1" @click="changeMonth('12')">12</a>
               </li>
             </ul>
-          </div>
+          </div>-->
           <!-- !SECTION -->
           <!-- SECTION Change Day -->
           <div class="form-group">
-            <label for="title">Day:</label>
+            <label for="title">Time:</label>
             <input
               class="border-left text-center"
-              type="number"
+              type="time"
               min="1"
               max="31"
               id="days"
@@ -94,7 +94,7 @@
           <!-- !SECTION -->
 
           <!-- SECTION Change Time -->
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label for="title">Hour:</label>
             <input
               class="border-left text-center"
@@ -119,8 +119,8 @@
               v-model="newMinutes"
               required
             />
-          </div>
-          <div>
+          </div>-->
+          <!-- <div>
             <button
               class="btn btn-primary dropdown-toggle"
               id="menu1"
@@ -138,7 +138,7 @@
                 <a role="menuitem" tabindex="-1" @click="changeAMPM('PM')">PM</a>
               </li>
             </ul>
-          </div>
+          </div>-->
           <button class="register-button" data-dismiss="modal" @click="addTime()">submit</button>
           <!-- !SECTION -->
         </form>
