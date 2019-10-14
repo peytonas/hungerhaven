@@ -44,12 +44,14 @@
   </div>
 </template>
 <script>
+import io from "socket.io-client";
 export default {
   name: "dessertModal",
-  props: [],
+  props: ["takenDesserts"],
   data() {
     return {
-      newDessert: ""
+      newDessert: "",
+      socket: io("localhost:3001")
     };
   },
   methods: {
@@ -66,6 +68,12 @@ export default {
         drinks: this.attendee.drinks,
         desserts: this.attendee.desserts,
         eventId: this.event._id
+      });
+      this.socket.emit("SEND_BRINGDESSERT", {
+        dessert: this.newDessert,
+        eventId: this.event._id,
+        pin: this.event.pin,
+        attendeeId: this.attendee._id
       });
       this.newDessert = "";
     },

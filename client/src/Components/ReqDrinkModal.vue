@@ -28,12 +28,14 @@
   </div>
 </template>
 <script>
+import io from "socket.io-client";
 export default {
   name: "reqDrinkModal",
   props: [],
   data() {
     return {
-      newDrink: ""
+      newDrink: "",
+      socket: io("localhost:3001")
     };
   },
   methods: {
@@ -41,6 +43,11 @@ export default {
       this.event.reqDrinks.push(this.newDrink);
       this.$store.dispatch("editEvent", {
         reqDrinks: this.event.reqDrinks,
+        eventId: this.event._id,
+        pin: this.event.pin
+      });
+      this.socket.emit("SEND_REQDRINK", {
+        reqDrink: this.newDrink,
         eventId: this.event._id,
         pin: this.event.pin
       });

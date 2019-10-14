@@ -28,12 +28,14 @@
   </div>
 </template>
 <script>
+import io from "socket.io-client";
 export default {
   name: "placeModal",
   props: [],
   data() {
     return {
-      newPlace: {}
+      newPlace: {},
+      socket: io("localhost:3001")
     };
   },
   methods: {
@@ -41,6 +43,11 @@ export default {
       this.newPlace.eventId = this.$store.state.event._id;
       this.newPlace.pin = this.$store.state.event.pin;
       this.$store.dispatch("editEvent", this.newPlace);
+      this.socket.emit("SEND_CHANGEPLACE", {
+        newPlace: this.newPlace.place,
+        eventId: this.$store.state.event._id,
+        pin: this.$store.state.event.pin
+      });
       this.newPlace = "";
     }
   },

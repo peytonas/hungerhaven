@@ -15,11 +15,39 @@ let app = server.listen(3001, function () {
 const io = require('socket.io')(app)
 
 io.on('connection', function (socket) {
-  socket.on('SEND_MESSAGE', function (data) {
-    console.log("Hi");
-    io.emit('MESSAGE', data)
+  socket.on('SEND_BRINGSIDE', function (data) {
+    io.emit('BRINGSIDE', data)
   })
-
+  socket.on('SEND_BRINGDRINK', function (data) {
+    io.emit('BRINGDRINK', data)
+  })
+  socket.on('SEND_BRINGDESSERT', function (data) {
+    io.emit('BRINGDESSERT', data)
+  })
+  socket.on('SEND_CHANGEMAINCOURSE', function (data) {
+    io.emit('CHANGEMAINCOURSE', data)
+  })
+  socket.on('SEND_CHANGETIME', function (data) {
+    io.emit('CHANGETIME', data)
+  })
+  socket.on('SEND_CHANGEPLACE', function (data) {
+    io.emit('CHANGEPLACE', data)
+  })
+  socket.on('SEND_REQSIDE', function (data) {
+    io.emit('REQSIDE', data)
+  })
+  socket.on('SEND_REQDRINK', function (data) {
+    io.emit('REQDRINK', data)
+  })
+  socket.on('SEND_REQDESSERT', function (data) {
+    io.emit('REQDESSERT', data)
+  })
+  socket.on('SEND_ADDATTENDEE', function (data) {
+    io.emit('ADDATTENDEE', data)
+  })
+  socket.on('SEND_CHANGESTATUS', function (data) {
+    io.emit('CHANGESTATUS', data)
+  })
 })
 // let webSocketServer = require('websocket').server;
 // let http = require('http');
