@@ -173,7 +173,8 @@ export default {
       this.$store.state.event.maincourse = data.maincourse;
     });
     this.socket.on("CHANGETIME", data => {
-      this.$store.state.event.year = data.newYear;
+      this.$store.state.event.year = data.year;
+      this.$store.state.event.hours = data.hours;
     });
     this.socket.on("CHANGEPLACE", data => {
       this.$store.state.event.place = data.newPlace;
