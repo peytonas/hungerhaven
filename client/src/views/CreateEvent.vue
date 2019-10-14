@@ -203,7 +203,7 @@ export default {
         newStr = str1.toString() + ":" + str2.toString() + " PM";
         this.newEvent.hours = newStr;
       } else {
-        this.newEvent.hours += " AM";
+        this.newEvent.hours = str1.toString() + ":" + str2.toString() + " AM";
       }
 
       this.newEvent.pin = pinString;
