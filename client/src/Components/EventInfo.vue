@@ -68,11 +68,15 @@
 
       <p class="card-text col-6">
         <span v-for="attendee in this.event.attendees" :key="attendee.userId">
-          <div class="attendee-button" data-toggle="modal" data-target="#attendeeModal">
+          <div
+            class="attendee-button"
+            data-toggle="modal"
+            :data-target="'#AttendeeModal' + attendee._id"
+          >
             <b>{{attendee.name}}:</b>
-            <AttendeeModal :attendeeprop="attendee" />
           </div>
           {{attendee.status}}
+          <AttendeeModal :attendeeprop="attendee" />
           <br />
         </span>
       </p>
@@ -174,6 +178,8 @@ export default {
     });
     this.socket.on("CHANGETIME", data => {
       this.$store.state.event.year = data.year;
+      this.$store.state.event.month = data.month;
+      this.$store.state.event.day = data.day;
       this.$store.state.event.hours = data.hours;
     });
     this.socket.on("CHANGEPLACE", data => {
@@ -197,4 +203,7 @@ export default {
 
 
 <style scoped>
+.attendee-button:hover {
+  cursor: pointer;
+}
 </style>

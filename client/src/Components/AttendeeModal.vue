@@ -1,5 +1,5 @@
 <template>
-  <div id="attendeeModal" class="modal fade" tabindex="-1" role="dialog">
+  <div :id="'AttendeeModal' +attendeeprop._id" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
