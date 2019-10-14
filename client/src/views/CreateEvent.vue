@@ -145,10 +145,11 @@ export default {
         });
         this.$store.dispatch("setPending", {
           name: this.$store.state.user.name,
-          allergies: this.$store.state.user.allergies
+          allergies: this.$store.state.user.allergies,
+          eventId: this.newEvent.eventId
         });
         this.$store.dispatch("setRSVP", {
-          eventId: this.newEvent._id,
+          eventId: this.newEvent.eventId,
           status: "accepted"
         });
         this.$store.dispatch("joinEvent", { pin: this.newEvent.pin });

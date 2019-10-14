@@ -156,8 +156,10 @@ export default {
     },
     RSVP(msg) {
       let ampm = this.$store.state.event.ampm;
-      let hours = this.$store.state.event.hours;
-      let minutes = this.$store.state.event.minutes;
+      let timesplit = this.$store.state.event.hours.split(":");
+      let timesplit2 = timesplit[1].split(" ");
+      let hours = timesplit[0];
+      let minutes = timesplit2[0];
       let month = this.$store.state.event.month;
       let day = this.$store.state.event.day;
       let year = this.$store.state.event.year;
@@ -168,6 +170,7 @@ export default {
       }
       let EventDate = new Date(year, month - 1, day, hours, minutes);
       let CurrentDate = new Date();
+      debugger;
       if (CurrentDate < EventDate) {
         let payload = {
           eventId: this.event._id,
