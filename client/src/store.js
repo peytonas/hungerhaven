@@ -143,6 +143,7 @@ export default new Vuex.Store({
     },
 
     async editEvent({ commit, dispatch }, payload) {
+      debugger
       try {
         let mainCourse = await api.put('/events/' + payload.eventId, payload)
         dispatch('getEventInfo', payload)
