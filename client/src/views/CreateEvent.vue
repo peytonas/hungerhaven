@@ -1,10 +1,16 @@
 <template>
   <!-- SECTION -->
   <div class="createEvent">
+    <img
+      class="col-12 image"
+      alt="Hunger Haven Logo"
+      src="../assets/HH-Logo-Transparent-Color-Wings.png"
+    />
+    <h2>Create your event</h2>
     <form @submit.prevent="createEvent()">
       <div class="row justify-content-center">
         <div class="col-7 mb-2">
-          <label for="mainCourse">Main Course</label>
+          <label for="mainCourse">Main Course:</label>
           <input
             type="text"
             class="form-control"
@@ -30,75 +36,7 @@
           />
         </div>
         <!-- !SECTION -->
-
-        <!-- SECTION Change Month -->
-        <!-- Month:
-        <button
-          class="btn home-button dropdown-toggle"
-          id="menu2"
-          type="button"
-          data-toggle="dropdown"
-          required
-        >
-          {{newEvent.month}}
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-          <li role="presentation">
-            <a role="menuitem" tabindex="-1" @click="changeMonth('01')">01</a>
-          </li>
-          <li role="presentation">
-            <a role="menuitem" tabindex="-1" @click="changeMonth('02')">02</a>
-          </li>
-          <li role="presentation">
-            <a role="menuitem" tabindex="-1" @click="changeMonth('03')">03</a>
-          </li>
-          <li role="presentation">
-            <a role="menuitem" tabindex="-1" @click="changeMonth('04')">04</a>
-          </li>
-          <li role="presentation">
-            <a role="menuitem" tabindex="-1" @click="changeMonth('05')">05</a>
-          </li>
-          <li role="presentation">
-            <a role="menuitem" tabindex="-1" @click="changeMonth('06')">06</a>
-          </li>
-          <li role="presentation">
-            <a role="menuitem" tabindex="-1" @click="changeMonth('07')">07</a>
-          </li>
-          <li role="presentation">
-            <a role="menuitem" tabindex="-1" @click="changeMonth('08')">08</a>
-          </li>
-          <li role="presentation">
-            <a role="menuitem" tabindex="-1" @click="changeMonth('09')">09</a>
-          </li>
-          <li role="presentation">
-            <a role="menuitem" tabindex="-1" @click="changeMonth('10')">10</a>
-          </li>
-          <li role="presentation">
-            <a role="menuitem" tabindex="-1" @click="changeMonth('11')">11</a>
-          </li>
-          <li role="presentation">
-            <a role="menuitem" tabindex="-1" @click="changeMonth('12')">12</a>
-          </li>
-        </ul>-->
-
-        <!-- !SECTION -->
-        <!-- SECTION Change Day -->
-        <!-- <div class="form-group">
-          <label for="title">Day:</label>
-          <input
-            class="border-left text-center"
-            type="number"
-            min="1"
-            max="31"
-            id="days"
-            placeholder="day"
-            v-model="newEvent.day"
-            required
-          />
-        </div>-->
       </div>
-      <!-- !SECTION -->
 
       <!-- SECTION Change Time -->
       <div class="row justify-content-center">
@@ -115,38 +53,6 @@
             required
           />
         </div>
-        <!-- <div class="form-group">
-          <label for="title">Minutes:</label>
-          <input
-            class="border-left text-center"
-            type="number"
-            min="0"
-            max="59"
-            id="minutes"
-            placeholder="59"
-            v-model="newEvent.minutes"
-            required
-          />
-        </div>
-        <div>
-          <button
-            class="btn home-button dropdown-toggle ml-2"
-            id="menu1"
-            type="button"
-            data-toggle="dropdown"
-          >
-            {{newEvent.ampm}}
-            <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" role="menu">
-            <li role="presentation">
-              <a role="menuitem" tabindex="-1" @click="changeAMPM('AM')">AM</a>
-            </li>
-            <li role="presentation">
-              <a role="menuitem" tabindex="-1" @click="changeAMPM('PM')">PM</a>
-            </li>
-          </ul>
-        </div>-->
       </div>
       <!-- !SECTION  -->
       <!-- SECTION -->

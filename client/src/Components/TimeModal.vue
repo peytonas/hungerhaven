@@ -197,12 +197,7 @@ export default {
         day: thisDate[2]
       };
       this.$store.dispatch("editEvent", newerTime);
-      this.socket.emit("SEND_CHANGETIME", {
-        newYear: this.newYear,
-        newDay: this.newDay,
-        eventId: this.$store.state.event._id,
-        pin: this.$store.state.event.pin
-      });
+      this.socket.emit("SEND_CHANGETIME", newerTime);
     }
   },
   computed: {},

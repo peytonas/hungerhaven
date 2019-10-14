@@ -18,39 +18,50 @@
       <p>What are you providing?</p>
     </div>
     <div class="row justify-content-around">
-      <div class="col-4">
-        <button class="home-button" data-toggle="modal" data-target="#mainCourseModal">Main Course</button>
-        <button class="home-button" data-toggle="modal" data-target="#sideModal">Sides</button>
-        <button class="home-button" data-toggle="modal" data-target="#drinkModal">Drinks</button>
-        <button class="home-button" data-toggle="modal" data-target="#dessertModal">Desserts</button>
-      </div>
-      <mainCourseModal />
-      <sideModal :takenSides="takenSides" />
-      <drinkModal :takenDrinks="takenDrinks" />
-      <dessertModal :takenDesserts="takenDesserts" />
-      <timeModal />
-      <placeModal />
-      <reqSideModal />
-      <reqDrinkModal />
-      <reqDessertModal />
-      <div class="col-4">
-        <button class="home-button" data-toggle="modal" data-target="#timeModal">Time</button>
-        <button class="home-button" data-toggle="modal" data-target="#placeModal">Place</button>
-        <button class="home-button" data-toggle="modal" data-target="#reqSideModal">Request Side</button>
-        <button class="home-button" data-toggle="modal" data-target="#reqDrinkModal">Request Drink</button>
-        <button
-          class="home-button"
-          data-toggle="modal"
-          data-target="#reqDessertModal"
-        >Request Dessert</button>
+      <div class="col-md-4">
+        <div class="row justify-content-between">
+          <div class="col-4">
+            <button
+              class="home-button"
+              data-toggle="modal"
+              data-target="#mainCourseModal"
+            >Main Course</button>
+            <button class="home-button" data-toggle="modal" data-target="#sideModal">Sides</button>
+            <button class="home-button" data-toggle="modal" data-target="#drinkModal">Drinks</button>
+            <button class="home-button" data-toggle="modal" data-target="#dessertModal">Desserts</button>
+          </div>
+          <mainCourseModal />
+          <sideModal :takenSides="takenSides" />
+          <drinkModal :takenDrinks="takenDrinks" />
+          <dessertModal :takenDesserts="takenDesserts" />
+          <timeModal />
+          <placeModal />
+          <reqSideModal />
+          <reqDrinkModal />
+          <reqDessertModal />
+          <div class="col-4">
+            <button class="home-button" data-toggle="modal" data-target="#timeModal">Time</button>
+            <button class="home-button" data-toggle="modal" data-target="#placeModal">Place</button>
+            <button class="home-button" data-toggle="modal" data-target="#reqSideModal">Request Side</button>
+            <button
+              class="home-button"
+              data-toggle="modal"
+              data-target="#reqDrinkModal"
+            >Request Drink</button>
+            <button
+              class="home-button"
+              data-toggle="modal"
+              data-target="#reqDessertModal"
+            >Request Dessert</button>
+          </div>
+        </div>
       </div>
     </div>
     <div class="row justify-content-center">
       <div class="mt-2">
-        <div class="card" style="width: 18rem;">
+        <div class="card">
           <div class="card-header card-bg">Your Potluck:</div>
           <EventInfo />
-          <!-- 9481618 -->
         </div>
       </div>
     </div>
