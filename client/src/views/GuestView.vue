@@ -63,10 +63,17 @@ import dessertModal from "../Components/DessertModal";
 import swal from "sweetalert2";
 import EventInfo from "../Components/EventInfo";
 import Map from "@/Components/Map.vue";
+import io from "socket.io-client";
 export default {
   name: "guestView",
   data() {
-    return { extras: 0, takenSides: [], takenDrinks: [], takenDesserts: [] };
+    return {
+      extras: 0,
+      takenSides: [],
+      takenDrinks: [],
+      takenDesserts: [],
+      socket: io("localhost:3001")
+    };
   },
   props: [],
   mounted() {
@@ -134,23 +141,18 @@ export default {
         }
       }
       return output;
+    },
+    attendee() {
+      for (let user in this.event.attendees) {
+        if (this.event.attendees[user].userId == this.$store.state.user._id) {
+          return this.event.attendees[user];
+        }
+      }
     }
   },
   methods: {
     goHome() {
       this.$router.push("/home");
-    },
-    addMainCourse() {
-      console.log("no");
-    },
-    addSide(side) {
-      this.event.sides.push(side);
-    },
-    addDrink() {
-      console.log("no");
-    },
-    addDessert() {
-      console.log("no");
     },
     RSVP(msg) {
       let ampm = this.$store.state.event.ampm;
@@ -170,6 +172,7 @@ export default {
         let payload = {
           eventId: this.event._id,
           status: msg,
+          attendeeId: this.attendee._id,
           allergies: []
         };
         if (msg == "accepted") {
@@ -179,6 +182,7 @@ export default {
           });
         }
         this.$store.dispatch("setRSVP", payload);
+        this.socket.emit("SEND_CHANGESTATUS", payload);
         const toast = swal.mixin({
           toast: true,
           position: "top-end",

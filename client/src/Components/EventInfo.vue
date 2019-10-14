@@ -142,6 +142,15 @@ export default {
   },
   methods: {},
   mounted() {
+    this.socket.on("ADDATTENDEE", data => {
+      this.$store.state.event.attendees.push(data.newAttendee);
+    });
+    this.socket.on("CHANGESTATUS", data => {
+      let currentAttendee = this.$store.state.event.attendees.find(
+        a => a._id == data.attendeeId
+      );
+      currentAttendee.status = data.status;
+    });
     this.socket.on("BRINGSIDE", data => {
       let currentAttendee = this.$store.state.event.attendees.find(
         a => a._id == data.attendeeId
@@ -167,7 +176,7 @@ export default {
       this.$store.state.event.year = data.newYear;
     });
     this.socket.on("CHANGEPLACE", data => {
-      this.$store.state.event.place = data.place;
+      this.$store.state.event.place = data.newPlace;
     });
     this.socket.on("REQSIDE", data => {
       this.$store.state.event.reqSides.push(data.reqSide);

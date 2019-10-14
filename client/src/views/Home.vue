@@ -52,11 +52,12 @@
 // @ is an alias to /src
 
 import ListEvent from "../Components/ListEvent.vue";
+import io from "socket.io-client";
 export default {
   name: "home",
   components: { ListEvent },
   data() {
-    return { pin: "" };
+    return { pin: "", socket: io("localhost:3001") };
   },
   mounted() {
     this.$store.dispatch("authenticate");
@@ -86,6 +87,12 @@ export default {
       this.$store.dispatch("getEventInfo", { pin: this.pin }).then(res => {
         if (this.$store.state.event.pin) {
           this.$store.dispatch("setPending", {
+            eventId: this.$store.state.event._id,
+            name: this.user.name,
+            allergies: [],
+            phoneNumber: this.user.phoneNumber
+          });
+          this.socket.emit("SEND_ADDATTENDEE", {
             eventId: this.$store.state.event._id,
             name: this.user.name,
             allergies: [],
