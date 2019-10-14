@@ -1,13 +1,13 @@
 <template>
   <div class="row justify-content-center">
-    <div class="col">
+    <div class="col-md-4">
       <div class="row justify-content-center">
         <img
           class="col-12 image"
           alt="Hunger Haven Logo"
           src="../assets/HH-Logo-Transparent-Color-Wings.png"
         />
-        <div class="col">
+        <div class="col-12">
           <h2>Event:{{this.event.pin}}</h2>
           <h5>Would you like to attend this event?</h5>
           <div class="row justify-content-center">
@@ -36,7 +36,7 @@
       <plusOneModal />
       <div class="row justify-content-center">
         <div class="col-12 mt-2">
-          <div class="card container-fluid justify-content-center" style="width: 18rem;">
+          <div class="card justify-content-center">
             <div class="card-header card-bg">Your Potluck:</div>
             <EventInfo />
           </div>
