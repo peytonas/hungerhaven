@@ -25,7 +25,7 @@
             max="3030"
             id="year"
             placeholder="2019"
-            v-model="newEvent.year"
+            v-model="newDate"
             required
           />
         </div>
@@ -111,7 +111,7 @@
             max="12"
             id="hours"
             placeholder="12"
-            v-model="newEvent.hours"
+            v-model="newTime"
             required
           />
         </div>
@@ -158,7 +158,7 @@
             class="form-control"
             id="title"
             placeholder="add a place..."
-            v-model="newEvent.place"
+            v-model="newPlace"
             required
           />
         </div>
@@ -176,7 +176,18 @@ export default {
   name: "createEvent",
   data() {
     return {
-      newEvent: {}
+      newEvent: {},
+      newPlace: "",
+      newDate: "",
+      newTime: "",
+      eventId: "",
+      pin: "",
+      hours: "",
+      minutes: "",
+      ampm: "",
+      year: "",
+      month: "",
+      day: ""
     };
   },
   computed: {},
@@ -194,18 +205,32 @@ export default {
         pinString = "0" + pinString;
       }
       let newStr = "";
-      let str = this.newEvent.hours;
+      let str = this.newTime;
       let str1 = parseInt(str.slice(0, 2));
       let str2 = parseInt(str.slice(3, 5));
-
+      if (str2 < 10) {
+        str2 = "0" + str2.toString();
+      }
       if (str1 > 12) {
         str1 -= 12;
-        newStr = str1.toString() + ":" + str2.toString() + " PM";
-        this.newEvent.hours = newStr;
-      } else {
-        this.newEvent.hours = str1.toString() + ":" + str2.toString() + " AM";
-      }
 
+        newStr = str1.toString() + ":" + str2 + " PM";
+        this.newTime = newStr;
+      } else {
+        this.newTime = str1.toString() + ":" + str2 + " AM";
+      }
+      let thisDate = this.newDate.split("-");
+      this.newEvent = {
+        eventId: this.$store.state.event._id,
+        pin: this.$store.state.event.pin,
+        hours: this.newTime,
+        minutes: this.newMinutes,
+        ampm: this.newAMPM,
+        year: thisDate[0],
+        month: thisDate[1],
+        day: thisDate[2],
+        place: this.newPlace
+      };
       this.newEvent.pin = pinString;
       this.$store.dispatch("createEvent", this.newEvent).then(res => {
         swal.fire({

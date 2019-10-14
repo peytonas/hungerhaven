@@ -5,7 +5,7 @@
     <span v-if="event">
       Time:
       <br />
-      {{this.event.month}}{{this.event.day}}{{this.event.year}}
+      {{this.event.month}}/{{this.event.day}}/{{this.event.year}}
       <br />
       {{event.hours}}{{event.minutes}} {{event.ampm}}
     </span>

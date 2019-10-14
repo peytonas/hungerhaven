@@ -17,7 +17,7 @@
               max="3030"
               id="hours"
               placeholder="2019"
-              v-model="newYear"
+              v-model="newDate"
               required
             />
           </div>
@@ -152,11 +152,12 @@ export default {
   props: [],
   data() {
     return {
+      newDate: "",
       newTime: "",
       newMinutes: "",
       newAMPM: "",
-      newMonth: "01",
-      newDay: "01",
+      newMonth: "",
+      newDay: "",
       newYear: "2019",
       socket: io("localhost:3001")
     };
@@ -173,14 +174,17 @@ export default {
       let str = this.newTime;
       let str1 = parseInt(str.slice(0, 2));
       let str2 = parseInt(str.slice(3, 5));
-
+      if (str2 < 10) {
+        str2 = "0" + str2.toString();
+      }
       if (str1 > 12) {
         str1 -= 12;
-        newStr = str1.toString() + ":" + str2.toString() + " PM";
+        newStr = str1.toString() + ":" + str2 + " PM";
         this.newTime = newStr;
       } else {
-        this.newTime = str1.toString() + ":" + str2.toString() + " AM";
+        this.newTime = str1.toString() + ":" + str2 + " AM";
       }
+      let thisDate = this.newDate.split("-");
 
       let newerTime = {
         eventId: this.$store.state.event._id,
@@ -188,9 +192,9 @@ export default {
         hours: this.newTime,
         minutes: this.newMinutes,
         ampm: this.newAMPM,
-        year: this.newYear,
-        month: this.newMonth,
-        day: this.newDay
+        year: thisDate[0],
+        month: thisDate[1],
+        day: thisDate[2]
       };
       this.$store.dispatch("editEvent", newerTime);
       this.socket.emit("SEND_CHANGETIME", {
