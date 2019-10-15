@@ -127,7 +127,6 @@ export default {
       }
       let thisDate = this.newDate.split("-");
       this.newEvent = {
-        eventId: this.$store.state.event._id,
         pin: this.$store.state.event.pin,
         hours: this.newTime,
         minutes: this.newMinutes,
@@ -135,7 +134,8 @@ export default {
         year: thisDate[0],
         month: thisDate[1],
         day: thisDate[2],
-        place: this.newPlace
+        place: this.newPlace,
+        maincourse: this.newEvent.mainCourse
       };
       this.newEvent.pin = pinString;
       this.$store.dispatch("createEvent", this.newEvent).then(res => {
@@ -146,10 +146,10 @@ export default {
         this.$store.dispatch("setPending", {
           name: this.$store.state.user.name,
           allergies: this.$store.state.user.allergies,
-          eventId: this.newEvent.eventId
+          eventId: this.$store.state.event._id
         });
         this.$store.dispatch("setRSVP", {
-          eventId: this.newEvent.eventId,
+          eventId: this.$store.state.event._id,
           status: "accepted"
         });
         this.$store.dispatch("joinEvent", { pin: this.newEvent.pin });

@@ -134,7 +134,6 @@ export default new Vuex.Store({
     },
     async createEvent({ commit, dispatch }, payload) {
       try {
-
         let newEvent = await api.post(`/events`, payload)
         commit('setEvent', newEvent.data)
       } catch (error) {
