@@ -71,6 +71,7 @@
       </div>
       <!-- !SECTION -->
       <button type="submit" class="btn home-button">Submit</button>
+      <button class="logout-button" @click="goHome">Cancel</button>
     </form>
   </div>
 </template>
@@ -83,7 +84,7 @@ export default {
   data() {
     return {
       newEvent: {},
-      newPlace: "",
+      newPlace: this.$store.state.user.address,
       newDate: "",
       newTime: "",
       eventId: "",
@@ -103,6 +104,9 @@ export default {
     },
     changeAMPM(ampm) {
       this.newEvent.ampm = ampm;
+    },
+    goHome() {
+      this.$router.push("home");
     },
     createEvent() {
       let pin = Math.floor(Math.random() * 9999999);
