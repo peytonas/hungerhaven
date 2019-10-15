@@ -17,7 +17,7 @@
               max="3030"
               id="hours"
               placeholder="2019"
-              v-model="newYear"
+              v-model="newDate"
               required
             />
           </div>
@@ -83,11 +83,9 @@
             <input
               class="border-left text-center"
               type="time"
-              min="1"
-              max="31"
-              id="days"
-              placeholder="day"
-              v-model="newDay"
+              id="time"
+              placeholder="time"
+              v-model="newTime"
               required
             />
           </div>
@@ -154,11 +152,12 @@ export default {
   props: [],
   data() {
     return {
-      newHours: 12,
-      newMinutes: 0,
-      newAMPM: "AM/PM",
-      newMonth: "01",
-      newDay: "01",
+      newDate: "",
+      newTime: "",
+      newMinutes: "",
+      newAMPM: "",
+      newMonth: "",
+      newDay: "",
       newYear: "2019",
       socket: io("localhost:3001")
     };
@@ -171,26 +170,34 @@ export default {
       this.newMonth = month;
     },
     addTime() {
+      let newStr = "";
+      let str = this.newTime;
+      let str1 = parseInt(str.slice(0, 2));
+      let str2 = parseInt(str.slice(3, 5));
+      if (str2 < 10) {
+        str2 = "0" + str2.toString();
+      }
+      if (str1 > 12) {
+        str1 -= 12;
+        newStr = str1.toString() + ":" + str2 + " PM";
+        this.newTime = newStr;
+      } else {
+        this.newTime = str1.toString() + ":" + str2 + " AM";
+      }
+      let thisDate = this.newDate.split("-");
+
       let newerTime = {
         eventId: this.$store.state.event._id,
         pin: this.$store.state.event.pin,
-        hours: this.newHours,
+        hours: this.newTime,
         minutes: this.newMinutes,
         ampm: this.newAMPM,
-        year: this.newYear,
-        month: this.newMonth,
-        day: this.newDay
+        year: thisDate[0],
+        month: thisDate[1],
+        day: thisDate[2]
       };
-      if (newerTime.minutes.toString().length < 2) {
-        newerTime.minutes = "0" + newerTime.minutes;
-      }
       this.$store.dispatch("editEvent", newerTime);
-      this.socket.emit("SEND_CHANGETIME", {
-        newYear: this.newYear,
-        newDay: this.newDay,
-        eventId: this.$store.state.event._id,
-        pin: this.$store.state.event.pin
-      });
+      this.socket.emit("SEND_CHANGETIME", newerTime);
     }
   },
   computed: {},

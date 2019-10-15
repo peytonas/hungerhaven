@@ -1,10 +1,16 @@
 <template>
   <!-- SECTION -->
   <div class="createEvent">
+    <img
+      class="col-12 image"
+      alt="Hunger Haven Logo"
+      src="../assets/HH-Logo-Transparent-Color-Wings.png"
+    />
+    <h2>Create your event</h2>
     <form @submit.prevent="createEvent()">
       <div class="row justify-content-center">
         <div class="col-7 mb-2">
-          <label for="mainCourse">Main Course</label>
+          <label for="mainCourse">Main Course:</label>
           <input
             type="text"
             class="form-control"
@@ -25,80 +31,12 @@
             max="3030"
             id="year"
             placeholder="2019"
-            v-model="newEvent.year"
+            v-model="newDate"
             required
           />
         </div>
         <!-- !SECTION -->
-
-        <!-- SECTION Change Month -->
-        <!-- Month:
-        <button
-          class="btn home-button dropdown-toggle"
-          id="menu2"
-          type="button"
-          data-toggle="dropdown"
-          required
-        >
-          {{newEvent.month}}
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-          <li role="presentation">
-            <a role="menuitem" tabindex="-1" @click="changeMonth('01')">01</a>
-          </li>
-          <li role="presentation">
-            <a role="menuitem" tabindex="-1" @click="changeMonth('02')">02</a>
-          </li>
-          <li role="presentation">
-            <a role="menuitem" tabindex="-1" @click="changeMonth('03')">03</a>
-          </li>
-          <li role="presentation">
-            <a role="menuitem" tabindex="-1" @click="changeMonth('04')">04</a>
-          </li>
-          <li role="presentation">
-            <a role="menuitem" tabindex="-1" @click="changeMonth('05')">05</a>
-          </li>
-          <li role="presentation">
-            <a role="menuitem" tabindex="-1" @click="changeMonth('06')">06</a>
-          </li>
-          <li role="presentation">
-            <a role="menuitem" tabindex="-1" @click="changeMonth('07')">07</a>
-          </li>
-          <li role="presentation">
-            <a role="menuitem" tabindex="-1" @click="changeMonth('08')">08</a>
-          </li>
-          <li role="presentation">
-            <a role="menuitem" tabindex="-1" @click="changeMonth('09')">09</a>
-          </li>
-          <li role="presentation">
-            <a role="menuitem" tabindex="-1" @click="changeMonth('10')">10</a>
-          </li>
-          <li role="presentation">
-            <a role="menuitem" tabindex="-1" @click="changeMonth('11')">11</a>
-          </li>
-          <li role="presentation">
-            <a role="menuitem" tabindex="-1" @click="changeMonth('12')">12</a>
-          </li>
-        </ul>-->
-
-        <!-- !SECTION -->
-        <!-- SECTION Change Day -->
-        <!-- <div class="form-group">
-          <label for="title">Day:</label>
-          <input
-            class="border-left text-center"
-            type="number"
-            min="1"
-            max="31"
-            id="days"
-            placeholder="day"
-            v-model="newEvent.day"
-            required
-          />
-        </div>-->
       </div>
-      <!-- !SECTION -->
 
       <!-- SECTION Change Time -->
       <div class="row justify-content-center">
@@ -111,42 +49,10 @@
             max="12"
             id="hours"
             placeholder="12"
-            v-model="newEvent.hours"
+            v-model="newTime"
             required
           />
         </div>
-        <!-- <div class="form-group">
-          <label for="title">Minutes:</label>
-          <input
-            class="border-left text-center"
-            type="number"
-            min="0"
-            max="59"
-            id="minutes"
-            placeholder="59"
-            v-model="newEvent.minutes"
-            required
-          />
-        </div>
-        <div>
-          <button
-            class="btn home-button dropdown-toggle ml-2"
-            id="menu1"
-            type="button"
-            data-toggle="dropdown"
-          >
-            {{newEvent.ampm}}
-            <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" role="menu">
-            <li role="presentation">
-              <a role="menuitem" tabindex="-1" @click="changeAMPM('AM')">AM</a>
-            </li>
-            <li role="presentation">
-              <a role="menuitem" tabindex="-1" @click="changeAMPM('PM')">PM</a>
-            </li>
-          </ul>
-        </div>-->
       </div>
       <!-- !SECTION  -->
       <!-- SECTION -->
@@ -158,7 +64,7 @@
             class="form-control"
             id="title"
             placeholder="add a place..."
-            v-model="newEvent.place"
+            v-model="newPlace"
             required
           />
         </div>
@@ -176,7 +82,18 @@ export default {
   name: "createEvent",
   data() {
     return {
-      newEvent: {}
+      newEvent: {},
+      newPlace: "",
+      newDate: "",
+      newTime: "",
+      eventId: "",
+      pin: "",
+      hours: "",
+      minutes: "",
+      ampm: "",
+      year: "",
+      month: "",
+      day: ""
     };
   },
   computed: {},
@@ -193,6 +110,33 @@ export default {
       for (let i = pinString.length; i < 7; i++) {
         pinString = "0" + pinString;
       }
+      let newStr = "";
+      let str = this.newTime;
+      let str1 = parseInt(str.slice(0, 2));
+      let str2 = parseInt(str.slice(3, 5));
+      if (str2 < 10) {
+        str2 = "0" + str2.toString();
+      }
+      if (str1 > 12) {
+        str1 -= 12;
+
+        newStr = str1.toString() + ":" + str2 + " PM";
+        this.newTime = newStr;
+      } else {
+        this.newTime = str1.toString() + ":" + str2 + " AM";
+      }
+      let thisDate = this.newDate.split("-");
+      this.newEvent = {
+        eventId: this.$store.state.event._id,
+        pin: this.$store.state.event.pin,
+        hours: this.newTime,
+        minutes: this.newMinutes,
+        ampm: this.newAMPM,
+        year: thisDate[0],
+        month: thisDate[1],
+        day: thisDate[2],
+        place: this.newPlace
+      };
       this.newEvent.pin = pinString;
       this.$store.dispatch("createEvent", this.newEvent).then(res => {
         swal.fire({
@@ -201,10 +145,11 @@ export default {
         });
         this.$store.dispatch("setPending", {
           name: this.$store.state.user.name,
-          allergies: this.$store.state.user.allergies
+          allergies: this.$store.state.user.allergies,
+          eventId: this.newEvent.eventId
         });
         this.$store.dispatch("setRSVP", {
-          eventId: this.newEvent._id,
+          eventId: this.newEvent.eventId,
           status: "accepted"
         });
         this.$store.dispatch("joinEvent", { pin: this.newEvent.pin });

@@ -5,7 +5,7 @@
     <span v-if="event">
       Time:
       <br />
-      {{this.event.month}}{{this.event.day}}{{this.event.year}}
+      {{this.event.month}}/{{this.event.day}}/{{this.event.year}}
       <br />
       {{event.hours}}{{event.minutes}} {{event.ampm}}
     </span>
@@ -23,7 +23,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getEventForList", { pin: this.eventProp });
-    this.fixTime();
+    // this.fixTime();
   },
   computed: {
     event() {
@@ -41,25 +41,24 @@ export default {
       } else {
         this.$router.push("/guest/" + pin);
       }
-    },
-    fixTime() {
-      let newStr = "";
-      if (this.event.ampm == "pm") {
-        let str = this.event.hours;
-        let num1 = parseInt(str[1], 10) - 1;
-        let num2 = parseInt(str[2], 10) - 2;
-        let num4 = parseInt(str[4], 10);
-        let num5 = parseInt(str[5], 10);
-        newStr =
-          num1.toString() +
-          num2.toString() +
-          ":" +
-          num4.toString() +
-          num5.toString();
-      }
-
-      return newStr;
     }
+    // fixTime() {
+    //   let newStr = "";
+    //   if (this.event.ampm == "pm") {
+    //     let str = this.event.hours;
+    //     let num1 = parseInt(str[1], 10) - 1;
+    //     let num2 = parseInt(str[2], 10) - 2;
+    //     let num4 = parseInt(str[4], 10);
+    //     let num5 = parseInt(str[5], 10);
+    //     newStr =
+    //       num1.toString() +
+    //       num2.toString() +
+    //       ":" +
+    //       num4.toString() +
+    //       num5.toString();
+    //   }
+    //   // this.$store.dispatch(editTime, newStr);
+    // }
   },
   components: {},
   props: ["eventProp"]

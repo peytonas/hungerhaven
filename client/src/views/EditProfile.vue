@@ -174,7 +174,6 @@ export default {
       let name = this.newUser.name;
       let output = this.name;
       this.newUser.name = output;
-      this.IDontKnowWhatToCallThis();
       this.$store.dispatch("editProfile", this.newUser);
       this.$store.dispatch("authenticate");
       this.name = "";

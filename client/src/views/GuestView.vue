@@ -1,13 +1,13 @@
 <template>
   <div class="row justify-content-center">
-    <div class="col">
+    <div class="col-md-4">
       <div class="row justify-content-center">
         <img
           class="col-12 image"
           alt="Hunger Haven Logo"
           src="../assets/HH-Logo-Transparent-Color-Wings.png"
         />
-        <div class="col">
+        <div class="col-12">
           <h2>Event:{{this.event.pin}}</h2>
           <h5>Would you like to attend this event?</h5>
           <div class="row justify-content-center">
@@ -36,7 +36,7 @@
       <plusOneModal />
       <div class="row justify-content-center">
         <div class="col-12 mt-2">
-          <div class="card container-fluid justify-content-center" style="width: 18rem;">
+          <div class="card justify-content-center">
             <div class="card-header card-bg">Your Potluck:</div>
             <EventInfo />
           </div>
@@ -63,10 +63,17 @@ import dessertModal from "../Components/DessertModal";
 import swal from "sweetalert2";
 import EventInfo from "../Components/EventInfo";
 import Map from "@/Components/Map.vue";
+import io from "socket.io-client";
 export default {
   name: "guestView",
   data() {
-    return { extras: 0, takenSides: [], takenDrinks: [], takenDesserts: [] };
+    return {
+      extras: 0,
+      takenSides: [],
+      takenDrinks: [],
+      takenDesserts: [],
+      socket: io("localhost:3001")
+    };
   },
   props: [],
   mounted() {
@@ -134,28 +141,25 @@ export default {
         }
       }
       return output;
+    },
+    attendee() {
+      for (let user in this.event.attendees) {
+        if (this.event.attendees[user].userId == this.$store.state.user._id) {
+          return this.event.attendees[user];
+        }
+      }
     }
   },
   methods: {
     goHome() {
       this.$router.push("/home");
     },
-    addMainCourse() {
-      console.log("no");
-    },
-    addSide(side) {
-      this.event.sides.push(side);
-    },
-    addDrink() {
-      console.log("no");
-    },
-    addDessert() {
-      console.log("no");
-    },
     RSVP(msg) {
       let ampm = this.$store.state.event.ampm;
-      let hours = this.$store.state.event.hours;
-      let minutes = this.$store.state.event.minutes;
+      let timesplit = this.$store.state.event.hours.split(":");
+      let timesplit2 = timesplit[1].split(" ");
+      let hours = timesplit[0];
+      let minutes = timesplit2[0];
       let month = this.$store.state.event.month;
       let day = this.$store.state.event.day;
       let year = this.$store.state.event.year;
@@ -166,10 +170,12 @@ export default {
       }
       let EventDate = new Date(year, month - 1, day, hours, minutes);
       let CurrentDate = new Date();
+      debugger;
       if (CurrentDate < EventDate) {
         let payload = {
           eventId: this.event._id,
           status: msg,
+          attendeeId: this.attendee._id,
           allergies: []
         };
         if (msg == "accepted") {
@@ -179,6 +185,7 @@ export default {
           });
         }
         this.$store.dispatch("setRSVP", payload);
+        this.socket.emit("SEND_CHANGESTATUS", payload);
         const toast = swal.mixin({
           toast: true,
           position: "top-end",

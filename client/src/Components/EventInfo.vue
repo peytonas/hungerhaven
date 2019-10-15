@@ -36,7 +36,7 @@
       <p class="card-text col-6">
         <b>Time:</b>
         <br />
-        {{this.event.year}}
+        {{this.event.month}}/{{this.event.day}}/{{this.event.year}}
         <br />
         {{this.event.hours}}{{this.event.minutes}} {{this.event.ampm}}
         <br />
@@ -68,11 +68,15 @@
 
       <p class="card-text col-6">
         <span v-for="attendee in this.event.attendees" :key="attendee.userId">
-          <div class="attendee-button" data-toggle="modal" data-target="#attendeeModal">
+          <div
+            class="attendee-button"
+            data-toggle="modal"
+            :data-target="'#AttendeeModal' + attendee._id"
+          >
             <b>{{attendee.name}}:</b>
-            <AttendeeModal :attendeeprop="attendee" />
           </div>
           {{attendee.status}}
+          <AttendeeModal :attendeeprop="attendee" />
           <br />
         </span>
       </p>
@@ -142,6 +146,15 @@ export default {
   },
   methods: {},
   mounted() {
+    this.socket.on("ADDATTENDEE", data => {
+      this.$store.state.event.attendees.push(data.newAttendee);
+    });
+    this.socket.on("CHANGESTATUS", data => {
+      let currentAttendee = this.$store.state.event.attendees.find(
+        a => a._id == data.attendeeId
+      );
+      currentAttendee.status = data.status;
+    });
     this.socket.on("BRINGSIDE", data => {
       let currentAttendee = this.$store.state.event.attendees.find(
         a => a._id == data.attendeeId
@@ -164,10 +177,13 @@ export default {
       this.$store.state.event.maincourse = data.maincourse;
     });
     this.socket.on("CHANGETIME", data => {
-      this.$store.state.event.year = data.newYear;
+      this.$store.state.event.year = data.year;
+      this.$store.state.event.month = data.month;
+      this.$store.state.event.day = data.day;
+      this.$store.state.event.hours = data.hours;
     });
     this.socket.on("CHANGEPLACE", data => {
-      this.$store.state.event.place = data.place;
+      this.$store.state.event.place = data.newPlace;
     });
     this.socket.on("REQSIDE", data => {
       this.$store.state.event.reqSides.push(data.reqSide);
@@ -187,4 +203,7 @@ export default {
 
 
 <style scoped>
+.attendee-button:hover {
+  cursor: pointer;
+}
 </style>

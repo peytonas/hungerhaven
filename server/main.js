@@ -42,6 +42,12 @@ io.on('connection', function (socket) {
   socket.on('SEND_REQDESSERT', function (data) {
     io.emit('REQDESSERT', data)
   })
+  socket.on('SEND_ADDATTENDEE', function (data) {
+    io.emit('ADDATTENDEE', data)
+  })
+  socket.on('SEND_CHANGESTATUS', function (data) {
+    io.emit('CHANGESTATUS', data)
+  })
 })
 // let webSocketServer = require('websocket').server;
 // let http = require('http');
