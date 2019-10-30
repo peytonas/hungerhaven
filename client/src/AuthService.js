@@ -1,5 +1,5 @@
 import axios from 'axios'
-let baseUrl = 'http://' + window.location.hostname + ':3000/'
+let baseUrl = window.location.host.includes('localhost:8080') ? '//localhost:3000/' : '/'
 
 let auth = axios.create({
   baseURL: baseUrl + 'account/',
