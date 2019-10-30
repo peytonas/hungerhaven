@@ -9,7 +9,7 @@ const port = process.env.PORT || 3000
 //NOTE next we need to create our server
 
 let server = express()
-let app = server.listen(3001, function () {
+let app = server.listen(process.env.PORT, function () {
   console.log('server running on port 3001');
 });
 const io = require('socket.io')(app)
