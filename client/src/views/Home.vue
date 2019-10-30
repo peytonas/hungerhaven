@@ -57,7 +57,7 @@ export default {
   name: "home",
   components: { ListEvent },
   data() {
-    return { pin: "", socket: io("https://hungerhaven.herokuapp.com/") }; //localhost:3001
+    return { pin: "", socket: io("localhost:3001") };
   },
   mounted() {
     this.$store.dispatch("authenticate");
