@@ -132,6 +132,3 @@ server.use((error, req, res, next) => {
 server.use('*', (req, res, next) => {
   res.status(404).send("Route not found")
 })
-
-
-server.listen(port, () => { console.log(`Server is running on port: ${port}`) })
