@@ -39,14 +39,14 @@
   </div>
 </template>
 <script>
-import io from "socket.io-client";
+// import io from "socket.io-client";
 export default {
   name: "sideModal",
   props: ["takenSides"],
   data() {
     return {
-      newSide: "",
-      socket: io("localhost:3001")
+      newSide: ""
+      // socket: io("localhost:3001")
     };
   },
   methods: {
@@ -64,12 +64,12 @@ export default {
         desserts: this.attendee.desserts,
         eventId: this.event._id
       });
-      this.socket.emit("SEND_BRINGSIDE", {
-        side: this.newSide,
-        eventId: this.event._id,
-        pin: this.event.pin,
-        attendeeId: this.attendee._id
-      });
+      // this.socket.emit("SEND_BRINGSIDE", {
+      //   side: this.newSide,
+      //   eventId: this.event._id,
+      //   pin: this.event.pin,
+      //   attendeeId: this.attendee._id
+      // });
       this.newSide = "";
     },
     addSideFromReq(req) {

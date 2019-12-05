@@ -24,9 +24,7 @@ export default class UserController {
             let data = await _userService.find({})
             return res.send(data)
         } catch (error) { next(error) }
-
     }
-
     async getById(req, res, next) {
         try {
             let data = await _userService.findById(req.params.id)
@@ -36,7 +34,6 @@ export default class UserController {
             res.send(data)
         } catch (error) { next(error) }
     }
-
     async create(req, res, next) {
         try {
             //NOTE the user id is accessable through req.body.uid, never trust the client to provide you this information
@@ -45,7 +42,6 @@ export default class UserController {
             res.send(data)
         } catch (error) { next(error) }
     }
-
     async joinEvent(req, res, next) {
         try {
             let user = await _userService.findById(req.session.uid)
@@ -62,7 +58,6 @@ export default class UserController {
             next(error)
         }
     }
-
     async edit(req, res, next) {
         try {
             let data = await _userService.findOneAndUpdate({ _id: req.params.id, }, req.body, { new: true })
@@ -75,13 +70,10 @@ export default class UserController {
             next(error)
         }
     }
-
     async delete(req, res, next) {
         try {
             await _userService.findOneAndRemove({ _id: req.params.id })
             res.send("deleted guest")
         } catch (error) { next(error) }
-
     }
-
 }

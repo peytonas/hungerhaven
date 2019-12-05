@@ -146,7 +146,7 @@
   </div>
 </template>
 <script>
-import io from "socket.io-client";
+// import io from "socket.io-client";
 export default {
   name: "timeModal",
   props: [],
@@ -158,8 +158,8 @@ export default {
       newAMPM: "",
       newMonth: "",
       newDay: "",
-      newYear: "2019",
-      socket: io("localhost:3001")
+      newYear: "2019"
+      // socket: io("localhost:3001")
     };
   },
   methods: {
@@ -197,7 +197,7 @@ export default {
         day: thisDate[2]
       };
       this.$store.dispatch("editEvent", newerTime);
-      this.socket.emit("SEND_CHANGETIME", newerTime);
+      // this.socket.emit("SEND_CHANGETIME", newerTime);
     }
   },
   computed: {},

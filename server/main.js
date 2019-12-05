@@ -12,43 +12,43 @@ let server = express()
 let app = server.listen(port, function () {
   console.log('server running on port 3001');
 });
-const io = require('socket.io')(app)
+// const io = require('socket.io')(app)
 
-io.on('connection', function (socket) {
-  socket.on('SEND_BRINGSIDE', function (data) {
-    io.emit('BRINGSIDE', data)
-  })
-  socket.on('SEND_BRINGDRINK', function (data) {
-    io.emit('BRINGDRINK', data)
-  })
-  socket.on('SEND_BRINGDESSERT', function (data) {
-    io.emit('BRINGDESSERT', data)
-  })
-  socket.on('SEND_CHANGEMAINCOURSE', function (data) {
-    io.emit('CHANGEMAINCOURSE', data)
-  })
-  socket.on('SEND_CHANGETIME', function (data) {
-    io.emit('CHANGETIME', data)
-  })
-  socket.on('SEND_CHANGEPLACE', function (data) {
-    io.emit('CHANGEPLACE', data)
-  })
-  socket.on('SEND_REQSIDE', function (data) {
-    io.emit('REQSIDE', data)
-  })
-  socket.on('SEND_REQDRINK', function (data) {
-    io.emit('REQDRINK', data)
-  })
-  socket.on('SEND_REQDESSERT', function (data) {
-    io.emit('REQDESSERT', data)
-  })
-  socket.on('SEND_ADDATTENDEE', function (data) {
-    io.emit('ADDATTENDEE', data)
-  })
-  socket.on('SEND_CHANGESTATUS', function (data) {
-    io.emit('CHANGESTATUS', data)
-  })
-})
+// io.on('connection', function (socket) {
+//   socket.on('SEND_BRINGSIDE', function (data) {
+//     io.emit('BRINGSIDE', data)
+//   })
+//   socket.on('SEND_BRINGDRINK', function (data) {
+//     io.emit('BRINGDRINK', data)
+//   })
+//   socket.on('SEND_BRINGDESSERT', function (data) {
+//     io.emit('BRINGDESSERT', data)
+//   })
+//   socket.on('SEND_CHANGEMAINCOURSE', function (data) {
+//     io.emit('CHANGEMAINCOURSE', data)
+//   })
+//   socket.on('SEND_CHANGETIME', function (data) {
+//     io.emit('CHANGETIME', data)
+//   })
+//   socket.on('SEND_CHANGEPLACE', function (data) {
+//     io.emit('CHANGEPLACE', data)
+//   })
+//   socket.on('SEND_REQSIDE', function (data) {
+//     io.emit('REQSIDE', data)
+//   })
+//   socket.on('SEND_REQDRINK', function (data) {
+//     io.emit('REQDRINK', data)
+//   })
+//   socket.on('SEND_REQDESSERT', function (data) {
+//     io.emit('REQDESSERT', data)
+//   })
+//   socket.on('SEND_ADDATTENDEE', function (data) {
+//     io.emit('ADDATTENDEE', data)
+//   })
+//   socket.on('SEND_CHANGESTATUS', function (data) {
+//     io.emit('CHANGESTATUS', data)
+//   })
+// })
 // let webSocketServer = require('websocket').server;
 // let http = require('http');
 // let socketServer = http.createServer(function (request, response) {

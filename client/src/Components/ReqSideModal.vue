@@ -28,14 +28,14 @@
   </div>
 </template>
 <script>
-import io from "socket.io-client";
+// import io from "socket.io-client";
 export default {
   name: "reqSideModal",
   props: [],
   data() {
     return {
-      newSide: "",
-      socket: io("localhost:3001")
+      newSide: ""
+      // socket: io("localhost:3001")
     };
   },
   methods: {
@@ -46,11 +46,11 @@ export default {
         eventId: this.event._id,
         pin: this.event.pin
       });
-      this.socket.emit("SEND_REQSIDE", {
-        reqSide: this.newSide,
-        eventId: this.event._id,
-        pin: this.event.pin
-      });
+      // this.socket.emit("SEND_REQSIDE", {
+      //   reqSide: this.newSide,
+      //   eventId: this.event._id,
+      //   pin: this.event.pin
+      // });
       this.newSide = "";
     }
   },

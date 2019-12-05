@@ -107,14 +107,14 @@
 
 
 <script>
-import io from "socket.io-client";
+// import io from "socket.io-client";
 import AttendeeModal from "../Components/AttendeeModal";
 export default {
   name: "eventInfo",
 
   data() {
     return {
-      socket: io("localhost:3001")
+      // socket: io("localhost:3001")
     };
   },
   computed: {
@@ -146,54 +146,54 @@ export default {
   },
   methods: {},
   mounted() {
-    this.socket.on("ADDATTENDEE", data => {
-      this.$store.state.event.attendees.push(data.newAttendee);
-    });
-    this.socket.on("CHANGESTATUS", data => {
-      let currentAttendee = this.$store.state.event.attendees.find(
-        a => a._id == data.attendeeId
-      );
-      currentAttendee.status = data.status;
-    });
-    this.socket.on("BRINGSIDE", data => {
-      let currentAttendee = this.$store.state.event.attendees.find(
-        a => a._id == data.attendeeId
-      );
-      currentAttendee.sides.push(data.side);
-    });
-    this.socket.on("BRINGDRINK", data => {
-      let currentAttendee = this.$store.state.event.attendees.find(
-        a => a._id == data.attendeeId
-      );
-      currentAttendee.drinks.push(data.drink);
-    });
-    this.socket.on("BRINGDESSERT", data => {
-      let currentAttendee = this.$store.state.event.attendees.find(
-        a => a._id == data.attendeeId
-      );
-      currentAttendee.desserts.push(data.dessert);
-    });
-    this.socket.on("CHANGEMAINCOURSE", data => {
-      this.$store.state.event.maincourse = data.maincourse;
-    });
-    this.socket.on("CHANGETIME", data => {
-      this.$store.state.event.year = data.year;
-      this.$store.state.event.month = data.month;
-      this.$store.state.event.day = data.day;
-      this.$store.state.event.hours = data.hours;
-    });
-    this.socket.on("CHANGEPLACE", data => {
-      this.$store.state.event.place = data.newPlace;
-    });
-    this.socket.on("REQSIDE", data => {
-      this.$store.state.event.reqSides.push(data.reqSide);
-    });
-    this.socket.on("REQDRINK", data => {
-      this.$store.state.event.reqDrinks.push(data.reqDrink);
-    });
-    this.socket.on("REQDESSERT", data => {
-      this.$store.state.event.reqDesserts.push(data.reqDessert);
-    });
+    // this.socket.on("ADDATTENDEE", data => {
+    //   this.$store.state.event.attendees.push(data.newAttendee);
+    // });
+    // this.socket.on("CHANGESTATUS", data => {
+    //   let currentAttendee = this.$store.state.event.attendees.find(
+    //     a => a._id == data.attendeeId
+    //   );
+    //   currentAttendee.status = data.status;
+    // });
+    // this.socket.on("BRINGSIDE", data => {
+    //   let currentAttendee = this.$store.state.event.attendees.find(
+    //     a => a._id == data.attendeeId
+    //   );
+    //   currentAttendee.sides.push(data.side);
+    // });
+    // this.socket.on("BRINGDRINK", data => {
+    //   let currentAttendee = this.$store.state.event.attendees.find(
+    //     a => a._id == data.attendeeId
+    //   );
+    //   currentAttendee.drinks.push(data.drink);
+    // });
+    // this.socket.on("BRINGDESSERT", data => {
+    //   let currentAttendee = this.$store.state.event.attendees.find(
+    //     a => a._id == data.attendeeId
+    //   );
+    //   currentAttendee.desserts.push(data.dessert);
+    // });
+    // this.socket.on("CHANGEMAINCOURSE", data => {
+    //   this.$store.state.event.maincourse = data.maincourse;
+    // });
+    // this.socket.on("CHANGETIME", data => {
+    //   this.$store.state.event.year = data.year;
+    //   this.$store.state.event.month = data.month;
+    //   this.$store.state.event.day = data.day;
+    //   this.$store.state.event.hours = data.hours;
+    // });
+    // this.socket.on("CHANGEPLACE", data => {
+    //   this.$store.state.event.place = data.newPlace;
+    // });
+    // this.socket.on("REQSIDE", data => {
+    //   this.$store.state.event.reqSides.push(data.reqSide);
+    // });
+    // this.socket.on("REQDRINK", data => {
+    //   this.$store.state.event.reqDrinks.push(data.reqDrink);
+    // });
+    // this.socket.on("REQDESSERT", data => {
+    //   this.$store.state.event.reqDesserts.push(data.reqDessert);
+    // });
   },
   components: {
     AttendeeModal

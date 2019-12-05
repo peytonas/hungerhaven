@@ -28,14 +28,14 @@
   </div>
 </template>
 <script>
-import io from "socket.io-client";
+// import io from "socket.io-client";
 export default {
   name: "mainCourseModal",
   props: [],
   data() {
     return {
-      newMainCourse: "",
-      socket: io("localhost:3001")
+      newMainCourse: ""
+      // socket: io("localhost:3001")
     };
   },
   methods: {
@@ -47,11 +47,11 @@ export default {
       };
 
       this.$store.dispatch("editEvent", payload);
-      this.socket.emit("SEND_CHANGEMAINCOURSE", {
-        maincourse: this.newMainCourse,
-        eventId: this.$store.state.event._id,
-        pin: this.$store.state.event.pin
-      });
+      // this.socket.emit("SEND_CHANGEMAINCOURSE", {
+      //   maincourse: this.newMainCourse,
+      //   eventId: this.$store.state.event._id,
+      //   pin: this.$store.state.event.pin
+      // });
       this.newMainCourse = "";
     }
   },

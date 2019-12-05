@@ -63,7 +63,7 @@ import dessertModal from "../Components/DessertModal";
 import swal from "sweetalert2";
 import EventInfo from "../Components/EventInfo";
 import Map from "@/Components/Map.vue";
-import io from "socket.io-client";
+// import io from "socket.io-client";
 export default {
   name: "guestView",
   data() {
@@ -71,8 +71,8 @@ export default {
       extras: 0,
       takenSides: [],
       takenDrinks: [],
-      takenDesserts: [],
-      socket: io("localhost:3001")
+      takenDesserts: []
+      // socket: io("localhost:3001")
     };
   },
   props: [],

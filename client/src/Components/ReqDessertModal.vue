@@ -28,14 +28,14 @@
   </div>
 </template>
 <script>
-import io from "socket.io-client";
+// import io from "socket.io-client";
 export default {
   name: "reqDessertModal",
   props: [],
   data() {
     return {
-      newDessert: "",
-      socket: io("localhost:3001")
+      newDessert: ""
+      // socket: io("localhost:3001")
     };
   },
   methods: {
@@ -46,11 +46,11 @@ export default {
         eventId: this.event._id,
         pin: this.event.pin
       });
-      this.socket.emit("SEND_REQDESSERT", {
-        reqDessert: this.newDessert,
-        eventId: this.event._id,
-        pin: this.event.pin
-      });
+      // this.socket.emit("SEND_REQDESSERT", {
+      //   reqDessert: this.newDessert,
+      //   eventId: this.event._id,
+      //   pin: this.event.pin
+      // });
       this.newDessert = "";
     }
   },

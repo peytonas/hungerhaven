@@ -52,14 +52,14 @@
 // @ is an alias to /src
 
 import ListEvent from "../Components/ListEvent.vue";
-import io from "socket.io-client";
+// import io from "socket.io-client";
 export default {
   name: "home",
   components: { ListEvent },
   data() {
     //FIXME broke websockets after deployment .
-    // return { pin: "", socket: io("localhost:3001") };
-    return { pin: "", socket: io("/") }; //localhost:3001
+    return { pin: "" };
+    // return { pin: "", socket: io("/") }; //localhost:3001
   },
   mounted() {
     this.$store.dispatch("authenticate");
@@ -94,12 +94,12 @@ export default {
             allergies: [],
             phoneNumber: this.user.phoneNumber
           });
-          this.socket.emit("SEND_ADDATTENDEE", {
-            eventId: this.$store.state.event._id,
-            name: this.user.name,
-            allergies: [],
-            phoneNumber: this.user.phoneNumber
-          });
+          // this.socket.emit("SEND_ADDATTENDEE", {
+          //   eventId: this.$store.state.event._id,
+          //   name: this.user.name,
+          //   allergies: [],
+          //   phoneNumber: this.user.phoneNumber
+          // });
           this.$router.push("/guest/" + this.pin);
         } else {
           console.log("Ah ah ah, you didn't say the magic word.");
