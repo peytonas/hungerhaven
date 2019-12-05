@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Personal Info.</h4>
+          <h4 class="modal-title">Personal Info</h4>
           <button class="logout-button" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
@@ -14,7 +14,7 @@
           <h5>{{attendeeprop.phoneNumber}}</h5>
           <br />
           <h5>Allergies:</h5>
-          <h5 v-for="allergy in attendeeprop.allergies">{{allergy}}</h5>
+          <h5 v-for="allergy in attendeeprop.allergies" :key="allergy">{{allergy}}</h5>
           <br />
           <h5>Attending:</h5>
           <h5>{{attendeeprop.status}}</h5>

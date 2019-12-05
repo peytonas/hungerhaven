@@ -8,8 +8,8 @@
         <br />
         <b>Sides:</b>
         <br />
-        <span v-for="user in this.attendees">
-          <span v-if="user.status == 'accepted'" v-for="side in user.sides">
+        <span v-for="user in this.attendees" :key="user">
+          <span v-if="user.status == 'accepted'" v-for="side in user.sides" :key="side">
             • {{side}}
             <br />
           </span>
@@ -17,8 +17,8 @@
         <br />
         <b>Drinks:</b>
         <br />
-        <span v-for="user in this.attendees">
-          <span v-if="user.status == 'accepted'" v-for="drink in user.drinks">
+        <span v-for="user in this.attendees" :key="user">
+          <span v-if="user.status == 'accepted'" v-for="drink in user.drinks" :key="drink">
             • {{drink}}
             <br />
           </span>
@@ -26,8 +26,8 @@
         <br />
         <b>Desserts:</b>
         <br />
-        <span v-for="user in this.attendees">
-          <span v-if="user.status == 'accepted'" v-for="dessert in user.desserts">
+        <span v-for="user in this.attendees" :key="user">
+          <span v-if="user.status == 'accepted'" v-for="dessert in user.desserts" :key="dessert">
             • {{dessert}}
             <br />
           </span>
@@ -46,21 +46,21 @@
         <br />
         <b>Requested Sides:</b>
         <br />
-        <span v-for="side in this.event.reqSides">
+        <span v-for="side in this.event.reqSides" :key="side">
           • {{side}}
           <br />
         </span>
         <br />
         <b>Requested Drinks:</b>
         <br />
-        <span v-for="drink in this.event.reqDrinks">
+        <span v-for="drink in this.event.reqDrinks" :key="drink">
           • {{drink}}
           <br />
         </span>
         <br />
         <b>Requested Desserts:</b>
         <br />
-        <span v-for="dessert in this.event.reqDesserts">
+        <span v-for="dessert in this.event.reqDesserts" :key="dessert">
           • {{dessert}}
           <br />
         </span>

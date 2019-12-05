@@ -57,7 +57,9 @@ export default {
   name: "home",
   components: { ListEvent },
   data() {
-    return { pin: "", socket: io("localhost:3001") };
+    //FIXME broke websockets after deployment .
+    // return { pin: "", socket: io("localhost:3001") };
+    return { pin: "", socket: io("/") }; //localhost:3001
   },
   mounted() {
     this.$store.dispatch("authenticate");
@@ -80,9 +82,9 @@ export default {
     goHost() {
       this.$router.push("/create");
     },
-    addListItem() {
-      //every time a user joins or creates an event, a list-item is populated pulling that event's data, and pushing it to the user's profile based on user ID.
-    },
+    // addListItem() {
+    //   //every time a user joins or creates an event, a list-item is populated pulling that event's data, and pushing it to the user's profile based on user ID.
+    // },
     findEvent() {
       this.$store.dispatch("getEventInfo", { pin: this.pin }).then(res => {
         if (this.$store.state.event.pin) {

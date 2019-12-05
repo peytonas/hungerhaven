@@ -9,7 +9,7 @@ let _eventService = new EventService().repository
 export default class UserController {
     constructor() {
         this.router = express.Router()
-            //NOTE all routes after the authenticate method will require the user to be logged in to access
+            //NOTE all routes after the authenticate method will require the user to be logged in to access .
             .use(Authorize.authenticated)
             .get('', this.getAll)
             .get('/:id', this.getById)
