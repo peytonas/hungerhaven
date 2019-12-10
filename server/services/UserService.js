@@ -10,14 +10,14 @@ const SALT = 10
 
 let _schema = new Schema({
     //every email must be unique on the database
-    //TODO make an events array
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     hash: { type: String, required: true },
     allergies: [{ type: String, default: '' }],
     address: { type: String, default: '' },
     phoneNumber: { type: String, default: '' },
-    events: [{ type: String, default: '' }]
+    events: [{ type: String, default: '' }],
+    guest: { type: Boolean, default: true }
 
 
 }, { timestamps: true })

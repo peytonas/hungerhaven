@@ -8,7 +8,7 @@
         <br />
         <b>Sides:</b>
         <br />
-        <span v-for="user in this.attendees" :key="user">
+        <span v-for="(user, i1) in this.attendees" :key="i1">
           <span v-if="user.status == 'accepted'" v-for="side in user.sides" :key="side">
             • {{side}}
             <br />
@@ -17,7 +17,7 @@
         <br />
         <b>Drinks:</b>
         <br />
-        <span v-for="user in this.attendees" :key="user">
+        <span v-for="(user, i2) in this.attendees" :key="i2">
           <span v-if="user.status == 'accepted'" v-for="drink in user.drinks" :key="drink">
             • {{drink}}
             <br />
@@ -46,21 +46,21 @@
         <br />
         <b>Requested Sides:</b>
         <br />
-        <span v-for="side in this.event.reqSides" :key="side">
+        <span v-for="(side, i) in this.event.reqSides" :key="i">
           • {{side}}
           <br />
         </span>
         <br />
         <b>Requested Drinks:</b>
         <br />
-        <span v-for="drink in this.event.reqDrinks" :key="drink">
+        <span v-for="(drink, index) in this.event.reqDrinks" :key="index">
           • {{drink}}
           <br />
         </span>
         <br />
         <b>Requested Desserts:</b>
         <br />
-        <span v-for="dessert in this.event.reqDesserts" :key="dessert">
+        <span v-for="(dessert, ind) in this.event.reqDesserts" :key="ind">
           • {{dessert}}
           <br />
         </span>
@@ -105,7 +105,6 @@
   </div>
 </template>
 
-
 <script>
 // import io from "socket.io-client";
 import AttendeeModal from "../Components/AttendeeModal";
@@ -146,6 +145,7 @@ export default {
   },
   methods: {},
   mounted() {
+    //SECTION web sockets .
     // this.socket.on("ADDATTENDEE", data => {
     //   this.$store.state.event.attendees.push(data.newAttendee);
     // });
@@ -194,6 +194,7 @@ export default {
     // this.socket.on("REQDESSERT", data => {
     //   this.$store.state.event.reqDesserts.push(data.reqDessert);
     // });
+    // !SECTION .
   },
   components: {
     AttendeeModal

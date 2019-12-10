@@ -200,7 +200,7 @@ export default {
       this.newUser.phoneNumber = output;
       this.$store.dispatch("editProfile", this.newUser);
       this.$store.dispatch("authenticate");
-      this.phoneNumber = "";
+      // this.phoneNumber = "";
     },
     removeAllergy(allergy) {
       this.$store.dispatch("removeAllergy", { allergy, user: this.user });

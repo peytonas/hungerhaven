@@ -185,7 +185,7 @@ export default {
           });
         }
         this.$store.dispatch("setRSVP", payload);
-        this.socket.emit("SEND_CHANGESTATUS", payload);
+        // this.socket.emit("SEND_CHANGESTATUS", payload);
         const toast = swal.mixin({
           toast: true,
           position: "top-end",

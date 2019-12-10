@@ -1,5 +1,5 @@
 <template>
-  <!-- SECTION -->
+  <!-- SECTION .-->
   <div class="createEvent">
     <img
       class="col-12 image"

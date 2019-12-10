@@ -16,7 +16,8 @@ let invites = new Schema({
   sides: [{ type: String }],
   drinks: [{ type: String }],
   desserts: [{ type: String }],
-  phoneNumber: { type: String }
+  phoneNumber: { type: String },
+  guest: { type: Boolean, default: true }
 })
 
 
@@ -34,16 +35,12 @@ let _schema = new Schema({
   day: { type: String, default: '' },
   year: { type: String, default: '' },
   place: { type: String, default: "" },
-  // attending: { type: Array, required: true, default: [] },
   attendees: [invites],
   allergies: [{ type: String }],
   hostId: { type: ObjectId, ref: 'User', required: true },
   reqSides: [{ type: String }],
   reqDrinks: [{ type: String }],
   reqDesserts: [{ type: String }]
-  // declined: [{ type: ObjectId, ref: 'User' }]
-
-
 }, { timestamps: true })
 
 //schema.methods are used to add a method to a Model instance

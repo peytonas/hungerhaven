@@ -88,7 +88,7 @@ export default new Vuex.Store({
       }
     },
 
-    //!SECTION 
+    //!SECTION
 
     //SECTION -- PROFILE --
     async editProfile({ commit, dispatch }, payload) {
@@ -163,7 +163,7 @@ export default new Vuex.Store({
     //SECTION -- RSVP --
     async setRSVP({ commit }, payload) {
 
-      let something = await api.put('/events/' + payload.eventId + "/attendee", payload)
+      let something = await api.put('/events/' + payload.eventId + "/attendee", payload.status)
     },
     async setPending({ commit }, payload) {
       try {
@@ -213,7 +213,7 @@ export default new Vuex.Store({
       } catch (error) {
 
       }
-    }
+    },
     //!SECTION 
 
   }
