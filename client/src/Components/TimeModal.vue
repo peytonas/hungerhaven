@@ -7,7 +7,6 @@
           <button class="logout-button" data-dismiss="modal">&times;</button>
         </div>
         <form>
-          <!-- SECTION Change year -->
           <div class="form-group">
             <label for="title">Date:</label>
             <input
@@ -21,10 +20,6 @@
               required
             />
           </div>
-          <!-- !SECTION -->
-
-          <!-- SECTION Change Month -->
-
           <!-- <div class="modal-body">
             Month:
             <button
@@ -76,8 +71,6 @@
               </li>
             </ul>
           </div>-->
-          <!-- !SECTION -->
-          <!-- SECTION Change Day -->
           <div class="form-group">
             <label for="title">Time:</label>
             <input
@@ -89,9 +82,7 @@
               required
             />
           </div>
-          <!-- !SECTION -->
 
-          <!-- SECTION Change Time -->
           <!-- <div class="form-group">
             <label for="title">Hour:</label>
             <input
@@ -138,7 +129,6 @@
             </ul>
           </div>-->
           <button class="register-button" data-dismiss="modal" @click="addTime()">submit</button>
-          <!-- !SECTION -->
         </form>
       </div>
       <div class="modal-footer"></div>

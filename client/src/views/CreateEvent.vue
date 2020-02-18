@@ -1,5 +1,4 @@
 <template>
-  <!-- SECTION .-->
   <div class="createEvent">
     <img
       class="col-12 image"
@@ -35,10 +34,7 @@
             required
           />
         </div>
-        <!-- !SECTION -->
       </div>
-
-      <!-- SECTION Change Time -->
       <div class="row justify-content-center">
         <div class="form-group">
           <label for="title">Time:</label>
@@ -54,22 +50,18 @@
           />
         </div>
       </div>
-      <!-- !SECTION  -->
-      <!-- SECTION -->
       <div class="row justify-content-center">
         <div class="col-7 form-group">
           <label for="title">Location:</label>
           <input
             type="text"
             class="form-control"
-            id="title"
             placeholder="add a place..."
             v-model="newPlace"
             required
           />
         </div>
       </div>
-      <!-- !SECTION -->
       <button type="submit" class="btn home-button">Submit</button>
       <button class="logout-button" @click="goHome">Cancel</button>
     </form>

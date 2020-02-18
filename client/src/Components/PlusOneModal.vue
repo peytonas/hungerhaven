@@ -15,7 +15,6 @@
               <input
                 type="text"
                 class="form-control"
-                id="title"
                 placeholder="add a plus one..."
                 v-model="newPlusOne"
                 required

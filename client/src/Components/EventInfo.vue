@@ -26,7 +26,7 @@
         <br />
         <b>Desserts:</b>
         <br />
-        <span v-for="user in this.attendees" :key="user">
+        <span v-for="(user, i3) in this.attendees" :key="i3">
           <span v-if="user.status == 'accepted'" v-for="dessert in user.desserts" :key="dessert">
             • {{dessert}}
             <br />

@@ -13,7 +13,6 @@
               <input
                 type="text"
                 class="form-control"
-                id="title"
                 placeholder="add a dessert..."
                 v-model="newDessert"
                 required
