@@ -15,7 +15,7 @@
               <input
                 type="text"
                 class="form-control"
-                placeholder="add a plus one..."
+                placeholder="number of people you're bringing..."
                 v-model="newPlusOne"
                 required
               />
